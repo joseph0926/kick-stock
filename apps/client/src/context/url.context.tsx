@@ -1,5 +1,5 @@
 import { createContext, useCallback, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 
 type NewSearchParamsType = {
   [key: string]: string;
