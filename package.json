@@ -1,7 +1,7 @@
 {
-  "name": "stock-mock",
+  "name": "kickstock",
   "version": "1.0.0",
-  "description": "",
+  "description": "축구 결과를 이용한 가상의 주식 웹 애플리케이션입니다.",
   "private": "true",
   "scripts": {
     "build": "turbo run build",
@@ -9,7 +9,7 @@
     "lint": "turbo run lint"
   },
   "keywords": [],
-  "author": "",
+  "author": "joseph0926",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.10.2",
