@@ -16,5 +16,5 @@
 ## URL
 
 ```sh
-https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues.json
+https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/**/*.json
 ```
