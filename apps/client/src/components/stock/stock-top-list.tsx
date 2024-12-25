@@ -12,10 +12,10 @@ export const StocTopkList = () => {
               alt={club.name}
               className="size-5 rounded-full"
             />
-            <h1 className="font-bold text-sm">{club.shortName}</h1>
+            <h1 className="text-sm font-bold">{club.shortName}</h1>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="font-medium text-base">{club.price}</span>
+            <span className="text-base font-medium">{club.price}</span>
             <span className="text-xs">{club.rate}</span>
           </div>
         </Card>

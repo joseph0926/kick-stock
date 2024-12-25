@@ -24,7 +24,7 @@ const cardVariants = cva(
       variant: "list",
       size: "md",
     },
-  }
+  },
 );
 
 type CardProps = ComponentProps<"article"> &
@@ -53,7 +53,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 Card.displayName = "Card";

@@ -10,7 +10,7 @@ type UrlContextProps = {
   searchParams: URLSearchParams;
   onUpdateSearchParams: (
     payload: NewSearchParamsType,
-    mode?: UpdateMode
+    mode?: UpdateMode,
   ) => void;
 };
 
@@ -38,11 +38,11 @@ export const UrlContextProvider = ({
 
       // 객체가 {[key: string]: string} 타입인지 체크
       const isValidPayload = Object.entries(payload).every(
-        ([key, value]) => typeof key === "string" && typeof value === "string"
+        ([key, value]) => typeof key === "string" && typeof value === "string",
       );
       if (!isValidPayload) {
         console.warn(
-          "[UrlContext] payload 타입은 { [key: string]: string } 이어야 합니다."
+          "[UrlContext] payload 타입은 { [key: string]: string } 이어야 합니다.",
         );
         return;
       }
@@ -60,7 +60,7 @@ export const UrlContextProvider = ({
         setSearchParams(updateParams);
       }
     },
-    [searchParams, setSearchParams]
+    [searchParams, setSearchParams],
   );
 
   const initialValue = useMemo(() => {
