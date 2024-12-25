@@ -1,13 +1,10 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
-import fp from "fastify-plugin";
 
-const healthRoute = async (
+export const healthRoute = async (
   fastify: FastifyInstance,
   options: FastifyPluginOptions
 ) => {
-  fastify.get("/health", async (request, reply) => {
+  fastify.get("/", async (request, reply) => {
     return { status: "ok" };
   });
 };
-
-export default fp(healthRoute);

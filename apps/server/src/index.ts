@@ -1,8 +1,9 @@
 import Fastify from "fastify";
-import { healthRoute } from "./routes/index.js";
+import { healthRoute, clubRoute } from "./routes/index.js";
 
 const PORT = 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
+const API_PREFIX = "/api/v1";
 
 const fastify = Fastify({
   trustProxy: process.env.NODE_ENV === "production" ? false : TRUST_PROXY,
@@ -20,7 +21,8 @@ const fastify = Fastify({
   maxRequestsPerSocket: 1000,
 });
 
-fastify.register(healthRoute);
+fastify.register(healthRoute, { prefix: "/health" });
+fastify.register(clubRoute, { prefix: `${API_PREFIX}/clubs` });
 
 const start = async () => {
   try {
