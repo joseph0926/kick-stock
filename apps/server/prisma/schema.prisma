@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model League {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name    String
+  nameEng String
+  clubs   Club[]
+
+  @@map("leagues")
+}
+
+model Club {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name      String
+  nameEng   String
+  shortName String
+  img       String
+  league    String
+
+  leagueId String
+  League   League @relation(fields: [leagueId], references: [id])
+
+  @@map("clubs")
+}
