@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import { healthRoute } from "./routes/index.js";
 
 const PORT = 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -19,9 +20,7 @@ const fastify = Fastify({
   maxRequestsPerSocket: 1000,
 });
 
-fastify.get("/", async (request, reply) => {
-  return { hello: "world" };
-});
+fastify.register(healthRoute);
 
 const start = async () => {
   try {
