@@ -5,7 +5,15 @@ const TRUST_PROXY = ["127.0.0.1", "::1"];
 
 const fastify = Fastify({
   trustProxy: process.env.NODE_ENV === "production" ? false : TRUST_PROXY,
-  logger: true,
+  logger: {
+    transport: {
+      target: "pino-pretty",
+      options: {
+        translateTime: "HH:MM:ss Z",
+        ignore: "pid,hostname",
+      },
+    },
+  },
   connectionTimeout: 30000,
   keepAliveTimeout: 10000,
   maxRequestsPerSocket: 1000,
