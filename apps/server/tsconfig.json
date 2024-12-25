@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
-    "module": "ESNext"
+    "module": "NodeNext",
+    "target": "ES2022",
+    "moduleResolution": "nodenext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }
