@@ -22,3 +22,8 @@ postgreSQL
 node v21
 pnpm v9
 ```
+
+```sh
+# .env
+DATABASE_URL= # psql
+```
