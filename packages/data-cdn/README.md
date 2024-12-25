@@ -5,7 +5,12 @@
 ```
 └── data-cdn
     ├── README.md
-    └── leagues.json
+    └── leagues
+        ├── bundes.json
+        ├── epl.json
+        ├── laliga.json
+        ├── ligue.json
+        └── serie.json
 ```
 
 ## URL
