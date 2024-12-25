@@ -9,4 +9,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      "/cdn": {
+        target:
+          "https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/cdn/, ""),
+      },
+    },
+  },
 });
