@@ -132,6 +132,25 @@ importers:
         specifier: ^4.19.2
         version: 4.19.2
 
+  apps/ssr-server:
+    dependencies:
+      '@sinclair/typebox':
+        specifier: ^0.34.13
+        version: 0.34.13
+      fastify:
+        specifier: ^5.2.0
+        version: 5.2.0
+      fastify-plugin:
+        specifier: ^5.0.1
+        version: 5.0.1
+      pino-pretty:
+        specifier: ^13.0.0
+        version: 13.0.0
+    devDependencies:
+      tsx:
+        specifier: ^4.19.2
+        version: 4.19.2
+
 packages:
 
   '@alloc/quick-lru@5.2.0':
