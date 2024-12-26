@@ -9,7 +9,7 @@ export const LeagueTabs = () => {
           <TabsTrigger
             key={league}
             value={league}
-            className="uppercase text-sm font-bold"
+            className="text-sm font-bold uppercase"
           >
             {league}
           </TabsTrigger>
