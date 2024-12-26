@@ -1,13 +1,12 @@
 import { FastifyInstance } from "fastify";
 import { renderToPipeableStream } from "react-dom/server";
-import { App } from "@/server/index.ts";
+import { App, routes } from "@/entry.server.ts";
 import { createWebRequest } from "src/utils/create-request.ts";
 import {
   createStaticHandler,
   createStaticRouter,
   StaticRouterProvider,
 } from "react-router";
-import { routes } from "@/shared/routes/index.tsx";
 
 const { query, dataRoutes } = createStaticHandler(routes);
 
