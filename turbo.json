@@ -10,6 +10,15 @@
     "dev": {
       "persistent": true,
       "cache": false
+    },
+    "build:client": {
+      "outputs": ["dist/**"],
+      "cache": false
+    },
+    "dev:ssr": {
+      "dependsOn": ["build:client"],
+      "cache": false,
+      "persistent": true
     }
   }
 }

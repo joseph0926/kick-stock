@@ -6,7 +6,9 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "build:client": "turbo run build:client",
+    "dev:ssr": "turbo run dev:ssr"
   },
   "keywords": [],
   "author": "joseph0926",
