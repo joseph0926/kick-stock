@@ -1,8 +1,8 @@
 import Fastify from "fastify";
 import { rootSteam } from "./steam/index.js";
 import path from "path";
-import fastifyStatic from "@fastify/static";
 import { fileURLToPath } from "url";
+import fastifyStatic from "@fastify/static";
 
 const PORT = 4001;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -10,7 +10,7 @@ const TRUST_PROXY = ["127.0.0.1", "::1"];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const staticPath = path.join(__dirname, "../../client/dist");
+const staticPath = path.join(__dirname, "../../ssr-test-client/dist");
 
 const fastify = Fastify({
   trustProxy: process.env.NODE_ENV === "production" ? false : TRUST_PROXY,
@@ -30,8 +30,7 @@ const fastify = Fastify({
 
 fastify.register(fastifyStatic, {
   root: staticPath,
-  prefix: "/",
-  decorateReply: false,
+  prefix: "/dist/",
 });
 
 fastify.register(rootSteam);

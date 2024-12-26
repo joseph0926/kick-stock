@@ -22,10 +22,10 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["../client/src/*"]
+      "@/*": ["../ssr-test-client/src/*"]
     }
   },
-  "references": [{ "path": "../client" }],
+  "references": [{ "path": "../ssr-test-client" }],
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
