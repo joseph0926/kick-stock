@@ -12,7 +12,7 @@ import { routes } from "@/shared/routes/index.tsx";
 const { query, dataRoutes } = createStaticHandler(routes);
 
 export const rootSteam = (fastify: FastifyInstance) => {
-  fastify.get("/", async (req, res) => {
+  fastify.get("*", async (req, res) => {
     const request = createWebRequest(req);
     const context = await query(request);
     if (context instanceof Response) {

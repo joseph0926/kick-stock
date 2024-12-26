@@ -5,5 +5,5 @@ import React from "react";
 
 export const rootRoutes: RouteObject[] = [
   { index: true, element: <HomePage /> },
-  { path: "clubs", element: <ClubsPage /> },
+  { path: "/clubs", element: <ClubsPage /> },
 ];
