@@ -1,37 +1,25 @@
-import { createBrowserRouter } from "react-router";
+import React from "react";
 import { ROUTER } from "@/constants/router";
-import { HomePage, LandingPage, RootLayout } from "@/pages";
+import { LandingPage, RootLayout } from "@/pages";
+import { RouteObject } from "react-router";
+import { rootRoute } from "./root.route";
+import { authRoute } from "./auth.route";
 
-export const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: ROUTER.HOME,
     element: <RootLayout />,
-    children: [{ index: true, element: <HomePage /> }],
+    children: rootRoute,
   },
   {
     lazy: async () => {
       const { AuthLayout } = await import("@/pages/layouts/auth.layout");
       return { Component: AuthLayout };
     },
-    children: [
-      {
-        path: ROUTER.SIGNIN,
-        lazy: async () => {
-          const { SignInPage } = await import("@/pages/sign-in.page");
-          return { Component: SignInPage };
-        },
-      },
-      {
-        path: ROUTER.SIGNUP,
-        lazy: async () => {
-          const { SignUpPage } = await import("@/pages/sign-up.page");
-          return { Component: SignUpPage };
-        },
-      },
-    ],
+    children: authRoute,
   },
   {
     path: ROUTER.LANDING,
     element: <LandingPage />,
   },
-]);
+];

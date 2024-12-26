@@ -1,3 +1,4 @@
+import React from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { leagues } from "@/constants/leagues";
 

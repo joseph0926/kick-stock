@@ -1,3 +1,4 @@
+import React from "react";
 import { LeagueTabs } from "@/components/clubs/league-tabs";
 
 export function HomePage() {

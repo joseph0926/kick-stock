@@ -19,4 +19,13 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: "index.js",
+        chunkFileNames: "js/[name].js",
+        assetFileNames: "assets/[name].[ext]",
+      },
+    },
+  },
 });
