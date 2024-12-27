@@ -8,8 +8,8 @@ import {
   TabsContent,
 } from "@kickstock/ui/src/components/ui/tabs";
 import { Card, CardContent } from "@kickstock/ui/src/components/ui/card";
-import { cn } from "@/lib/utils";
-import { LeagueTabData } from "@/types/league.type";
+import { cn } from "@kickstock/ui/src/lib/utils";
+import { LeagueTabData } from "@kickstock/shared/src/types/league.type";
 
 type LeagueTabsProps = {
   tabs: LeagueTabData[];

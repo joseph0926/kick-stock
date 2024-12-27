@@ -2,7 +2,7 @@
 
 import React from "react";
 import { LeagueTabs } from "@/components/server/clubs/league-tabs.server";
-import { leagueTabs } from "@/constants/league-tabs";
+import { leagueTabs } from "@kickstock/shared/src/constants/league-tabs";
 
 export function HomePage() {
   return (

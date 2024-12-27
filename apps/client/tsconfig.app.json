@@ -25,10 +25,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@kickstock/ui/*": ["../../packages/ui/*"]
+      "@kickstock/ui/*": ["../../packages/ui/*"],
+      "@kickstock/shared/*": ["../../packages/shared/*"]
     },
 
     "composite": true
   },
-  "include": ["src", "../../packages/ui/src"]
+  "include": ["src", "../../packages/ui/src", "../../packages/shared"]
 }
