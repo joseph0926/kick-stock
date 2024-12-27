@@ -7,7 +7,6 @@
     "esModuleInterop": true,
     "strict": true,
     "outDir": "./dist",
-    "rootDir": "./src",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",
@@ -22,10 +21,17 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["../client/src/*"]
+      "@/*": ["./src/*"],
+      "@kickstock/ssr-client/*": ["../ssr-client/src/*"],
+      "@kickstock/client/*": ["../client/src/*"],
+      "@kickstock/shared/*": ["../../packages/shared/src/*"]
     }
   },
-  "references": [{ "path": "../client" }],
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "../client/src",
+    "../ssr-client/src",
+    "../../packages/shared/src"
+  ],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

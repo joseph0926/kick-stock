@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
+  "type": "module",
   "scripts": {
     "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\""
   },

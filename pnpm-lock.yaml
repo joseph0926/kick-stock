@@ -137,15 +137,12 @@ importers:
 
   apps/ssr-client:
     dependencies:
+      '@kickstock/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@kickstock/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@tanstack/react-query':
-        specifier: ^5.62.10
-        version: 5.62.10(react@19.0.0)
-      '@tanstack/react-query-devtools':
-        specifier: ^5.62.10
-        version: 5.62.10(@tanstack/react-query@5.62.10(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@eslint/js':
         specifier: ^9.17.0
@@ -171,6 +168,15 @@ importers:
       '@fastify/static':
         specifier: ^8.0.3
         version: 8.0.3
+      '@kickstock/client':
+        specifier: workspace:*
+        version: link:../client
+      '@kickstock/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@kickstock/ssr-client':
+        specifier: workspace:*
+        version: link:../ssr-client
       '@sinclair/typebox':
         specifier: ^0.34.13
         version: 0.34.13
