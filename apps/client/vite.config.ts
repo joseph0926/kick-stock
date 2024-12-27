@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@kickstock/ui": path.resolve(__dirname, "../../packages/ui"),
     },
   },
   server: {

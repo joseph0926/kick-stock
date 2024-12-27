@@ -7,7 +7,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@kickstock/ui/*": ["../../packages/ui/*"]
     },
     "composite": true
   }

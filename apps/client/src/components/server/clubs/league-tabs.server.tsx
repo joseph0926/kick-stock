@@ -1,8 +1,13 @@
 "use server";
 
 import React, { Suspense } from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@kickstock/ui/src/components/ui/tabs";
+import { Card, CardContent } from "@kickstock/ui/src/components/ui/card";
 import { cn } from "@/lib/utils";
 import { LeagueTabData } from "@/types/league.type";
 
