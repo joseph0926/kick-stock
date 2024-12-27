@@ -1,6 +1,9 @@
-import { routeDefinitions, RouteMeta } from "@kickstock/router/routes.config";
+import {
+  routeDefinitions,
+  RouteMeta,
+} from "@kickstock/router/src/routes.config";
 import { RouteObject } from "react-router";
-import { getClientElementByKey } from "./get-client-element-key";
+import { getClientElementByKey } from "@kickstock/client/src/lib/get-client-element-key";
 
 function buildRoutes(metaList: RouteMeta[]): RouteObject[] {
   return metaList.map((meta) => {

@@ -23,20 +23,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@kickstock/ssr-client/*": ["./src/*"],
-      "@kickstock/ui/*": ["../../packages/ui/*"],
-      "@kickstock/shared/*": ["../../packages/shared/src/*"],
-      "@kickstock/client/*": ["../client/src/*"],
-      "@kickstock/router/*": ["../../packages/router/src/*"]
-    },
-
-    "composite": true
+      "@kickstock/ssr-client/*": ["./*"]
+    }
   },
-  "include": [
-    "src",
-    "../../packages/ui/src",
-    "../../packages/shared/src",
-    "../client/src",
-    "../../packages/router/src"
-  ]
+  "include": ["src"]
 }

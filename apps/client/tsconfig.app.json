@@ -24,18 +24,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@kickstock/ui/*": ["../../packages/ui/*"],
-      "@kickstock/shared/*": ["../../packages/shared/src/*"],
-      "@kickstock/router/*": ["../../packages/router/src/*"]
-    },
-
-    "composite": true
+      "@kickstock/client/*": ["./*"]
+    }
   },
-  "include": [
-    "src",
-    "../../packages/ui/src",
-    "../../packages/shared/src",
-    "../../packages/router/src"
-  ]
+  "include": ["src"]
 }

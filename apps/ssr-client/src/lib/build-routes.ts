@@ -1,7 +1,7 @@
 import {
   routeDefinitions,
   type RouteMeta,
-} from "@kickstock/router/routes.config";
+} from "@kickstock/router/src/routes.config";
 import { RouteObject } from "react-router";
 import { getSsrElementKey } from "./get-ssr-element-key";
 

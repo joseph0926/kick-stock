@@ -6,10 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@kickstock/ui": path.resolve(__dirname, "../../packages/ui"),
-      "@kickstock/shared": path.resolve(__dirname, "../../packages/shared/src"),
-      "@kickstock/router": path.resolve(__dirname, "../../packages/router/src"),
+      "@kickstock/client": path.resolve(__dirname, "./"),
     },
   },
   server: {

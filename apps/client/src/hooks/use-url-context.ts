@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import UrlContext from "../context/url.context";
+import UrlContext from "@kickstock/client/src/context/url.context";
 
 export const useUrlContext = () => {
   const context = useContext(UrlContext);

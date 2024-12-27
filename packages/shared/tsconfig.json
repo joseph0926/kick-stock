@@ -23,12 +23,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@kickstock/shared/*": ["./src/*"],
-      "@kickstock/client/*": ["../../apps/client/src/*"],
-      "@kickstock/ssr-client/*": ["../../apps/ssr-client/src/*"]
-    },
-
-    "composite": true
+      "@kickstock/shared/*": ["./*"]
+    }
   },
-  "include": ["src", "../../apps/client/src", "../../apps/ssr-client"]
+  "include": ["src"]
 }

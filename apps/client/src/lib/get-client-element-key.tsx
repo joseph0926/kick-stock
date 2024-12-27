@@ -3,12 +3,12 @@ import {
   RootLayout,
   AuthLayout,
   ClubLayout,
-} from "@kickstock/shared/components/layouts";
-import { HomePage, LeaguePage } from "@kickstock/shared/components/pages";
-import { SignInPage } from "@/pages/sign-in.page";
-import { SignUpPage } from "@/pages/sign-up.page";
-import { ClubPage } from "@/pages/club.page";
-import { LandingPage } from "@/pages/landing.page";
+} from "@kickstock/shared/src/components/layouts";
+import { HomePage, LeaguePage } from "@kickstock/shared/src/components/pages";
+import { SignInPage } from "@kickstock/client/src/pages/sign-in.page";
+import { SignUpPage } from "@kickstock/client/src/pages/sign-up.page";
+import { ClubPage } from "@kickstock/client/src/pages/club.page";
+import { LandingPage } from "@kickstock/client/src/pages/landing.page";
 
 export function getClientElementByKey(key: string): React.ReactNode {
   switch (key) {

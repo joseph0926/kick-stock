@@ -3,8 +3,8 @@ import {
   RootLayout,
   ClubLayout,
   AuthLayout,
-} from "@kickstock/shared/components/layouts";
-import { HomePage, LeaguePage } from "@kickstock/shared/components/pages";
+} from "@kickstock/shared/src/components/layouts";
+import { HomePage, LeaguePage } from "@kickstock/shared/src/components/pages";
 
 export function getSsrElementKey(key: string): React.ReactNode {
   switch (key) {
