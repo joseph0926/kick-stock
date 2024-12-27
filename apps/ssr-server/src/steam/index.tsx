@@ -30,6 +30,12 @@ export const rootSteam = (fastify: FastifyInstance) => {
           res.raw.setHeader("content-type", "text/html");
           pipe(res.raw);
         },
+        onError(err) {
+          fastify.log.error(err);
+        },
+        onShellError(err) {
+          fastify.log.error(err);
+        },
       }
     );
     res.sendFile("index.js");

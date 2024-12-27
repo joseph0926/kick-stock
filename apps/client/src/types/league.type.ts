@@ -8,3 +8,9 @@ export type LeaguesType = {
 };
 
 export type LeagueType = "bundes" | "epl" | "laliga" | "ligue" | "serie";
+
+export type LeagueTabData = {
+  value: LeagueType;
+  label: string;
+  icon?: React.ReactNode;
+};

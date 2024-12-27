@@ -1,59 +1,76 @@
-import { cn } from "@/lib/utils";
-import { ComponentProps, forwardRef } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react"
 
-const cardVariants = cva(
-  [
-    "rounded-sm border bg-background flex gap-2.5 p-4",
-    "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
-    "hover:border-primary/50 transition-colors",
-  ],
-  {
-    variants: {
-      variant: {
-        list: "w-full h-14 flex-row justify-between",
-        box: "size-[100px] flex-col",
-      },
-      size: {
-        sm: "p-2 gap-1.5",
-        md: "p-4 gap-2.5",
-        lg: "p-6 gap-3.5",
-      },
-    },
-    defaultVariants: {
-      variant: "list",
-      size: "md",
-    },
-  },
-);
+import { cn } from "@/lib/utils"
 
-type CardProps = ComponentProps<"article"> &
-  VariantProps<typeof cardVariants> & {
-    cardType: NonNullable<VariantProps<typeof cardVariants>["variant"]>;
-    label?: string;
-  };
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-xl border bg-card text-card-foreground shadow",
+      className
+    )}
+    {...props}
+  />
+))
+Card.displayName = "Card"
 
-/**
- * UI를 위한 래퍼 컴포넌트입니다.
- * @param variant list | box
- * @param size sm | md | lg
- * @param label aria-label을 위한 옵셔널 props입니다.
- */
-export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, children, cardType, size, label, ...rest }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(cardVariants({ variant: cardType, size }), className)}
-        role="region"
-        aria-label={`${label || "클럽"} 주식 카드`}
-        tabIndex={0}
-        {...rest}
-      >
-        {children}
-      </div>
-    );
-  },
-);
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+))
+CardHeader.displayName = "CardHeader"
 
-Card.displayName = "Card";
+const CardTitle = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("font-semibold leading-none tracking-tight", className)}
+    {...props}
+  />
+))
+CardTitle.displayName = "CardTitle"
+
+const CardDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+CardDescription.displayName = "CardDescription"
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+))
+CardContent.displayName = "CardContent"
+
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props}
+  />
+))
+CardFooter.displayName = "CardFooter"
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
