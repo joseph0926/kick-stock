@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
+  "scripts": {
+    "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\""
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
