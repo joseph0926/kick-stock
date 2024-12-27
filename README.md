@@ -4,42 +4,16 @@
 
 ## 구조
 
-```
+```sh
 ├── apps
-│   ├── client
-│   │   ├── public
-│   │   ├── src
-│   │   │   ├── App.tsx
-│   │   │   ├── components
-│   │   │   │   ├── clubs
-│   │   │   │   └── ui
-│   │   │   ├── constants
-│   │   │   ├── context
-│   │   │   ├── hooks
-│   │   │   ├── lib
-│   │   │   ├── main.tsx
-│   │   │   ├── pages
-│   │   │   │   ├── layouts
-│   │   │   ├── router
-│   │   │   ├── services
-│   │   │   ├── types
-│   ├── server
-│   │   ├── prisma
-│   │   ├── src
-│   │   │   ├── controllers
-│   │   │   ├── index.ts
-│   │   │   ├── routes
-│   │   │   ├── schemas
-│   │   │   └── types
-│   └── ssr-server
-├── package.json
+│   ├── client # React Client Component (with vite)
+│   ├── server # API Server
+│   ├── ssr-client # React Server Component
+│   └── ssr-server # React SSR Server
 ├── packages
-│   └── data-cdn
-│       ├── README.md
-│       └── leagues
-├── pnpm-lock.yaml
-├── pnpm-workspace.yaml
-└── turbo.json
+│   ├── ui # UI Components (with Shadcn)
+│   ├── shared # 공통 로직
+└── └── data-cdn # json CDN
 ```
 
 ## 사용 기술
