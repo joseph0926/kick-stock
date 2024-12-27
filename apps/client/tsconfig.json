@@ -9,7 +9,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@kickstock/ui/*": ["../../packages/ui/*"],
-      "@kickstock/shared/*": ["../../packages/shared/*"]
+      "@kickstock/shared/*": ["../../packages/shared/*"],
+      "@kickstock/router/*": ["../router/src/*"]
     },
     "composite": true
   }

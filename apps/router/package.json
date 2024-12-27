@@ -1,0 +1,13 @@
+{
+  "name": "@kickstock/router",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "dependencies": {
+    "@kickstock/ssr-client": "workspace:*",
+    "@kickstock/client": "workspace:*",
+    "@kickstock/shared": "workspace:*"
+  },
+  "author": "",
+  "license": "ISC"
+}

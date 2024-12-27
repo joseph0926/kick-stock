@@ -24,14 +24,16 @@
       "@/*": ["./src/*"],
       "@kickstock/ssr-client/*": ["../ssr-client/src/*"],
       "@kickstock/client/*": ["../client/src/*"],
-      "@kickstock/shared/*": ["../../packages/shared/src/*"]
+      "@kickstock/shared/*": ["../../packages/shared/src/*"],
+      "@kickstock/router/*": ["../router/src/*"]
     }
   },
   "include": [
     "src/**/*",
     "../client/src",
     "../ssr-client/src",
-    "../../packages/shared/src"
+    "../../packages/shared/src",
+    "../router/src"
   ],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

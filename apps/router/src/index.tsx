@@ -1,5 +1,5 @@
 import React from "react";
-import { ROUTER } from "@kickstock/shared/constants/router";
+import { ROUTER } from "@kickstock/shared/src/constants/router";
 import { RouteObject } from "react-router";
 import { rootRoute } from "./root.route";
 import { LandingPage } from "@kickstock/client/pages";

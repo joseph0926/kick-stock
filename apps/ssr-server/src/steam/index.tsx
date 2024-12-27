@@ -6,7 +6,7 @@ import {
   createStaticRouter,
   StaticRouterProvider,
 } from "react-router";
-import { routes } from "@kickstock/shared/router/index.tsx";
+import { routes } from "@kickstock/router/index.tsx";
 import App from "@kickstock/ssr-client/App.tsx";
 
 const { query, dataRoutes } = createStaticHandler(routes);

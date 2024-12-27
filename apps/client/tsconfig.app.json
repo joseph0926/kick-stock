@@ -26,10 +26,16 @@
     "paths": {
       "@/*": ["./src/*"],
       "@kickstock/ui/*": ["../../packages/ui/*"],
-      "@kickstock/shared/*": ["../../packages/shared/*"]
+      "@kickstock/shared/*": ["../../packages/shared/*"],
+      "@kickstock/router/*": ["../router/src/*"]
     },
 
     "composite": true
   },
-  "include": ["src", "../../packages/ui/src", "../../packages/shared"]
+  "include": [
+    "src",
+    "../../packages/ui/src",
+    "../../packages/shared",
+    "../router/src"
+  ]
 }
