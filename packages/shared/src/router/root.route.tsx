@@ -1,5 +1,5 @@
 import React from "react";
-import { HomePage } from "@client/pages";
+import { HomePage } from "@kickstock/ssr-client/pages/home.page";
 import { RouteObject } from "react-router";
 
 export const rootRoute: RouteObject[] = [

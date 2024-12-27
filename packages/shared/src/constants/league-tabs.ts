@@ -1,4 +1,4 @@
-import { LeagueTabData } from "@shared/types/league.type";
+import { LeagueTabData } from "@kickstock/shared/types/league.type";
 
 export const leagueTabs: LeagueTabData[] = [
   {

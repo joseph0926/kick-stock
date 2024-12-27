@@ -1,22 +1,15 @@
 import React from "react";
-import { ROUTER } from "@shared/constants/router";
+import { ROUTER } from "@kickstock/shared/constants/router";
 import { RouteObject } from "react-router";
 import { rootRoute } from "./root.route";
-import { authRoute } from "./auth.route";
-import { LandingPage, RootLayout } from "@client/pages";
+import { LandingPage } from "@kickstock/client/pages";
+import { RootLayout } from "@kickstock/ssr-client/layouts/root.layout";
 
 export const routes: RouteObject[] = [
   {
     path: ROUTER.HOME,
     element: <RootLayout />,
     children: rootRoute,
-  },
-  {
-    lazy: async () => {
-      const { AuthLayout } = await import("@client/pages/layouts/auth.layout");
-      return { Component: AuthLayout };
-    },
-    children: authRoute,
   },
   {
     path: ROUTER.LANDING,

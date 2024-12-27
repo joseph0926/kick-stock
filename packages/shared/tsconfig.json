@@ -23,11 +23,12 @@
 
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["./src/*"],
-      "@client/*": ["../../apps/client/src/*"]
+      "@kickstock/shared/*": ["./src/*"],
+      "@kickstock/client/*": ["../../apps/client/src/*"],
+      "@kickstock/ssr-client/*": ["../../apps/ssr-client/src/*"]
     },
 
     "composite": true
   },
-  "include": ["src", "../../apps/client/src"]
+  "include": ["src", "../../apps/client/src", "../../apps/ssr-client"]
 }

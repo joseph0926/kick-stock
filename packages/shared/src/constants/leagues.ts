@@ -1,4 +1,4 @@
-import { type LeagueType } from "@shared/types/league.type";
+import { type LeagueType } from "@kickstock/shared/types/league.type";
 
 export const leagues: LeagueType[] = [
   "bundes",

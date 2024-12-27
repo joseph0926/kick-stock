@@ -1,7 +1,7 @@
 "use server";
 
 import React from "react";
-import { LeagueTabs } from "@/components/server/clubs/league-tabs.server";
+import { LeagueTabs } from "@kickstock/ssr-client/components/clubs/league-tabs.server";
 import { leagueTabs } from "@kickstock/shared/src/constants/league-tabs";
 
 export function HomePage() {
