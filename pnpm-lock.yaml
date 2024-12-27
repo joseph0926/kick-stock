@@ -75,6 +75,9 @@ importers:
 
   apps/client:
     dependencies:
+      '@kickstock/router':
+        specifier: workspace:*
+        version: link:../../packages/router
       '@kickstock/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -106,18 +109,6 @@ importers:
       vite:
         specifier: ^6.0.3
         version: 6.0.6(@types/node@22.10.2)(jiti@1.21.7)(tsx@4.19.2)(yaml@2.6.1)
-
-  apps/router:
-    dependencies:
-      '@kickstock/client':
-        specifier: workspace:*
-        version: link:../client
-      '@kickstock/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@kickstock/ssr-client':
-        specifier: workspace:*
-        version: link:../ssr-client
 
   apps/server:
     dependencies:
@@ -152,6 +143,9 @@ importers:
       '@kickstock/client':
         specifier: workspace:*
         version: link:../client
+      '@kickstock/router':
+        specifier: workspace:*
+        version: link:../../packages/router
       '@kickstock/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -188,7 +182,7 @@ importers:
         version: link:../client
       '@kickstock/router':
         specifier: workspace:*
-        version: link:../router
+        version: link:../../packages/router
       '@kickstock/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -226,6 +220,8 @@ importers:
       tsx:
         specifier: ^4.19.2
         version: 4.19.2
+
+  packages/router: {}
 
   packages/shared: {}
 

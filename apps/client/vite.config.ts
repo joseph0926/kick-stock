@@ -8,8 +8,8 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@kickstock/ui": path.resolve(__dirname, "../../packages/ui"),
-      "@kickstock/shared": path.resolve(__dirname, "../../packages/shared"),
-      "@kickstock/router": path.resolve(__dirname, "../router/src"),
+      "@kickstock/shared": path.resolve(__dirname, "../../packages/shared/src"),
+      "@kickstock/router": path.resolve(__dirname, "../../packages/router/src"),
     },
   },
   server: {

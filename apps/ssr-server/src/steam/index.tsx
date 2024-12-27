@@ -6,10 +6,10 @@ import {
   createStaticRouter,
   StaticRouterProvider,
 } from "react-router";
-import { routes } from "@kickstock/router/index.tsx";
 import App from "@kickstock/ssr-client/App.tsx";
+import { ssrRoutes } from "@kickstock/ssr-client/lib/build-routes.ts";
 
-const { query, dataRoutes } = createStaticHandler(routes);
+const { query, dataRoutes } = createStaticHandler(ssrRoutes);
 
 export const rootSteam = (fastify: FastifyInstance) => {
   fastify.get("*", async (req, res) => {

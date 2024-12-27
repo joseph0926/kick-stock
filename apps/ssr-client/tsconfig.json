@@ -25,8 +25,9 @@
     "paths": {
       "@kickstock/ssr-client/*": ["./src/*"],
       "@kickstock/ui/*": ["../../packages/ui/*"],
-      "@kickstock/shared/*": ["../../packages/shared/*"],
-      "@kickstock/client/*": ["../client/src/*"]
+      "@kickstock/shared/*": ["../../packages/shared/src/*"],
+      "@kickstock/client/*": ["../client/src/*"],
+      "@kickstock/router/*": ["../../packages/router/src/*"]
     },
 
     "composite": true
@@ -34,7 +35,8 @@
   "include": [
     "src",
     "../../packages/ui/src",
-    "../../packages/shared",
-    "../client/src"
+    "../../packages/shared/src",
+    "../client/src",
+    "../../packages/router/src"
   ]
 }
