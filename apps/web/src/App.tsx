@@ -2,11 +2,11 @@
 
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { clientRoutes } from "@kickstock/client/src/lib/build-routes";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/query-client";
+import { routes } from "@kickstock/core/src/router/routes.tsx";
 
-const router = createBrowserRouter(clientRoutes, {
+const router = createBrowserRouter(routes, {
   hydrationData: window.__staticRouterHydrationData,
 });
 

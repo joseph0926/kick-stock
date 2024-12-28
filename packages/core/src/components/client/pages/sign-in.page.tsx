@@ -1,5 +1,5 @@
 import React from "react";
 
 export function SignInPage() {
-  return <div></div>;
+  return <div>Test</div>;
 }

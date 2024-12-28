@@ -1,14 +1,15 @@
 import { FastifyInstance } from "fastify";
 import { renderToPipeableStream } from "react-dom/server";
-import { createWebRequest } from "../utils/create-request.ts";
+import { createWebRequest } from "@kickstock/ssr/server/utils/create-request.ts";
 import {
   createStaticHandler,
   createStaticRouter,
   StaticRouterProvider,
 } from "react-router";
-import App from "../../../client/src/App.tsx";
+import App from "@kickstock/ssr/client/App.tsx";
+import {routes} from "@kickstock/core/src/router/routes.tsx"
 
-const { query, dataRoutes } = createStaticHandler(ssrRoutes);
+const { query, dataRoutes } = createStaticHandler(routes);
 
 export const rootSteam = (fastify: FastifyInstance) => {
   fastify.get("*", async (req, res) => {

@@ -106,6 +106,9 @@ importers:
       '@fastify/static':
         specifier: ^8.0.3
         version: 8.0.3
+      '@kickstock/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@sinclair/typebox':
         specifier: ^0.34.13
         version: 0.34.13
@@ -143,6 +146,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@kickstock/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@kickstock/shared':
         specifier: workspace:*
         version: link:../../packages/shared

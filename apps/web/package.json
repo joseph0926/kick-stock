@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@kickstock/ui": "workspace:*",
-    "@kickstock/shared": "workspace:*"
+    "@kickstock/shared": "workspace:*",
+    "@kickstock/core": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

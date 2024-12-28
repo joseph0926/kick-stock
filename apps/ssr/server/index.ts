@@ -10,7 +10,7 @@ const TRUST_PROXY = ["127.0.0.1", "::1"];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const staticPath = path.join(__dirname, "../../client/dist");
+const staticPath = path.join(__dirname, "../../web/dist");
 
 const fastify = Fastify({
   trustProxy: process.env.NODE_ENV === "production" ? false : TRUST_PROXY,
