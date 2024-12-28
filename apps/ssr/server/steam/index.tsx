@@ -1,13 +1,12 @@
 import { FastifyInstance } from "fastify";
 import { renderToPipeableStream } from "react-dom/server";
-import { createWebRequest } from "@kickstock/ssr-server/src/utils/create-request.ts";
+import { createWebRequest } from "../utils/create-request.ts";
 import {
   createStaticHandler,
   createStaticRouter,
   StaticRouterProvider,
 } from "react-router";
-import App from "@kickstock/ssr-client/src/App.tsx";
-import { ssrRoutes } from "@kickstock/ssr-client/src/lib/build-routes.ts";
+import App from "../../../client/src/App.tsx";
 
 const { query, dataRoutes } = createStaticHandler(ssrRoutes);
 

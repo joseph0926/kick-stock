@@ -1,9 +1,12 @@
 {
-  "name": "@kickstock/router",
+  "name": "@kickstock/core",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "keywords": [],
+  "dependencies": {
+    "@kickstock/shared": "workspace:*"
+  },
   "author": "",
   "license": "ISC"
 }

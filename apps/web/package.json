@@ -1,27 +1,28 @@
 {
-  "name": "@kickstock/ssr-client",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@kickstock/web",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "build:client": "tsc -b && vite build --watch",
     "lint": "eslint .",
+    "preview": "vite preview",
     "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@kickstock/ui": "workspace:*",
-    "@kickstock/shared": "workspace:*",
-    "@kickstock/client": "workspace:*",
-    "@kickstock/router": "workspace:*"
+    "@kickstock/shared": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.17.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.13.0",
-    "typescript-eslint": "^8.18.1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "typescript-eslint": "^8.18.1",
+    "vite": "^6.0.3"
+  }
 }

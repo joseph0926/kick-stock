@@ -1,4 +1,4 @@
-import { LeagueType } from "../types/league.type";
+import { LeagueType } from "@kickstock/shared/src/types/league.type";
 import { ssrCdnAxios } from "./api";
 
 export const getLeague = async (league: LeagueType) => {

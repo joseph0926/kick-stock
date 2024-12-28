@@ -19,12 +19,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-
-    "baseUrl": ".",
-    "paths": {
-      "@kickstock/ssr-client/*": ["./*"]
-    }
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src"]
 }

@@ -73,11 +73,76 @@ importers:
         specifier: ^5.7.2
         version: 5.7.2
 
-  apps/client:
+  apps/server:
     dependencies:
-      '@kickstock/router':
-        specifier: workspace:*
-        version: link:../../packages/router
+      '@prisma/client':
+        specifier: ^6.1.0
+        version: 6.1.0(prisma@6.1.0)
+      '@sinclair/typebox':
+        specifier: ^0.34.13
+        version: 0.34.13
+      fastify:
+        specifier: ^5.2.0
+        version: 5.2.0
+      fastify-plugin:
+        specifier: ^5.0.1
+        version: 5.0.1
+      pino-pretty:
+        specifier: ^13.0.0
+        version: 13.0.0
+      socket.io:
+        specifier: ^4.8.1
+        version: 4.8.1
+    devDependencies:
+      prisma:
+        specifier: ^6.1.0
+        version: 6.1.0
+      tsx:
+        specifier: ^4.19.2
+        version: 4.19.2
+
+  apps/ssr:
+    dependencies:
+      '@fastify/static':
+        specifier: ^8.0.3
+        version: 8.0.3
+      '@sinclair/typebox':
+        specifier: ^0.34.13
+        version: 0.34.13
+      fastify:
+        specifier: ^5.2.0
+        version: 5.2.0
+      fastify-plugin:
+        specifier: ^5.0.1
+        version: 5.0.1
+      pino-pretty:
+        specifier: ^13.0.0
+        version: 13.0.0
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.17.0
+        version: 9.17.0
+      eslint:
+        specifier: ^9.17.0
+        version: 9.17.0(jiti@1.21.7)
+      eslint-plugin-react-hooks:
+        specifier: ^5.0.0
+        version: 5.1.0(eslint@9.17.0(jiti@1.21.7))
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.16
+        version: 0.4.16(eslint@9.17.0(jiti@1.21.7))
+      globals:
+        specifier: ^15.13.0
+        version: 15.14.0
+      tsx:
+        specifier: ^4.19.2
+        version: 4.19.2
+      typescript-eslint:
+        specifier: ^8.18.1
+        version: 8.18.2(eslint@9.17.0(jiti@1.21.7))(typescript@5.7.2)
+
+  apps/web:
+    dependencies:
       '@kickstock/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -110,118 +175,11 @@ importers:
         specifier: ^6.0.3
         version: 6.0.6(@types/node@22.10.2)(jiti@1.21.7)(tsx@4.19.2)(yaml@2.6.1)
 
-  apps/server:
+  packages/core:
     dependencies:
-      '@prisma/client':
-        specifier: ^6.1.0
-        version: 6.1.0(prisma@6.1.0)
-      '@sinclair/typebox':
-        specifier: ^0.34.13
-        version: 0.34.13
-      fastify:
-        specifier: ^5.2.0
-        version: 5.2.0
-      fastify-plugin:
-        specifier: ^5.0.1
-        version: 5.0.1
-      pino-pretty:
-        specifier: ^13.0.0
-        version: 13.0.0
-      socket.io:
-        specifier: ^4.8.1
-        version: 4.8.1
-    devDependencies:
-      prisma:
-        specifier: ^6.1.0
-        version: 6.1.0
-      tsx:
-        specifier: ^4.19.2
-        version: 4.19.2
-
-  apps/ssr-client:
-    dependencies:
-      '@kickstock/client':
-        specifier: workspace:*
-        version: link:../client
-      '@kickstock/router':
-        specifier: workspace:*
-        version: link:../../packages/router
       '@kickstock/shared':
         specifier: workspace:*
-        version: link:../../packages/shared
-      '@kickstock/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-    devDependencies:
-      '@eslint/js':
-        specifier: ^9.17.0
-        version: 9.17.0
-      eslint:
-        specifier: ^9.17.0
-        version: 9.17.0(jiti@1.21.7)
-      eslint-plugin-react-hooks:
-        specifier: ^5.0.0
-        version: 5.1.0(eslint@9.17.0(jiti@1.21.7))
-      eslint-plugin-react-refresh:
-        specifier: ^0.4.16
-        version: 0.4.16(eslint@9.17.0(jiti@1.21.7))
-      globals:
-        specifier: ^15.13.0
-        version: 15.14.0
-      typescript-eslint:
-        specifier: ^8.18.1
-        version: 8.18.2(eslint@9.17.0(jiti@1.21.7))(typescript@5.7.2)
-
-  apps/ssr-server:
-    dependencies:
-      '@fastify/static':
-        specifier: ^8.0.3
-        version: 8.0.3
-      '@kickstock/client':
-        specifier: workspace:*
-        version: link:../client
-      '@kickstock/router':
-        specifier: workspace:*
-        version: link:../../packages/router
-      '@kickstock/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@kickstock/ssr-client':
-        specifier: workspace:*
-        version: link:../ssr-client
-      '@sinclair/typebox':
-        specifier: ^0.34.13
-        version: 0.34.13
-      fastify:
-        specifier: ^5.2.0
-        version: 5.2.0
-      fastify-plugin:
-        specifier: ^5.0.1
-        version: 5.0.1
-      pino-pretty:
-        specifier: ^13.0.0
-        version: 13.0.0
-      react:
-        specifier: ^19.0.0
-        version: 19.0.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.0.0(react@19.0.0)
-      react-router:
-        specifier: ^7.1.1
-        version: 7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-    devDependencies:
-      '@types/react':
-        specifier: ^19
-        version: 19.0.2
-      '@types/react-dom':
-        specifier: ^19
-        version: 19.0.2(@types/react@19.0.2)
-      tsx:
-        specifier: ^4.19.2
-        version: 4.19.2
-
-  packages/router: {}
+        version: link:../shared
 
   packages/shared: {}
 

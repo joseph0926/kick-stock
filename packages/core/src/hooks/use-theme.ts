@@ -1,4 +1,4 @@
-import ThemeProviderContext from "@kickstock/client/src/context/theme.context";
+import ThemeProviderContext from "../providers/theme.context";
 import { useContext } from "react";
 
 export const useTheme = () => {
