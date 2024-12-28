@@ -2,8 +2,9 @@
 
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import QueryProvider from "@kickstock/shared/src/providers/query.provider";
 import { clientRoutes } from "@kickstock/client/src/lib/build-routes";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/query-client";
 
 const router = createBrowserRouter(clientRoutes, {
   hydrationData: window.__staticRouterHydrationData,
@@ -11,8 +12,8 @@ const router = createBrowserRouter(clientRoutes, {
 
 export default function App() {
   return (
-    <QueryProvider>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </QueryProvider>
+    </QueryClientProvider>
   );
 }
