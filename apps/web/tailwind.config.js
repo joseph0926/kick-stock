@@ -1,6 +1,4 @@
-import { Config } from "tailwindcss";
-import baseConfig from "@kickstock/shared/tailwind.config";
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./index.html",
@@ -11,5 +9,5 @@ module.exports = {
     "../../packages/ui/src/**/*.{ts,tsx}",
     "../../packages/shared/src/**/*.{ts,tsx}",
   ],
-  presets: [baseConfig],
-} satisfies Config;
+  presets: [require("@kickstock/shared/tailwind.config.js")],
+};
