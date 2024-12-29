@@ -1,13 +1,14 @@
 import { FastifyInstance } from "fastify";
 import { renderToPipeableStream } from "react-dom/server";
-import { createWebRequest } from "@kickstock/ssr/server/utils/create-request.ts";
+import { createWebRequest } from "@kickstock/ssr/utils/create-request.ts";
 import {
   createStaticHandler,
   createStaticRouter,
   StaticRouterProvider,
 } from "react-router";
-import App from "@kickstock/ssr/client/App.tsx";
-import {routes} from "@kickstock/core/src/router/routes.tsx"
+import App from "@kickstock/ssr/components/App.tsx";
+import { routes } from "@kickstock/core/src/router/routes.tsx";
+import { ThemeProvider } from "@kickstock/core/src/providers/theme.provider";
 
 const { query, dataRoutes } = createStaticHandler(routes);
 
@@ -23,7 +24,14 @@ export const rootSteam = (fastify: FastifyInstance) => {
 
     const { pipe } = renderToPipeableStream(
       <App>
-        <StaticRouterProvider router={router} context={context} />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <StaticRouterProvider router={router} context={context} />
+        </ThemeProvider>
       </App>,
       {
         bootstrapModules: ["/dist/index.js"],
@@ -37,7 +45,7 @@ export const rootSteam = (fastify: FastifyInstance) => {
         onShellError(err) {
           fastify.log.error(err);
         },
-      }
+      },
     );
     res.sendFile("index.js");
   });

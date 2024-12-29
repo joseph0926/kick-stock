@@ -12,7 +12,6 @@
     "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
-    "@kickstock/ssr": "workspace:*",
     "@kickstock/ui": "workspace:*",
     "@kickstock/shared": "workspace:*",
     "@kickstock/core": "workspace:*"

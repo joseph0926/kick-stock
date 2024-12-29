@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import { getLeague } from "../../../services/league.service";
-import { Navbar } from "../../shared/nav";
+import { Navbar } from "../../client/layouts/navbar";
 
 export async function loader() {
   const leagueData = await getLeague("epl");

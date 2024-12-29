@@ -2,11 +2,11 @@
   "name": "@kickstock/ssr",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch ./server/index.ts",
-    "dev:ssr": "tsx watch ./server/index.ts",
+    "dev": "tsx watch ./src/index.ts",
+    "dev:ssr": "tsx watch ./src/index.ts",
     "lint": "eslint .",
     "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\""
   },

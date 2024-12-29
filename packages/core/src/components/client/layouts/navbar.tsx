@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import { cn } from "@kickstock/ui/src/lib/utils";
 import { NAVBAR, leagueItems } from "@kickstock/shared/src/constants/navbar";
 import { Menu, MenuItem, HoveredLink, ProductItem } from "./navbar-menu";
+import { NavbarAuth } from "./navbar-auth";
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
 
   return (
     <div
-      className={cn("fixed inset-x-0 top-10 z-50 mx-auto max-w-2xl", className)}
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 flex w-full items-center justify-between bg-white/25 px-6 dark:bg-black/25 md:px-12",
+        className,
+      )}
     >
+      <h1 className="text-3xl font-bold">
+        <span className="text-primary">Kick</span>Stock
+      </h1>
       <Menu setActive={setActive}>
         <MenuItem
           setActive={setActive}
@@ -65,6 +72,7 @@ export function Navbar({ className }: { className?: string }) {
           </div>
         </MenuItem>
       </Menu>
+      <NavbarAuth />
     </div>
   );
 }

@@ -22,9 +22,8 @@
     "noUncheckedSideEffectImports": true,
 
     "paths": {
-      "@kickstock/ssr/client/*": ["./client/*"],
-      "@kickstock/ssr/server/*": ["./server/*"]
+      "@kickstock/ssr/*": ["./src/*"]
     }
   },
-  "include": ["server", "client"]
+  "include": ["src"]
 }
