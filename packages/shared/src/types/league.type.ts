@@ -1,5 +1,13 @@
 import { type ClubType } from "./club.type";
 
+export type LeaguesDataType = {
+  id: string;
+  name: string;
+  nameShort: string;
+  nameEng: string;
+  img: string;
+};
+
 export type LeaguesType = {
   id: string;
   name: string;
