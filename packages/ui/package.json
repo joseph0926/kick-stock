@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@kickstock/shared": "workspace:*",
     "@radix-ui/react-tabs": "^1.1.2"
   }
 }

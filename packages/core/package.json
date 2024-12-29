@@ -5,7 +5,8 @@
   "type": "module",
   "keywords": [],
   "dependencies": {
-    "@kickstock/shared": "workspace:*"
+    "@kickstock/shared": "workspace:*",
+    "@kickstock/ui": "workspace:*"
   },
   "author": "",
   "license": "ISC"

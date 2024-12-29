@@ -13,7 +13,9 @@ export default function App({ children }: { children: React.ReactNode }) {
         <title>KickStock</title>
       </head>
       <body>
-        <div id="root">{children}</div>
+        <div id="root">
+          {children}
+        </div>
       </body>
     </html>
   );

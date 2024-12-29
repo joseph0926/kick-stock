@@ -3,4 +3,5 @@ export const ROUTER = {
   LANDING: "/landing",
   SIGNIN: "/sign-in",
   SIGNUP: "/sign-up",
+  LEAGUE: "/league/:leagueId",
 };

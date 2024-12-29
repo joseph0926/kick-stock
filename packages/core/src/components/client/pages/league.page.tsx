@@ -1,5 +1,5 @@
 import React from "react";
 
-export const ClubLayout = () => {
+export const LeaguePage = () => {
   return <div>ClubLayout</div>;
 };
