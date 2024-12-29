@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import { getLeague } from "../../../services/league.service";
-import { Navbar } from "../../shared/navbar";
+import { Navbar } from "../../shared/nav";
 
 export async function loader() {
   const leagueData = await getLeague("epl");
@@ -10,7 +10,7 @@ export async function loader() {
 
 export function RootLayout() {
   return (
-    <div className="flex min-h-screen w-full items-center bg-background-transparent">
+    <div className="bg-background-transparent flex min-h-screen w-full items-center">
       <Navbar />
       <Outlet />
     </div>
