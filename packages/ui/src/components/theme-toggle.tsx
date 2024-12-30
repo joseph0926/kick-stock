@@ -12,7 +12,13 @@ import {
 } from "./ui/dropdown-menu";
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+
+  React.useEffect(() => {
+    if (theme) {
+      document.cookie = `theme=${theme}; path=/; max-age=31536000`;
+    }
+  }, [theme]);
 
   return (
     <DropdownMenu>
