@@ -6,13 +6,13 @@
 
 ```sh
 ├── apps
-│   ├── client # React Client Component (with vite)
+│   ├── client # React Client (with vite)
 │   ├── server # API Server
-│   ├── ssr-client # React Server Component
-│   └── ssr-server # React SSR Server
+│   └── ssr # React SSR Server
 ├── packages
+│   ├── core # React 관련 (hooks, components, ...)
 │   ├── ui # UI Components (with Shadcn)
-│   ├── shared # 공통 로직
+│   ├── shared # 공통 로직 (types, constants, ...)
 └── └── data-cdn # json CDN
 ```
 
