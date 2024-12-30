@@ -36,7 +36,6 @@ export const rootSteam = (fastify: FastifyInstance) => {
         <StaticRouterProvider router={router} context={context} />
       </ThemeProvider>,
       {
-        bootstrapModules: ["/dist/index.js"],
         onShellReady() {
           res.raw.write(entryHeader);
           pipe(res.raw);
@@ -51,6 +50,5 @@ export const rootSteam = (fastify: FastifyInstance) => {
         },
       },
     );
-    res.sendFile("index.js");
   });
 };

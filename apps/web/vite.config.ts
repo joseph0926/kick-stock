@@ -25,6 +25,18 @@ export default defineConfig({
         entryFileNames: "index.js",
         chunkFileNames: "js/[name].js",
         assetFileNames: "assets/[name].[ext]",
+        manualChunks(id) {
+          if (
+            id.includes("node_modules/react") ||
+            id.includes("node_modules/react-dom")
+          ) {
+            return "vendor-react";
+          }
+
+          if (id.includes("node_modules/motion")) {
+            return "vendor-motion";
+          }
+        },
       },
     },
   },
