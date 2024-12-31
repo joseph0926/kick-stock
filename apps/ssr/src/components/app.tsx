@@ -1,8 +1,14 @@
 import React from "react";
 
-const App = ({ children }: { children: React.ReactNode }) => {
+const App = ({
+  children,
+  theme,
+}: {
+  children: React.ReactNode;
+  theme: string;
+}) => {
   return (
-    <html lang="ko">
+    <html lang="ko" className={theme} style={{ colorScheme: theme }}>
       <head>
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/dist/logo.svg" />
