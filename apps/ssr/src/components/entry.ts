@@ -1,5 +1,6 @@
-export const entryHeader = `
-<!doctype html>
+export function getEntryHeader(theme: string) {
+  return `
+<!doctype html class="${theme}" style="color-scheme: ${theme};>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -14,6 +15,7 @@ export const entryHeader = `
   <body>
     <div id="root">
 `;
+}
 
 export const entryBottom = `
     </div>

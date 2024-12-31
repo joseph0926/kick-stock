@@ -7,16 +7,16 @@ import {
   StaticRouterProvider,
 } from "react-router";
 import { routes } from "@kickstock/core/src/router/routes.tsx";
-import { ThemeProvider } from "@kickstock/core/src/providers/theme.provider";
-import { entryBottom, entryHeader } from "../components/entry";
+import { entryBottom, getEntryHeader } from "../components/entry";
 import { parseCookies } from "../utils/parse-cookies";
+// import QueryProvider from "../components/query-client";
 
 const { query, dataRoutes } = createStaticHandler(routes);
 
 export const rootSteam = (fastify: FastifyInstance) => {
   fastify.get("*", async (req, res) => {
     const cookies = parseCookies(req.headers.cookie);
-    const userTheme = cookies.theme ?? "system";
+    const userTheme = cookies.theme ?? "dark";
 
     const request = createWebRequest(req);
     const context = await query(request);
@@ -27,17 +27,11 @@ export const rootSteam = (fastify: FastifyInstance) => {
     const router = createStaticRouter(dataRoutes, context);
 
     const { pipe } = renderToPipeableStream(
-      <ThemeProvider
-        attribute="class"
-        defaultTheme={userTheme}
-        enableSystem
-        disableTransitionOnChange
-      >
-        <StaticRouterProvider router={router} context={context} />
-      </ThemeProvider>,
+      // <QueryProvider>
+      <StaticRouterProvider router={router} context={context} />,
       {
         onShellReady() {
-          res.raw.write(entryHeader);
+          res.raw.write(getEntryHeader(userTheme));
           pipe(res.raw);
           res.raw.write(entryBottom);
           res.raw.end();
