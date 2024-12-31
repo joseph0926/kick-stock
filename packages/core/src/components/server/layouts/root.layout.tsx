@@ -9,15 +9,15 @@ export async function loader() {
 }
 
 export function RootLayout() {
-  const [mounted, setMounted] = React.useState<boolean>(false);
+  // const [mounted, setMounted] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  // React.useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  // if (!mounted) {
+  //   return null;
+  // }
   return (
     <div className="flex min-h-screen w-full items-center">
       <Navbar />

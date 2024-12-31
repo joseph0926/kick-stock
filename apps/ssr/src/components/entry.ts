@@ -1,6 +1,8 @@
-export function getEntryHeader(theme: string) {
+import { StaticHandlerContext } from "react-router";
+
+export function getEntryHeader() {
   return `
-<!doctype html class="${theme}" style="color-scheme: ${theme};>
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -17,8 +19,13 @@ export function getEntryHeader(theme: string) {
 `;
 }
 
-export const entryBottom = `
+export function getEntryBottom(context: StaticHandlerContext) {
+  return `
     </div>
+    <script>
+      window.__staticRouterHydrationData = ${JSON.stringify(context)};
+    </script>
   </body>
 </html>
 `;
+}
