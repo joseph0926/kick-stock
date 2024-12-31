@@ -18,7 +18,7 @@ export const HomeInnerTab = memo(() => {
 
   return (
     <Tabs
-      defaultValue={indicator || "index"}
+      defaultValue={indicator || homeInnerTab[0].value}
       onValueChange={(e) => onUpdateSearchParams({ indicator: e }, "update")}
       className="px-2 pt-8"
     >
@@ -33,7 +33,7 @@ export const HomeInnerTab = memo(() => {
           <TabsTrigger
             key={item.value}
             value={item.value}
-            className="w-24 rounded-none text-center text-lg font-medium data-[state=active]:bg-transparent"
+            className="w-24 rounded-none text-center text-lg font-medium data-[state=active]:bg-transparent data-[state=active]:shadow-none"
           >
             {item.label}
           </TabsTrigger>

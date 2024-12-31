@@ -20,7 +20,7 @@ export const HomeTab = () => {
 
   return (
     <Tabs
-      defaultValue={market || "all"}
+      defaultValue={market || homeTab[0].value}
       onValueChange={(e) => onUpdateSearchParams({ market: e }, "update")}
     >
       <TabsList className="relative bg-transparent">
@@ -34,7 +34,7 @@ export const HomeTab = () => {
           <TabsTrigger
             key={item.value}
             value={item.value}
-            className="w-20 rounded-none text-xl font-semibold data-[state=active]:bg-transparent"
+            className="w-20 rounded-none text-xl font-semibold data-[state=active]:bg-transparent data-[state=active]:shadow-none"
           >
             {item.label}
           </TabsTrigger>
