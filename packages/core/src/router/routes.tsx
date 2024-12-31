@@ -9,6 +9,7 @@ import {
 import { HomePage } from "../components/server/pages";
 import { SignInPage } from "../components/client/pages/sign-in.page";
 import { LeaguePage } from "../components/client/pages";
+import { LandingPage } from "../components/client/pages/landing.page";
 
 export const routes: RouteObject[] = [
   {
@@ -24,5 +25,9 @@ export const routes: RouteObject[] = [
   {
     element: <AuthLayout />,
     children: [{ path: ROUTER.SIGNIN, element: <SignInPage /> }],
+  },
+  {
+    path: ROUTER.LANDING,
+    element: <LandingPage />,
   },
 ];
