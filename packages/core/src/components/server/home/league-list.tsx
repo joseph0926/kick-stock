@@ -24,7 +24,7 @@ export const LeagueList = ({ leaguesData }: LeagueListProps) => {
             className="pl-1 md:basis-1/2 lg:basis-1/4"
           >
             <Link to={`/leagues/${league.nameShort}`} className="p-1">
-              <Card className="flex items-center justify-center">
+              <Card className="flex items-center justify-center bg-muted-foreground dark:bg-muted">
                 <CardContent className="flex h-40 items-center justify-center p-6">
                   <img
                     src={league.img}

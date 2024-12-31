@@ -12,7 +12,7 @@ export function NavbarServer({ className }: { className?: string }) {
       )}
     >
       <h1 className="text-3xl font-bold">
-        <span className="text-primary">Kick</span>
+        <span className="text-primary">Kick</span>Stock
       </h1>
       <NavbarClient />
       <NavbarAuth />

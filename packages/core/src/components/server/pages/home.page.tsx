@@ -1,5 +1,5 @@
-import { LeaguesDataType } from "@kickstock/shared/src/types/league.type";
 import React from "react";
+import { LeaguesDataType } from "@kickstock/shared/src/types/league.type";
 import { useRouteLoaderData } from "react-router";
 import { LeagueList } from "../home/league-list";
 
