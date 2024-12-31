@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router";
 import { getLeaguesData } from "../../../services/league.service";
 import { NavbarServer } from "./navbar.server";
+import { UrlContextProvider } from "../../../providers/url.context";
 
 export async function loader() {
   const leaguesData = await getLeaguesData();
@@ -10,9 +11,11 @@ export async function loader() {
 
 export function RootLayout() {
   return (
-    <div className="flex min-h-screen w-full items-center">
-      <NavbarServer />
-      <Outlet />
-    </div>
+    <UrlContextProvider>
+      <div className="flex min-h-screen w-full items-center">
+        <NavbarServer />
+        <Outlet />
+      </div>
+    </UrlContextProvider>
   );
 }
