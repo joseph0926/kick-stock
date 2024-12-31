@@ -7,9 +7,8 @@ import {
   StaticRouterProvider,
 } from "react-router";
 import { routes } from "@kickstock/core/src/router/routes.tsx";
-import { getEntryBottom, getEntryHeader } from "../components/entry";
 // import { parseCookies } from "../utils/parse-cookies";
-import { App } from "../components/app";
+import App from "../components/app";
 import QueryProvider from "../components/query-client";
 
 const { query, dataRoutes } = createStaticHandler(routes);
@@ -28,21 +27,14 @@ export const rootSteam = (fastify: FastifyInstance) => {
     const router = createStaticRouter(dataRoutes, context);
 
     const { pipe } = renderToPipeableStream(
-      <QueryProvider>
-        <App>
-          <StaticRouterProvider
-            router={router}
-            context={context}
-            hydrate={false}
-          />
-        </App>
-      </QueryProvider>,
+      <App>
+        <QueryProvider>
+          <StaticRouterProvider router={router} context={context} />
+        </QueryProvider>
+      </App>,
       {
         onShellReady() {
-          res.raw.write(getEntryHeader());
           pipe(res.raw);
-          res.raw.write(getEntryBottom(context));
-          res.raw.end();
         },
         onError(err) {
           fastify.log.error(err);

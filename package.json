@@ -8,6 +8,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "build:client": "turbo run build:client",
+    "build:ssr": "turbo run build:ssr",
     "dev:ssr": "turbo run dev:ssr"
   },
   "keywords": [],

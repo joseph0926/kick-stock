@@ -10,7 +10,8 @@ const TRUST_PROXY = ["127.0.0.1", "::1"];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const staticPath = path.join(__dirname, "../../web/dist");
+const clientDistPath = path.join(__dirname, "../../web/dist");
+const ssrDistPath = path.join(__dirname, "../dist-ssr");
 
 const fastify = Fastify({
   trustProxy: process.env.NODE_ENV === "production" ? false : TRUST_PROXY,
@@ -29,9 +30,16 @@ const fastify = Fastify({
 });
 
 fastify.register(fastifyStatic, {
-  root: staticPath,
+  root: clientDistPath,
   prefix: "/dist/",
   serve: true,
+});
+
+fastify.register(fastifyStatic, {
+  root: ssrDistPath,
+  prefix: "/dist-ssr/",
+  serve: true,
+  decorateReply: false,
 });
 
 fastify.register(rootSteam);

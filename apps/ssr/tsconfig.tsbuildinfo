@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/components/app.tsx","./src/components/query-client.tsx","./src/steam/index.tsx","./src/utils/create-request.ts","./src/utils/parse-cookies.ts"],"version":"5.7.2"}

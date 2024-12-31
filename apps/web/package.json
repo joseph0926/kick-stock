@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:client": "tsc -b && vite build --watch",
+    "build:client": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\""
@@ -14,7 +14,8 @@
   "dependencies": {
     "@kickstock/ui": "workspace:*",
     "@kickstock/shared": "workspace:*",
-    "@kickstock/core": "workspace:*"
+    "@kickstock/core": "workspace:*",
+    "@kickstock/ssr": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

@@ -15,8 +15,12 @@
       "outputs": ["dist/**"],
       "cache": false
     },
+    "build:ssr": {
+      "outputs": ["dist/**"],
+      "cache": false
+    },
     "dev:ssr": {
-      "dependsOn": ["build:client"],
+      "dependsOn": ["build:client", "build:ssr"],
       "cache": false,
       "persistent": true
     }

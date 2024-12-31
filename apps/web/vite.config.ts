@@ -19,6 +19,7 @@ export default defineConfig({
       },
     },
   },
+  ssr: {},
   build: {
     rollupOptions: {
       output: {

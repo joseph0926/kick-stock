@@ -11,16 +11,6 @@ const router = createBrowserRouter(routes, {
 });
 
 export default function App() {
-  // const [mounted, setMounted] = React.useState<boolean>(false);
-
-  // React.useEffect(() => {
-  //   setMounted(true);
-  // }, []);
-
-  // if (!mounted) {
-  //   return null;
-  // }
-
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />

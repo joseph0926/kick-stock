@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import { getLeaguesData } from "../../../services/league.service";
-import { Navbar } from "../../client/layouts/navbar";
+import { NavbarServer } from "./navbar.server";
 
 export async function loader() {
   const leaguesData = await getLeaguesData();
@@ -9,18 +9,9 @@ export async function loader() {
 }
 
 export function RootLayout() {
-  // const [mounted, setMounted] = React.useState<boolean>(false);
-
-  // React.useEffect(() => {
-  //   setMounted(true);
-  // }, []);
-
-  // if (!mounted) {
-  //   return null;
-  // }
   return (
     <div className="flex min-h-screen w-full items-center">
-      <Navbar />
+      <NavbarServer />
       <Outlet />
     </div>
   );
