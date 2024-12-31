@@ -4,6 +4,9 @@
   "description": "",
   "type": "module",
   "keywords": [],
+  "scripts": {
+    "clean": "rimraf node_modules"
+  },
   "dependencies": {
     "@kickstock/shared": "workspace:*",
     "@kickstock/ui": "workspace:*"

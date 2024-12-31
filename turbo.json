@@ -23,6 +23,7 @@
       "dependsOn": ["build:client", "build:ssr"],
       "cache": false,
       "persistent": true
-    }
+    },
+    "clean": {}
   }
 }

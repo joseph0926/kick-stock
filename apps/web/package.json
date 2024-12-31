@@ -9,7 +9,8 @@
     "build:client": "tsc -b && vite build --watch",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\""
+    "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\"",
+    "clean": "rimraf node_modules"
   },
   "dependencies": {
     "@kickstock/ui": "workspace:*",

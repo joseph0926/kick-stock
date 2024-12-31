@@ -9,7 +9,8 @@
     "dev:ssr": "tsx watch ./src/index.ts",
     "lint": "eslint .",
     "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\"",
-    "build:ssr": "tsc -b && vite build"
+    "build:ssr": "tsc -b && vite build",
+    "clean": "rimraf node_modules"
   },
   "keywords": [],
   "author": "",

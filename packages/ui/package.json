@@ -5,7 +5,8 @@
   "keywords": [],
   "type": "module",
   "scripts": {
-    "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\""
+    "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\"",
+    "clean": "rimraf node_modules"
   },
   "author": "",
   "license": "ISC",
