@@ -36,8 +36,10 @@ export const LeagueList = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <div className="flex items-center gap-2">
+          <CarouselPrevious className="z-50" />
+          <CarouselNext className="z-50" />
+        </div>
       </Carousel>
     </div>
   );
