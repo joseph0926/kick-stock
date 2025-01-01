@@ -1,6 +1,5 @@
 import Fastify from "fastify";
 import { healthRoute, clubRoute } from "./routes/index.js";
-import { stockRoute } from "./routes/stock.route.js";
 
 const PORT = 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -24,7 +23,6 @@ const fastify = Fastify({
 
 fastify.register(healthRoute, { prefix: "/health" });
 fastify.register(clubRoute, { prefix: `${API_PREFIX}/clubs` });
-fastify.register(stockRoute, { prefix: `${API_PREFIX}/stock` });
 
 const start = async () => {
   try {

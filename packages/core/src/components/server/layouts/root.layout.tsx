@@ -10,7 +10,6 @@ import {
 import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
 import { getLeaguesData } from "../../../services/league.service";
 import { makeQueryClient } from "../../../providers/query.provider";
-import { getMonthlyStockData } from "../../../services/stock.service";
 
 export async function loader() {
   const queryClient = makeQueryClient();
@@ -28,7 +27,6 @@ export function RootLayout() {
   const leaguesLoaderData = useLoaderData<{
     leaguesQuery: DehydratedState;
   }>();
-  getMonthlyStockData("IBM");
 
   return (
     <HydrationBoundary state={leaguesLoaderData?.leaguesQuery}>
