@@ -42,7 +42,7 @@ export const HomeTab = () => {
       </TabsList>
       {homeTab.map((item) => (
         <TabsContent key={item.value} value={item.value}>
-          <HomeInnerTab />
+          <HomeInnerTab outerTabValue={item.value} />
         </TabsContent>
       ))}
     </Tabs>

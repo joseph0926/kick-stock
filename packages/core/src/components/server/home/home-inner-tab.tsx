@@ -1,13 +1,21 @@
 import React, { memo, useMemo } from "react";
-import { homeInnerTab } from "@kickstock/shared/src/constants/home/home-tab";
+import {
+  homeInnerTab,
+  homeTab,
+} from "@kickstock/shared/src/constants/home/home-tab";
 import {
   Tabs,
   TabsList,
   TabsTrigger,
 } from "@kickstock/ui/src/components/ui/tabs";
 import { useUrlContext } from "../../../hooks/use-url-context";
+import { HomeAllTabContent } from "./home-all-tab-content";
 
-export const HomeInnerTab = memo(() => {
+type HomeInnerTabProps = {
+  outerTabValue: "all" | "club" | "player";
+};
+
+export const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
   const { onUpdateSearchParams, searchParams } = useUrlContext();
   const indicator = searchParams.get("indicator");
 
@@ -39,6 +47,7 @@ export const HomeInnerTab = memo(() => {
           </TabsTrigger>
         ))}
       </TabsList>
+      {outerTabValue === homeTab[0].value && <HomeAllTabContent />}
     </Tabs>
   );
 });
