@@ -10,12 +10,17 @@ import {
 import { Card, CardContent } from "@kickstock/ui/src/components/ui/card";
 import { Link } from "react-router";
 import { LeagueCard } from "../../client/home/league-card";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
+import { getLeaguesData } from "../../../services/league.service";
 
-type LeagueListProps = {
-  leaguesData?: LeaguesDataType[];
-};
+export const LeagueList = () => {
+  const { data: leaguesData } = useQuery({
+    queryKey: QUERY_KEY.LEAGUE,
+    queryFn: getLeaguesData,
+    staleTime: Infinity,
+  });
 
-export const LeagueList = ({ leaguesData }: LeagueListProps) => {
   return (
     <div className="relative w-full">
       <Carousel className="w-full max-w-full">

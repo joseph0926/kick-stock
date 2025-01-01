@@ -9,7 +9,7 @@ import {
 import { routes } from "@kickstock/core/src/router/routes.tsx";
 import { parseCookies } from "../utils/parse-cookies";
 import App from "../components/app";
-import QueryProvider from "../components/query-client";
+import { QueryProvider } from "@kickstock/core/src/providers/query.provider";
 import { ThemeProvider } from "next-themes";
 
 const { query, dataRoutes } = createStaticHandler(routes);

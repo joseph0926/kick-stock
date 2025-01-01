@@ -58,15 +58,6 @@ fastify.register(fastifyStatic, {
 
 fastify.register(rootSteam);
 
-fastify.addHook("onResponse", (request, reply) => {
-  console.log("Path:", request.url);
-  console.log("Headers:", {
-    encoding: reply.getHeader("content-encoding"),
-    type: reply.getHeader("content-type"),
-    length: reply.getHeader("content-length"),
-  });
-});
-
 const start = async () => {
   try {
     const address = await fastify.listen({ port: PORT });

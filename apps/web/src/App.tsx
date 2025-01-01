@@ -2,9 +2,8 @@
 
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./lib/query-client";
 import { routes } from "@kickstock/core/src/router/routes.tsx";
+import { QueryProvider } from "@kickstock/core/src/providers/query.provider";
 import { ThemeProvider } from "next-themes";
 
 const router = createBrowserRouter(routes, {
@@ -19,9 +18,9 @@ export default function App() {
       enableSystem={false}
       disableTransitionOnChange
     >
-      <QueryClientProvider client={queryClient}>
+      <QueryProvider>
         <RouterProvider router={router} />
-      </QueryClientProvider>
+      </QueryProvider>
     </ThemeProvider>
   );
 }
