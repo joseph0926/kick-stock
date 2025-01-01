@@ -27,6 +27,8 @@ export const rootSteam = (fastify: FastifyInstance) => {
 
     const router = createStaticRouter(dataRoutes, context);
 
+    res.type("text/html");
+
     const { pipe } = renderToPipeableStream(
       <App theme={userTheme}>
         <ThemeProvider

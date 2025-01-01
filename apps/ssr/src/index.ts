@@ -3,6 +3,7 @@ import { rootSteam } from "./steam/index.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import fastifyStatic from "@fastify/static";
+import fastifyCompress from "@fastify/compress";
 
 const PORT = 4001;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -29,10 +30,21 @@ const fastify = Fastify({
   maxRequestsPerSocket: 1000,
 });
 
+await fastify.register(fastifyCompress, {
+  global: true,
+  encodings: ["gzip"],
+  threshold: 0,
+  zlibOptions: {
+    level: 9,
+  },
+});
+
 fastify.register(fastifyStatic, {
   root: clientDistPath,
   prefix: "/dist/",
   serve: true,
+  preCompressed: true,
+  extensions: ["gz"],
 });
 
 fastify.register(fastifyStatic, {
@@ -40,9 +52,20 @@ fastify.register(fastifyStatic, {
   prefix: "/dist-ssr/",
   serve: true,
   decorateReply: false,
+  preCompressed: true,
+  extensions: ["gz"],
 });
 
 fastify.register(rootSteam);
+
+fastify.addHook("onResponse", (request, reply) => {
+  console.log("Path:", request.url);
+  console.log("Headers:", {
+    encoding: reply.getHeader("content-encoding"),
+    type: reply.getHeader("content-type"),
+    length: reply.getHeader("content-length"),
+  });
+});
 
 const start = async () => {
   try {

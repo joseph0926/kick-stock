@@ -15,6 +15,11 @@ const App = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>KickStock</title>
         <link rel="stylesheet" href="/dist/assets/index.css" />
+        <link
+          rel="preload"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css"
+          as="style"
+        />
         <script type="module" src="/dist/index.js" crossOrigin="" />
       </head>
       <body>

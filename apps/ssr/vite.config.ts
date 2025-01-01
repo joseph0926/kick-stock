@@ -1,9 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { compression } from "vite-plugin-compression2";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    visualizer({
+      filename: "stats/index.html",
+    }),
+    compression(),
+  ],
   resolve: {
     alias: {},
   },
@@ -17,6 +25,11 @@ export default defineConfig({
         entryFileNames: "index.js",
         chunkFileNames: "js/[name].js",
         assetFileNames: "assets/[name].[ext]",
+      },
+      treeshake: {
+        moduleSideEffects: true, // 사이드 이펙트 처리
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false,
       },
     },
   },
