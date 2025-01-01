@@ -10,6 +10,8 @@ import { HomePage } from "../components/server/pages";
 import { SignInPage } from "../components/client/pages/sign-in.page";
 import { LeaguePage } from "../components/client/pages";
 import { LandingPage } from "../components/client/pages/landing.page";
+import { MainLoading } from "../components/shared/loading/main.loading";
+import { NotFoundPage } from "../components/shared/error/not-found";
 
 export const routes: RouteObject[] = [
   {
@@ -17,6 +19,8 @@ export const routes: RouteObject[] = [
     path: ROUTER.HOME,
     element: <RootLayout />,
     loader: rootLayoutLoader,
+    hydrateFallbackElement: <MainLoading />,
+    errorElement: <NotFoundPage />,
     children: [
       { index: true, element: <HomePage /> },
       { path: ROUTER.LEAGUE, element: <LeaguePage /> },
