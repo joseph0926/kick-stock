@@ -142,6 +142,12 @@ const Carousel = React.forwardRef<
         >
           {children}
         </div>
+        {canScrollNext && (
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-r from-transparent via-blue-100/50 to-blue-100 dark:via-blue-900/50 dark:to-blue-900" />
+        )}
+        {canScrollPrev && (
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-l from-transparent via-blue-100/50 to-blue-100 dark:via-blue-900/50 dark:to-blue-900" />
+        )}
       </CarouselContext.Provider>
     );
   },
@@ -204,7 +210,7 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "h-8 w-8 rounded-full lg:absolute",
+        "h-8 w-8 rounded-full disabled:opacity-25",
         orientation === "horizontal"
           ? "-left-12 top-1/2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -233,7 +239,7 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "h-8 w-8 rounded-full lg:absolute",
+        "h-8 w-8 rounded-full disabled:opacity-25",
         orientation === "horizontal"
           ? "-right-12 top-1/2 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",

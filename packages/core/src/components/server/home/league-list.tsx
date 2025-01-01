@@ -16,15 +16,6 @@ type LeagueListProps = {
 };
 
 export const LeagueList = ({ leaguesData }: LeagueListProps) => {
-  const showGradientClass = () => {
-    if (!leaguesData?.length) return "";
-    if (leaguesData.length <= 2) return "block sm:hidden";
-    if (leaguesData.length <= 3) return "sm:block md:hidden";
-    if (leaguesData.length <= 4) return "sm:block lg:hidden";
-    if (leaguesData.length <= 5) return "sm:block xl:hidden";
-    return "sm:block";
-  };
-
   return (
     <div className="relative w-full">
       <Carousel className="w-full max-w-full">
@@ -48,13 +39,9 @@ export const LeagueList = ({ leaguesData }: LeagueListProps) => {
             </CarouselItem>
           ))}
         </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
       </Carousel>
-      <div
-        className={cn(
-          "pointer-events-none absolute right-0 top-0 hidden h-full w-32 bg-gradient-to-r from-transparent via-blue-100/50 to-blue-100 dark:via-blue-900/50 dark:to-blue-900",
-          showGradientClass(),
-        )}
-      />
     </div>
   );
 };
