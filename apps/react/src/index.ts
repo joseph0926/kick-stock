@@ -3,8 +3,8 @@ import path from "path";
 import fastifyStatic from "@fastify/static";
 import fastifyCompress from "@fastify/compress";
 import { isProd } from "@/server/lib/env-utils";
-import { __dirname, __filename } from "@/server/lib/path-utils";
 import { rootSteam } from "./server/steam";
+import { fileURLToPath } from "url";
 
 const PORT = 4001;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -35,6 +35,8 @@ fastify.register(fastifyCompress, {
 });
 
 if (isProd) {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
   const clientDistPath = path.join(__dirname, "../../web/dist");
   const ssrDistPath = path.join(__dirname, "../dist-ssr");
 

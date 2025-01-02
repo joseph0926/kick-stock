@@ -10,15 +10,15 @@ const router = createBrowserRouter(routes, {
 
 export function ClientRoot() {
   return (
-    // <ThemeProvider
-    //   attribute="class"
-    //   defaultTheme="dark"
-    //   enableSystem={false}
-    //   disableTransitionOnChange
-    // >
-    <QueryProvider>
-      <RouterProvider router={router} />
-    </QueryProvider>
-    // </ThemeProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={false}
+      disableTransitionOnChange
+    >
+      <QueryProvider>
+        <RouterProvider router={router} />
+      </QueryProvider>
+    </ThemeProvider>
   );
 }

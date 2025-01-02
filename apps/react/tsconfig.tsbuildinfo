@@ -1,0 +1,1 @@
+{"root":["./src/global.d.ts","./src/index.ts","./src/vite-env.d.ts","./src/client/main.tsx","./src/client/components/client-root.tsx","./src/server/lib/create-request.ts","./src/server/lib/env-utils.ts","./src/server/lib/parse-cookies.ts","./src/server/steam/header.ts","./src/server/steam/index.tsx"],"version":"5.7.2"}

@@ -1,6 +1,6 @@
 import { isProd } from "../lib/env-utils";
 
-export function getHtmlHeader(theme: string) {
+export function getHtmlHeader() {
   return `
     <!doctype html>
     <html lang="ko">

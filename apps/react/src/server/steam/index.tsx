@@ -28,22 +28,22 @@ export const rootSteam = (fastify: FastifyInstance) => {
     const router = createStaticRouter(dataRoutes, context);
 
     const { pipe } = renderToPipeableStream(
-      // <ThemeProvider
-      //   attribute="class"
-      //   defaultTheme="dark"
-      //   enableSystem={false}
-      //   disableTransitionOnChange
-      // >
-      <QueryProvider>
-        <StaticRouterProvider router={router} context={context} />
-      </QueryProvider>,
-      // </ThemeProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem={false}
+        disableTransitionOnChange
+      >
+        <QueryProvider>
+          <StaticRouterProvider router={router} context={context} />
+        </QueryProvider>
+      </ThemeProvider>,
       {
         onShellReady() {
           res.raw.setHeader("content-type", "text/html");
 
           try {
-            const header = getHtmlHeader(userTheme);
+            const header = getHtmlHeader();
             res.raw.write(header);
 
             const stream = pipe(res.raw);
