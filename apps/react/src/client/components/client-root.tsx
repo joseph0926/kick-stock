@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { routes } from "@kickstock/core/src/router/routes.tsx";
@@ -10,17 +8,17 @@ const router = createBrowserRouter(routes, {
   hydrationData: window.__staticRouterHydrationData,
 });
 
-export default function App() {
+export function ClientRoot() {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="dark"
-      enableSystem={false}
-      disableTransitionOnChange
-    >
-      <QueryProvider>
-        <RouterProvider router={router} />
-      </QueryProvider>
-    </ThemeProvider>
+    // <ThemeProvider
+    //   attribute="class"
+    //   defaultTheme="dark"
+    //   enableSystem={false}
+    //   disableTransitionOnChange
+    // >
+    <QueryProvider>
+      <RouterProvider router={router} />
+    </QueryProvider>
+    // </ThemeProvider>
   );
 }

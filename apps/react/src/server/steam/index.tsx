@@ -6,7 +6,6 @@ import {
   StaticRouterProvider,
 } from "react-router";
 import { ThemeProvider } from "next-themes";
-import App from "@/client/app";
 import { routes } from "@kickstock/core/src/router/routes.tsx";
 import { QueryProvider } from "@kickstock/core/src/providers/query.provider";
 import { parseCookies } from "@/server/lib/parse-cookies";
@@ -28,35 +27,46 @@ export const rootSteam = (fastify: FastifyInstance) => {
 
     const router = createStaticRouter(dataRoutes, context);
 
-    res.type("text/html");
-
     const { pipe } = renderToPipeableStream(
-      <App>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <QueryProvider>
-            <StaticRouterProvider router={router} context={context} />
-          </QueryProvider>
-        </ThemeProvider>
-      </App>,
+      // <ThemeProvider
+      //   attribute="class"
+      //   defaultTheme="dark"
+      //   enableSystem={false}
+      //   disableTransitionOnChange
+      // >
+      <QueryProvider>
+        <StaticRouterProvider router={router} context={context} />
+      </QueryProvider>,
+      // </ThemeProvider>
       {
         onShellReady() {
-          const header = getHtmlHeader(userTheme);
-          const footer = getHtmlFooter();
+          res.raw.setHeader("content-type", "text/html");
 
-          res.raw.write(header);
-          pipe(res.raw);
-          res.raw.write(footer);
+          try {
+            const header = getHtmlHeader(userTheme);
+            res.raw.write(header);
+
+            const stream = pipe(res.raw);
+
+            stream.on("end", () => {
+              const footer = getHtmlFooter();
+              res.raw.write(footer);
+              res.raw.end();
+            });
+          } catch (error) {
+            console.error("Streaming error:", error);
+            res.raw.statusCode = 500;
+            res.raw.end("Internal Server Error");
+          }
         },
-        onError(err) {
-          fastify.log.error(err);
+        onShellError(error) {
+          console.error("Shell error:", error);
+          res.raw.statusCode = 500;
+          res.raw.setHeader("content-type", "text/html");
+          res.raw.end("<h1>Something went wrong</h1>");
         },
-        onShellError(err) {
-          fastify.log.error(err);
+        onError(error) {
+          console.error("Rendering error:", error);
         },
       },
     );

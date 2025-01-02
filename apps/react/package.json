@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch ./src/index.ts",
+    "dev:ssr": "concurrently \"vite\" \"tsx watch ./src/index.ts\"",
     "clean": "rimraf node_modules"
   },
   "dependencies": {
