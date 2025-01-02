@@ -6,9 +6,8 @@
 
 ```sh
 ├── apps
-│   ├── client # React Client (with vite)
 │   ├── server # API Server
-│   └── ssr # React SSR Server
+│   └── react # React SSR
 ├── packages
 │   ├── core # React 관련 (hooks, components, ...)
 │   ├── ui # UI Components (with Shadcn)
