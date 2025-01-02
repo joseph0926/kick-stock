@@ -15,6 +15,7 @@ import {
   getLeaguesMarketValue,
 } from "../../../services/league.service";
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
+import { formatMarketValue } from "@kickstock/shared/src/lib/format-market-value";
 
 export const LeagueList = () => {
   const { data: leaguesData } = useSuspenseQuery({
@@ -26,10 +27,11 @@ export const LeagueList = () => {
     queryKey: QUERY_KEY.LEAGUE.MARKET_VALUE,
     queryFn: getLeaguesMarketValue,
     staleTime: Infinity,
+    select: (data) => formatMarketValue(data),
   });
 
   const getLeagueMarketValue = useCallback((league: LeagueType) => {
-    return leaguesMarketValue.data.find(
+    return leaguesMarketValue.find(
       (marketValue) => marketValue.name === league,
     );
   }, []);

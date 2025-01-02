@@ -1,4 +1,5 @@
 import { type ClubType } from "./club.type";
+import { type CurrencyType } from "./common.type";
 
 export type LeagueType = "bundes" | "epl" | "laliga" | "ligue" | "serie";
 
@@ -25,10 +26,7 @@ export type LeagueTabData = {
 
 export type CurrencyValueType = {
   year: string;
-  EUR: number;
-  USD: number;
-  KRW: number;
-};
+} & { [key in CurrencyType]: number };
 export type MarketValueType = {
   name: LeagueType;
   values: CurrencyValueType[];
@@ -41,4 +39,13 @@ export type LeaguesMarketValueType = {
       EUR_to_KRW: number;
     };
   };
+};
+
+export type FormatedLeaguesMarketValueType = {
+  name: LeagueType;
+  values: {
+    year: string;
+    value: string;
+    rawValue: number;
+  }[];
 };
