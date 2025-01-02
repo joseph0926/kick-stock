@@ -8,15 +8,23 @@ import {
   HydrationBoundary,
 } from "@tanstack/react-query";
 import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
-import { getLeaguesData } from "../../../services/league.service";
+import {
+  getLeaguesData,
+  getLeaguesMarketValue,
+} from "../../../services/league.service";
 import { makeQueryClient } from "../../../providers/query.provider";
 
 export async function loader() {
   const queryClient = makeQueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: QUERY_KEY.LEAGUE,
+    queryKey: QUERY_KEY.LEAGUE.DEFAULT,
     queryFn: getLeaguesData,
+    staleTime: Infinity,
+  });
+  await queryClient.prefetchQuery({
+    queryKey: QUERY_KEY.LEAGUE.MARKET_VALUE,
+    queryFn: getLeaguesMarketValue,
     staleTime: Infinity,
   });
 
