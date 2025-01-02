@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   ChartConfig,
@@ -25,9 +25,14 @@ export function HomeLeaguesMarketValueChart({
 }: {
   marketValue: FormatedLeaguesMarketValueType;
 }) {
+  const filteredMarketValue = useMemo(
+    () => marketValue.values.slice().reverse(),
+    [],
+  );
+
   return (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-      <LineChart data={marketValue.values.reverse()}>
+      <LineChart data={filteredMarketValue}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="year" tickFormatter={(value) => value.slice(2)} />
         <YAxis tickFormatter={formatYAxis} domain={["auto", "auto"]} />
