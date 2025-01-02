@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
-    "dev:ssr": "tsx watch ./src/index.ts",
+    "dev:ssr": "concurrently -n \"server,client\" -c \"blue,green\" \"tsx watch --clear-screen=false ./src/index.ts\" \"cd ../web && vite build --watch\"",
     "lint": "eslint .",
     "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\"",
     "build:ssr": "tsc -b && vite build",

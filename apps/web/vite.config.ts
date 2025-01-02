@@ -26,6 +26,10 @@ export default defineConfig({
   },
   ssr: {},
   build: {
+    watch: {
+      include: ["src/**", "../../packages/**"],
+    },
+    minify: false,
     rollupOptions: {
       output: {
         entryFileNames: "index.js",

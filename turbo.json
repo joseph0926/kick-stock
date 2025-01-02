@@ -11,16 +11,16 @@
       "persistent": true,
       "cache": false
     },
-    "build:client": {
+    "watch": {
       "outputs": ["dist/**"],
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "build:ssr": {
       "outputs": ["dist/**"],
       "cache": false
     },
     "dev:ssr": {
-      "dependsOn": ["build:client", "build:ssr"],
       "cache": false,
       "persistent": true
     },

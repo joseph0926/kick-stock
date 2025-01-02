@@ -15,7 +15,12 @@ export default defineConfig({
   resolve: {
     alias: {},
   },
+
   build: {
+    watch: {
+      include: ["src/**", "../../packages/**"],
+    },
+    minify: false,
     ssr: true,
     outDir: "dist-ssr",
     rollupOptions: {
