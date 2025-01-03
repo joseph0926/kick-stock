@@ -12,29 +12,64 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
 import {
   getLeaguesData,
-  getLeaguesMarketValue,
+  getLeaguesRevenueValue,
+  getLeaguesProfitValue,
+  getLeaguesIndexValue,
 } from "../../../services/league.service";
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
-import { formatMarketValue } from "@kickstock/shared/src/lib/format-market-value";
+import { formatLeagueValue } from "@kickstock/shared/src/lib/format-league-value";
+import { HomeInnerTabType } from "@kickstock/shared/src/types/common.type";
 
-export const LeagueList = () => {
+export const LeagueList = ({
+  innerTabValue,
+}: {
+  innerTabValue: HomeInnerTabType;
+}) => {
   const { data: leaguesData } = useSuspenseQuery({
     queryKey: QUERY_KEY.LEAGUE.DEFAULT,
     queryFn: getLeaguesData,
     staleTime: Infinity,
   });
-  const { data: leaguesMarketValue } = useSuspenseQuery({
-    queryKey: QUERY_KEY.LEAGUE.MARKET_VALUE,
-    queryFn: getLeaguesMarketValue,
+  const { data: leaguesRevenueValue } = useSuspenseQuery({
+    queryKey: QUERY_KEY.LEAGUE.REVENUE_VALUE,
+    queryFn: getLeaguesRevenueValue,
     staleTime: Infinity,
-    select: (data) => formatMarketValue(data),
+    select: (data) => formatLeagueValue(data),
+  });
+  const { data: leaguesProfitValue } = useSuspenseQuery({
+    queryKey: QUERY_KEY.LEAGUE.PROFIT_VALUE,
+    queryFn: getLeaguesProfitValue,
+    staleTime: Infinity,
+    select: (data) => formatLeagueValue(data),
+  });
+  const { data: leaguesIndexValue } = useSuspenseQuery({
+    queryKey: QUERY_KEY.LEAGUE.INDEX_VALUE,
+    queryFn: getLeaguesIndexValue,
+    staleTime: Infinity,
+    select: (data) => formatLeagueValue(data),
   });
 
-  const getLeagueMarketValue = useCallback((league: LeagueType) => {
-    return leaguesMarketValue.find(
-      (marketValue) => marketValue.name === league,
-    );
-  }, []);
+  const getLeagueValue = useCallback(
+    (league: LeagueType) => {
+      switch (innerTabValue) {
+        case "index":
+          return leaguesIndexValue.find(
+            (leagueValue) => leagueValue.name === league,
+          );
+        case "revenue":
+          return leaguesRevenueValue.find(
+            (leagueValue) => leagueValue.name === league,
+          );
+        case "profit":
+          return leaguesProfitValue.find(
+            (leagueValue) => leagueValue.name === league,
+          );
+        default:
+          return undefined;
+      }
+    },
+    [innerTabValue],
+  );
 
   return (
     <div className="relative w-full">
@@ -48,7 +83,8 @@ export const LeagueList = () => {
               <Link to={`/leagues/${league.nameShort}`} className="p-1">
                 <LeagueCard
                   league={league}
-                  markeyValue={getLeagueMarketValue(league.nameShort)}
+                  leagueValue={getLeagueValue(league.nameShort)}
+                  innerTabValue={innerTabValue}
                 />
               </Link>
             </CarouselItem>

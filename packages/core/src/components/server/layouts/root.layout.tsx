@@ -10,7 +10,9 @@ import {
 import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
 import {
   getLeaguesData,
-  getLeaguesMarketValue,
+  getLeaguesRevenueValue,
+  getLeaguesProfitValue,
+  getLeaguesIndexValue,
 } from "../../../services/league.service";
 import { makeQueryClient } from "../../../providers/query.provider";
 
@@ -23,8 +25,18 @@ export async function loader() {
     staleTime: Infinity,
   });
   await queryClient.prefetchQuery({
-    queryKey: QUERY_KEY.LEAGUE.MARKET_VALUE,
-    queryFn: getLeaguesMarketValue,
+    queryKey: QUERY_KEY.LEAGUE.REVENUE_VALUE,
+    queryFn: getLeaguesRevenueValue,
+    staleTime: Infinity,
+  });
+  await queryClient.prefetchQuery({
+    queryKey: QUERY_KEY.LEAGUE.PROFIT_VALUE,
+    queryFn: getLeaguesProfitValue,
+    staleTime: Infinity,
+  });
+  await queryClient.prefetchQuery({
+    queryKey: QUERY_KEY.LEAGUE.PROFIT_VALUE,
+    queryFn: getLeaguesIndexValue,
     staleTime: Infinity,
   });
 

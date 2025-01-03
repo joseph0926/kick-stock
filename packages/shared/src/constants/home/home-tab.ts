@@ -5,7 +5,7 @@ export const homeTab = [
 ] as const;
 
 export const homeInnerTab = [
-  { label: "시가총액", value: "index" },
-  { label: "거래량", value: "trading" },
-  { label: "상승률", value: "rise" },
+  { label: "브랜드가치", value: "index" },
+  { label: "총수익", value: "revenue" },
+  { label: "영업이익", value: "profit" },
 ] as const;

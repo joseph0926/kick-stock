@@ -9,7 +9,7 @@ import {
 } from "@kickstock/ui/src/components/ui/carousel";
 import { Skeleton } from "@kickstock/ui/src/components/ui/skeleton";
 
-export const HomeAllTabContentLoading = () => {
+export const HomeTabContentLoading = () => {
   const skeletonItems = React.useMemo(() => Array.from({ length: 5 }), []);
 
   return (
@@ -22,7 +22,7 @@ export const HomeAllTabContentLoading = () => {
               className="pl-1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
             >
               <div className="p-1">
-                <Skeleton className="flex h-72 items-center gap-4 p-2 px-8 py-10" />
+                <Skeleton className="my-10 flex h-72 items-center gap-4 p-2 px-8" />
               </div>
             </CarouselItem>
           ))}

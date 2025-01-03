@@ -1,15 +1,15 @@
 import { CurrencyType } from "../types/common.type";
 import {
-  FormatedLeaguesMarketValueType,
-  LeaguesMarketValueType,
+  FormatedLeaguesValueType,
+  LeaguesValueType,
 } from "../types/league.type";
 import { formatCurrency } from "./format-currency";
 
-export function formatMarketValue(
-  marketValue: LeaguesMarketValueType,
+export function formatLeagueValue(
+  leagueValue: LeaguesValueType,
   selectedCurrency: CurrencyType = "KRW"
-): FormatedLeaguesMarketValueType[] {
-  return marketValue.data.map((league) => ({
+): FormatedLeaguesValueType[] {
+  return leagueValue.data.map((league) => ({
     name: league.name,
     values: league.values.map((yearData) => ({
       year: yearData.year,

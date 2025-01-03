@@ -1,17 +1,23 @@
 import React from "react";
 import {
-  FormatedLeaguesMarketValueType,
+  FormatedLeaguesValueType,
   LeaguesDataType,
 } from "@kickstock/shared/src/types/league.type";
 import { Card } from "@kickstock/ui/src/components/ui/card";
-import { HomeLeaguesMarketValueChart } from "../../shared/chart/home-leagues-market-value-chart";
+import { HomeLeaguesValueChart } from "../../shared/chart/home-leagues-value-chart";
+import { HomeInnerTabType } from "@kickstock/shared/src/types/common.type";
 
 type LeagueCardProps = {
   league: LeaguesDataType;
-  markeyValue?: FormatedLeaguesMarketValueType;
+  leagueValue?: FormatedLeaguesValueType;
+  innerTabValue: HomeInnerTabType;
 };
 
-export const LeagueCard = ({ league, markeyValue }: LeagueCardProps) => {
+export const LeagueCard = ({
+  league,
+  leagueValue,
+  innerTabValue,
+}: LeagueCardProps) => {
   return (
     <Card className="flex flex-col items-center gap-4 p-2">
       <div className="flex w-full items-center justify-between px-6">
@@ -22,7 +28,12 @@ export const LeagueCard = ({ league, markeyValue }: LeagueCardProps) => {
           className="size-10 object-contain"
         />
       </div>
-      {markeyValue && <HomeLeaguesMarketValueChart marketValue={markeyValue} />}
+      {leagueValue && (
+        <HomeLeaguesValueChart
+          leagueValue={leagueValue}
+          innerTabValue={innerTabValue}
+        />
+      )}
     </Card>
   );
 };

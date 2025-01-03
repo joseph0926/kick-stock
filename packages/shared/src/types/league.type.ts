@@ -27,12 +27,12 @@ export type LeagueTabData = {
 export type CurrencyValueType = {
   year: string;
 } & { [key in CurrencyType]: number };
-export type MarketValueType = {
+export type LeaguesValueDataType = {
   name: LeagueType;
   values: CurrencyValueType[];
 };
-export type LeaguesMarketValueType = {
-  data: MarketValueType[];
+export type LeaguesValueType = {
+  data: LeaguesValueDataType[];
   metadata: {
     exchange_rates: {
       EUR_to_USD: number;
@@ -41,7 +41,7 @@ export type LeaguesMarketValueType = {
   };
 };
 
-export type FormatedLeaguesMarketValueType = {
+export type FormatedLeaguesValueType = {
   name: LeagueType;
   values: {
     year: string;

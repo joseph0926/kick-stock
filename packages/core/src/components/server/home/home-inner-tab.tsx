@@ -9,15 +9,19 @@ import {
   TabsTrigger,
 } from "@kickstock/ui/src/components/ui/tabs";
 import { useUrlContext } from "../../../hooks/use-url-context";
-import { HomeAllTabContent } from "./home-all-tab-content";
+import { HomeTabContent } from "./home-tab-content";
+import {
+  HomeInnerTabType,
+  HomeTabType,
+} from "@kickstock/shared/src/types/common.type";
 
 type HomeInnerTabProps = {
-  outerTabValue: "all" | "club" | "player";
+  outerTabValue: HomeTabType;
 };
 
 export const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
   const { onUpdateSearchParams, searchParams } = useUrlContext();
-  const indicator = searchParams.get("indicator");
+  const indicator = searchParams.get("indicator") as HomeInnerTabType;
 
   const translateX = useMemo(() => {
     const index = homeInnerTab.findIndex((tab) => tab.value === indicator);
@@ -47,7 +51,9 @@ export const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
           </TabsTrigger>
         ))}
       </TabsList>
-      {outerTabValue === homeTab[0].value && <HomeAllTabContent />}
+      {outerTabValue === "all" && (
+        <HomeTabContent innerTabValue={indicator || "index"} />
+      )}
     </Tabs>
   );
 });

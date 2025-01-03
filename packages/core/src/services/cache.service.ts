@@ -1,5 +1,5 @@
 import { cdnCachePurge } from "./api";
 
-export const cachePurgeLeaguesMarketValue = async () => {
-  return cdnCachePurge.get("/leagues/market-value.json");
+export const cachePurgeLeaguesValue = async (data: string) => {
+  return cdnCachePurge.get(`/leagues/${data}-value.json`);
 };

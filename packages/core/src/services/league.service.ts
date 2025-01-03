@@ -1,6 +1,6 @@
 import {
   LeaguesDataType,
-  LeaguesMarketValueType,
+  LeaguesValueType,
   LeagueType,
 } from "@kickstock/shared/src/types/league.type";
 import { ssrCdnAxios } from "./api";
@@ -15,8 +15,17 @@ export const getLeague = async (league: LeagueType) => {
   return data;
 };
 
-export const getLeaguesMarketValue =
-  async (): Promise<LeaguesMarketValueType> => {
-    const { data } = await ssrCdnAxios.get("/leagues/market-value.json");
-    return data;
-  };
+export const getLeaguesRevenueValue = async (): Promise<LeaguesValueType> => {
+  const { data } = await ssrCdnAxios.get("/leagues/revenue-value.json");
+  return data;
+};
+
+export const getLeaguesProfitValue = async (): Promise<LeaguesValueType> => {
+  const { data } = await ssrCdnAxios.get("/leagues/profit-value.json");
+  return data;
+};
+
+export const getLeaguesIndexValue = async (): Promise<LeaguesValueType> => {
+  const { data } = await ssrCdnAxios.get("/leagues/index-value.json");
+  return data;
+};
