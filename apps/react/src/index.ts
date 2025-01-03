@@ -4,7 +4,6 @@ import fastifyStatic from "@fastify/static";
 import fastifyCompress from "@fastify/compress";
 import { isProd } from "@/server/lib/env-utils";
 import { rootSteam } from "./server/steam";
-import { fileURLToPath } from "url";
 
 const PORT = 4001;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -35,26 +34,20 @@ fastify.register(fastifyCompress, {
 });
 
 if (isProd) {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
-  const clientDistPath = path.join(__dirname, "../../web/dist");
-  const ssrDistPath = path.join(__dirname, "../dist-ssr");
-
   fastify.register(fastifyStatic, {
-    root: clientDistPath,
-    prefix: "/dist/",
+    root: path.resolve(process.cwd(), "dist/client"),
+    prefix: "/client/",
+    decorateReply: false,
     serve: true,
     preCompressed: true,
     extensions: ["gz"],
   });
 
   fastify.register(fastifyStatic, {
-    root: ssrDistPath,
-    prefix: "/dist-ssr/",
-    serve: true,
+    root: path.join(process.cwd(), "public"),
+    prefix: "/public/",
     decorateReply: false,
-    preCompressed: true,
-    extensions: ["gz"],
+    serve: true,
   });
 }
 

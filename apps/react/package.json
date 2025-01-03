@@ -6,17 +6,23 @@
   "type": "module",
   "scripts": {
     "dev:ssr": "concurrently \"vite\" \"tsx watch ./src/index.ts\"",
-    "build:ssr": "tsc -b && vite build",
-    "start:ssr": "tsx ./src/index.ts",
+    "build:client": "vite build --mode client",
+    "build:server": "vite build --mode server",
+    "build:ssr": "vite build --mode client && vite build --mode server",
+    "start:ssr": "NODE_ENV=production tsx ./src/index.ts",
     "clean": "rimraf node_modules"
   },
   "dependencies": {
     "@fastify/compress": "^8.0.1",
     "@fastify/static": "^8.0.3",
     "@kickstock/core": "workspace:*",
-    "@kickstock/shared": "workspace:*"
+    "@kickstock/shared": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",

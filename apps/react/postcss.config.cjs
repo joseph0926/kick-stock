@@ -1,1 +1,3 @@
-module.exports = require("@kickstock/shared/postcss.config.cjs");
+module.exports = {
+  plugins: [require("tailwindcss")(), require("autoprefixer")()],
+};
