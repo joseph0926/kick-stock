@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev:ssr": "concurrently \"vite\" \"tsx watch ./src/index.ts\"",
-    "build": "tsc -b && vite build",
+    "build:ssr": "tsc -b && vite build",
+    "start:ssr": "tsx ./src/index.ts",
     "clean": "rimraf node_modules"
   },
   "dependencies": {

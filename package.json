@@ -7,9 +7,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "build:client": "turbo run build:client",
     "build:ssr": "turbo run build:ssr",
     "dev:ssr": "turbo run dev:ssr",
+    "start:ssr": "turbo run start:ssr",
     "clean": "turbo run clean"
   },
   "keywords": [],
