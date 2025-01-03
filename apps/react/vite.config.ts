@@ -20,6 +20,19 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: path.resolve(__dirname, "./src/index.ts"),
+      output: {
+        manualChunks(id) {
+          if (id.includes("@radix-ui")) {
+            return "vender-radix";
+          }
+          if (id.includes("@floating-ui")) {
+            return "vender-floating";
+          }
+          if (id.includes("embla")) {
+            return "vender-carousel";
+          }
+        },
+      },
     },
   },
   server: {
