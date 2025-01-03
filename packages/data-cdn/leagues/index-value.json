@@ -145,5 +145,11 @@
         }
       ]
     }
-  ]
+  ],
+  "metadata": {
+    "exchange_rates": {
+      "EUR_to_USD": 1.046,
+      "EUR_to_KRW": 1538.46
+    }
+  }
 }
