@@ -15,6 +15,14 @@
 └── └── data-cdn # json CDN
 ```
 
+## 데모
+
+### SSR + @tanstck/query의 preftch 초기 데이터 로딩 후 스트리밍 데모
+- 캐시 disable + slow 4g 환경
+
+![kick-stock_2025-01-04](https://github.com/user-attachments/assets/bf72c613-cadc-475d-82ee-5f5f903c49bc)
+
+
 ## 사용 기술
 
 ```sh
