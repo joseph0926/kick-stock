@@ -26,6 +26,6 @@ export const getLeaguesProfitValue = async (): Promise<LeaguesValueType> => {
 };
 
 export const getLeaguesIndexValue = async (): Promise<LeaguesValueType> => {
-  const { data } = await ssrCdnAxios.get("/leagues/index-value.json");
+  const { data } = await ssrCdnAxios.get("/leagues/index2-value.json");
   return data;
 };
