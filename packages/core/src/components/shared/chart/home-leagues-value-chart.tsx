@@ -6,21 +6,25 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@kickstock/ui/src/components/ui/chart";
-import { FormatedLeaguesValueType } from "@kickstock/shared/src/types/league.type";
+import { LeagueType } from "@kickstock/shared/src/types/league.type";
 import { formatCurrency } from "@kickstock/shared/src/lib/format-currency";
 import { HomeInnerTabType } from "@kickstock/shared/src/types/common.type";
+import { useLeaguesData } from "../../../hooks/use-leagues-data";
 
 const formatYAxis = (value: number) => {
   return formatCurrency(value, "KRW");
 };
 
 export function HomeLeaguesValueChart({
-  leagueValue,
+  leagueName,
   innerTabValue,
 }: {
-  leagueValue: FormatedLeaguesValueType;
+  leagueName: LeagueType;
   innerTabValue: HomeInnerTabType;
 }) {
+  const { getLeagueValue } = useLeaguesData(innerTabValue);
+  const leagueValue = getLeagueValue(leagueName);
+
   const filteredMarketValue = useMemo(
     () => leagueValue.values.slice().reverse(),
     [leagueValue],

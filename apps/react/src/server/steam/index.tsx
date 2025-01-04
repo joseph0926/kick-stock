@@ -8,16 +8,16 @@ import {
 import { ThemeProvider } from "next-themes";
 import { routes } from "@kickstock/core/src/router/routes.tsx";
 import { QueryProvider } from "@kickstock/core/src/providers/query.provider";
-import { parseCookies } from "@/server/lib/parse-cookies";
 import { createWebRequest } from "@/server/lib/create-request";
 import { getHtmlFooter, getHtmlHeader } from "@/server/steam/header";
+import { HydrationBoundary } from "@tanstack/react-query";
+import { leagueDataPrefetch } from "../query/leagues.query";
 
 const { query, dataRoutes } = createStaticHandler(routes);
 
 export const rootSteam = (fastify: FastifyInstance) => {
   fastify.get("*", async (req, res) => {
-    const cookies = parseCookies(req.headers.cookie);
-    const userTheme = cookies.theme ?? "dark";
+    const { leaguesQuery } = await leagueDataPrefetch();
 
     const request = createWebRequest(req);
     const context = await query(request);
@@ -35,7 +35,9 @@ export const rootSteam = (fastify: FastifyInstance) => {
         disableTransitionOnChange
       >
         <QueryProvider>
-          <StaticRouterProvider router={router} context={context} />
+          <HydrationBoundary state={leaguesQuery}>
+            <StaticRouterProvider router={router} context={context} />
+          </HydrationBoundary>
         </QueryProvider>
       </ThemeProvider>,
       {

@@ -1,6 +1,5 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { LeagueList } from "./league-list";
-import { HomeTabContentLoading } from "../../shared/loading/home-tab-content.loading";
 import { HomeInnerTabType } from "@kickstock/shared/src/types/common.type";
 
 export const HomeTabContent = ({
@@ -8,9 +7,5 @@ export const HomeTabContent = ({
 }: {
   innerTabValue: HomeInnerTabType;
 }) => {
-  return (
-    <Suspense fallback={<HomeTabContentLoading />}>
-      <LeagueList innerTabValue={innerTabValue} />
-    </Suspense>
-  );
+  return <LeagueList innerTabValue={innerTabValue} />;
 };
