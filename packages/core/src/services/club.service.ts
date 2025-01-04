@@ -5,6 +5,6 @@ import { ClubStockType } from "@kickstock/shared/src/types/club.type";
 export const getClubStocksData = async (
   league: LeagueType,
 ): Promise<ClubStockType> => {
-  const { data } = await ssrCdnAxios.get(`/club/${league}.json`);
+  const { data } = await ssrCdnAxios.get(`/club/2024/${league}.json`);
   return data;
 };
