@@ -3,7 +3,7 @@ import { LeaguesDataType } from "@kickstock/shared/src/types/league.type";
 import { Card } from "@kickstock/ui/src/components/ui/card";
 import { HomeLeaguesValueChart } from "../../shared/chart/home-leagues-value-chart";
 import { HomeInnerTabType } from "@kickstock/shared/src/types/common.type";
-import { Loader2 } from "lucide-react";
+import { HomeChartLoading } from "../../shared/loading/home-chart.loading";
 
 type LeagueCardProps = {
   league: LeaguesDataType;
@@ -21,7 +21,7 @@ export const LeagueCard = ({ league, innerTabValue }: LeagueCardProps) => {
           className="size-10 object-contain"
         />
       </div>
-      <Suspense fallback={<Loader2 className="size-20 animate-spin" />}>
+      <Suspense fallback={<HomeChartLoading />}>
         <HomeLeaguesValueChart
           leagueName={league.nameShort}
           innerTabValue={innerTabValue}

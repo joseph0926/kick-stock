@@ -26,7 +26,14 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return null;
+    return (
+      <div className="flex flex-col items-center gap-1">
+        <Button variant="ghost">
+          <Moon className="size-4" />
+        </Button>
+        <span className="text-sm font-medium">테마 설정</span>
+      </div>
+    );
   }
   return (
     <DropdownMenu>
