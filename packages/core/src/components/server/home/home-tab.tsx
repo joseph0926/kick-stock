@@ -8,6 +8,7 @@ import {
 import { homeTab } from "@kickstock/shared/src/constants/home/home-tab";
 import { useUrlContext } from "../../../hooks/use-url-context";
 import { HomeInnerTab } from "./home-inner-tab";
+import { HomeClubTable } from "../../shared/table/home-club-table";
 
 export const HomeTab = () => {
   const { onUpdateSearchParams, searchParams } = useUrlContext();
@@ -40,11 +41,12 @@ export const HomeTab = () => {
           </TabsTrigger>
         ))}
       </TabsList>
-      {homeTab.map((item) => (
-        <TabsContent key={item.value} value={item.value}>
-          <HomeInnerTab outerTabValue={item.value} />
-        </TabsContent>
-      ))}
+      <TabsContent value={homeTab[0].value}>
+        <HomeInnerTab outerTabValue={homeTab[0].value} />
+      </TabsContent>
+      <TabsContent value={homeTab[1].value}>
+        <HomeClubTable league="epl" />
+      </TabsContent>
     </Tabs>
   );
 };
