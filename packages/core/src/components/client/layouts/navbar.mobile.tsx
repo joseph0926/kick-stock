@@ -2,7 +2,6 @@ import React from "react";
 
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -12,7 +11,6 @@ import {
 } from "@kickstock/ui/src/components/ui/sheet";
 import { LogIn, Menu } from "lucide-react";
 import { NAVBAR } from "@kickstock/shared/src/constants/navbar";
-import { NavbarAuth } from "./navbar-auth";
 import { ThemeToggle } from "@kickstock/ui/src/components/theme-toggle";
 import { Button } from "@kickstock/ui/src/components/ui/button";
 import { Link } from "react-router";
