@@ -14,6 +14,7 @@ import {
   HomeInnerTabType,
   HomeTabType,
 } from "@kickstock/shared/src/types/common.type";
+import { LeagueType } from "@kickstock/shared/src/types/league.type";
 
 type HomeInnerTabProps = {
   outerTabValue: HomeTabType;
@@ -21,7 +22,9 @@ type HomeInnerTabProps = {
 
 const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
   const { onUpdateSearchParams, searchParams } = useUrlContext();
-  const indicator = searchParams.get("indicator") as HomeInnerTabType;
+  const indicator = searchParams.get("indicator") as
+    | HomeInnerTabType
+    | LeagueType;
 
   const getTabValue = useCallback(() => {
     switch (outerTabValue) {

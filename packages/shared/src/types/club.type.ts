@@ -19,3 +19,10 @@ export type ClubStockDataType = {
 export type ClubStockType = {
   data: ClubStockDataType[];
 };
+
+export type TeamValue = {
+  name: string;
+  currentEUR: number;
+  currentUSD: number;
+  currentKRW: number;
+};

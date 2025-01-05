@@ -2,13 +2,7 @@ import React from "react";
 import { Button } from "@kickstock/ui/src/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-
-export type TeamValue = {
-  name: string;
-  currentEUR: number;
-  currentUSD: number;
-  currentKRW: number;
-};
+import { TeamValue } from "@kickstock/shared/src/types/club.type";
 
 export const columns: ColumnDef<TeamValue, unknown>[] = [
   {
