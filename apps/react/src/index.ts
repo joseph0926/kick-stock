@@ -5,7 +5,7 @@ import fastifyCompress from "@fastify/compress";
 import { isProd } from "@/server/lib/env-utils";
 import { rootSteam } from "./server/steam";
 
-const PORT = 4001;
+const PORT = parseInt(process.env.PORT || "4001") || 4001;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
 
 const fastify = Fastify({

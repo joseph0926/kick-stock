@@ -1,7 +1,7 @@
 import Fastify from "fastify";
 import { healthRoute, clubRoute } from "./routes/index.js";
 
-const PORT = 4000;
+const PORT = parseInt(process.env.PORT || "4000") || 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
 const API_PREFIX = "/api/v1";
 
