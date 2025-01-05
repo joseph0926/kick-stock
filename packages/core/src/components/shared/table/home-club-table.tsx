@@ -14,8 +14,8 @@ export const HomeClubTable = ({
   clubStockData: TeamValue[];
 }) => {
   return (
-    <div className="w-full">
-      <div className="rounded-md border">
+    <div className="my-12 w-full">
+      <div className="h-[34.5vh] rounded-md border">
         {clubStockData && <DataTable columns={columns} data={clubStockData} />}
       </div>
     </div>

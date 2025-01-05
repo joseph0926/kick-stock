@@ -4,7 +4,6 @@ import {
   HomeInnerTabType,
   HomeTabType,
 } from "@kickstock/shared/src/types/common.type";
-import { HomeClubTable } from "../../shared/table/home-club-table";
 import { HomeClubWrapper } from "../../shared/table/home-club-wrapper";
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
 

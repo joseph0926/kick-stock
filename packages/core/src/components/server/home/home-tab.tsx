@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo, useTransition } from "react";
+import React, { useDeferredValue, useMemo, useTransition } from "react";
 import {
   Tabs,
   TabsContent,
@@ -8,15 +8,16 @@ import {
 import { homeTab } from "@kickstock/shared/src/constants/home/home-tab";
 import { useUrlContext } from "../../../hooks/use-url-context";
 import { HomeTabType } from "@kickstock/shared/src/types/common.type";
-import { HomeTabLoading } from "../../shared/loading/home-tab.loading";
-
-const LazyHomeInnerTab = React.lazy(() => import("./home-inner-tab"));
+import { cn } from "@kickstock/ui/src/lib/utils";
+import HomeInnerTab from "./home-inner-tab";
 
 export const HomeTab = () => {
   const { onUpdateSearchParams, searchParams } = useUrlContext();
   const market = (searchParams.get("market") as HomeTabType) ?? "all";
 
   const [isPending, startTransition] = useTransition();
+  const deferredMarket = useDeferredValue(market);
+  const isStale = market !== deferredMarket;
 
   const translateX = useMemo(() => {
     const index =
@@ -50,17 +51,25 @@ export const HomeTab = () => {
           </TabsTrigger>
         ))}
       </TabsList>
-      <Suspense fallback={<HomeTabLoading />}>
-        {homeTab.map((tab) => (
-          <TabsContent
-            key={tab.value}
-            value={tab.value}
-            className="transition-opacity duration-300"
-          >
-            <LazyHomeInnerTab outerTabValue={tab.value} />
+      <div className="relative min-h-[50vh]">
+        <div
+          className={cn(
+            "absolute left-0 top-0 w-full transition-opacity duration-300",
+            isStale ? "opacity-50" : "opacity-100",
+          )}
+        >
+          <TabsContent value={market} forceMount>
+            <HomeInnerTab outerTabValue={market} />
           </TabsContent>
-        ))}
-      </Suspense>
+        </div>
+        {isStale && (
+          <div className="absolute left-0 top-0 w-full" aria-hidden="true">
+            <TabsContent value={deferredMarket} forceMount>
+              <HomeInnerTab outerTabValue={deferredMarket} />
+            </TabsContent>
+          </div>
+        )}
+      </div>
     </Tabs>
   );
 };
