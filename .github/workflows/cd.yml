@@ -14,17 +14,17 @@ jobs:
           echo "Attempting to invalidate cache..."
           response=$(curl -X POST https://kick-stock.onrender.com/api/cache/invalidate \
           -H "x-cache-secret: ${{ secrets.CACHE_SECRET }}" \
-          -H "Content-Type: application/json" \
           -w "\n%{http_code}")
 
           echo "Response: $response"
 
           echo "response=$response" >> $GITHUB_OUTPUT
 
-          if [[ $response == *"200"* ]]; then
-            echo "Cache invalidation successful!"
+          if [[ $response == *"success"* ]]; then
+          echo "Cache invalidation successful!"
           else
             echo "Cache invalidation might have failed. Please check the response."
+            exit 1
           fi
       - name: Check Cache Invalidation
         if: steps.invalidate-cache.outcome == 'failure'
