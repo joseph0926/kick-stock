@@ -6,7 +6,7 @@ import { UrlContextProvider } from "../../../providers/url.context";
 export function RootLayout() {
   return (
     <UrlContextProvider>
-      <div className="flex min-h-screen w-full items-center">
+      <div className="flex min-h-screen w-full items-start max-md:mt-24 md:items-center">
         <NavbarServer />
         <Outlet />
       </div>

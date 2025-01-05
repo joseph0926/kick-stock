@@ -7,7 +7,7 @@ import { ThemeToggle } from "@kickstock/ui/src/components/theme-toggle";
 
 export const NavbarAuth = () => {
   return (
-    <div className="flex h-full items-center gap-4">
+    <div className="hidden h-full items-center gap-4 md:flex">
       <Link to={ROUTER.SIGNIN} className="flex flex-col items-center gap-1">
         <Button variant="ghost">
           <LogIn className="size-4" />
