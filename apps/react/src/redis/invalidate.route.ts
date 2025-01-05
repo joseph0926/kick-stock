@@ -7,9 +7,6 @@ export const invalidateRoute = (fastify: FastifyInstance) => {
       const expectedSecret = process.env.CACHE_SECRET;
       const providedSecret = request.headers["x-cache-secret"];
 
-      console.log("Expected secret exists:", !!expectedSecret);
-      console.log("Provided secret exists:", !!providedSecret);
-
       if (!expectedSecret || expectedSecret !== providedSecret) {
         return reply.code(401).send({ error: "Unauthorized" });
       }
