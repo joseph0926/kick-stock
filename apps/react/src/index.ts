@@ -7,6 +7,7 @@ import fastifyCors from "@fastify/cors";
 import fastifyRateLimit from "@fastify/rate-limit";
 import { isProd } from "@/server/lib/env-utils";
 import { rootSteam } from "./server/steam";
+import { invalidateRoute } from "./redis/invalidate.route";
 
 const PORT = parseInt(process.env.PORT || "4001") || 4001;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -117,6 +118,7 @@ if (isProd) {
 }
 
 fastify.register(rootSteam);
+fastify.register(invalidateRoute);
 
 const start = async () => {
   try {

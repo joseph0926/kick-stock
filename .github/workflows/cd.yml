@@ -1,0 +1,21 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Invalidate Cache
+        id: invalidate-cache
+        continue-on-error: true
+        run: |
+          response=$(curl -X POST https://kick-stock.onrender.com/api/cache/invalidate \
+          -H "x-cache-secret: ${{ secrets.CACHE_SECRET }}")
+          echo "::set-output name=response::$response"
+      - name: Check Cache Invalidation
+        if: steps.invalidate-cache.outcome == 'failure'
+        run: |
+          echo "Cache invalidation failed"

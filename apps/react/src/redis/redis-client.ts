@@ -89,6 +89,42 @@ class RedisClient {
       return null;
     }
   }
+
+  async invalidatePattern(pattern: string): Promise<boolean> {
+    if (!isProd) return false;
+    if (!this.isConnected || !this.client) return false;
+
+    try {
+      const keys = await this.client.keys(`${this.getKeyPrefix()}${pattern}*`);
+      if (keys.length > 0) {
+        const result = await this.client.del(...keys);
+        console.log(`${result}개의 캐시를 무효화하였습니다.: ${pattern}`);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Redis invalidatePattern 에러:", error);
+      return false;
+    }
+  }
+
+  async flushAll(): Promise<boolean> {
+    if (!isProd) return false;
+    if (!this.isConnected || !this.client) return false;
+
+    try {
+      const keys = await this.client.keys(`${this.getKeyPrefix()}*`);
+      if (keys.length > 0) {
+        const result = await this.client.del(...keys);
+        console.log(`모든 캐시 삭제: ${result}개`);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Redis flushAll 에러:", error);
+      return false;
+    }
+  }
 }
 
 export const redisClient = new RedisClient();
