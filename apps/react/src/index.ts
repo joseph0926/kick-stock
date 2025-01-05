@@ -55,7 +55,10 @@ fastify.register(rootSteam);
 
 const start = async () => {
   try {
-    const address = await fastify.listen({ port: PORT });
+    const address = await fastify.listen({
+      port: PORT,
+      host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
+    });
     fastify.log.info(`서버가 실행되었습니다: ${address}`);
   } catch (err) {
     fastify.log.error(err);
