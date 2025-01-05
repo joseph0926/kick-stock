@@ -18,8 +18,6 @@ jobs:
 
           echo "Response: $response"
 
-          echo "response=$response" >> $GITHUB_OUTPUT
-
           if [[ $response == *"success"* ]]; then
           echo "Cache invalidation successful!"
           else
