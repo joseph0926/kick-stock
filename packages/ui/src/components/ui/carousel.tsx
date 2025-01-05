@@ -143,10 +143,10 @@ const Carousel = React.forwardRef<
           {children}
         </div>
         {canScrollNext && (
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-r from-transparent via-blue-100/50 to-blue-100 dark:via-blue-900/50 dark:to-blue-900" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-r from-transparent via-blue-100/50 to-blue-100 dark:via-blue-900/50 dark:to-blue-900 max-sm:hidden" />
         )}
         {canScrollPrev && (
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-l from-transparent via-blue-100/50 to-blue-100 dark:via-blue-900/50 dark:to-blue-900" />
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-l from-transparent via-blue-100/50 to-blue-100 dark:via-blue-900/50 dark:to-blue-900 max-sm:hidden" />
         )}
       </CarouselContext.Provider>
     );

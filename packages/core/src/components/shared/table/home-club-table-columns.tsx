@@ -1,10 +1,11 @@
 import React from "react";
-import { Button } from "@kickstock/ui/src/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import { Button } from "@kickstock/ui/src/components/ui/button";
 import { TeamValue } from "@kickstock/shared/src/types/club.type";
+import { cn } from "@kickstock/ui/src/lib/utils";
 
-export const columns: ColumnDef<TeamValue, unknown>[] = [
+export const columns: ColumnDef<TeamValue>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -13,76 +14,76 @@ export const columns: ColumnDef<TeamValue, unknown>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Team Name
+          팀 이름
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "currentEUR",
+    id: "rate",
+    accessorFn: (row) => row.changeRate,
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Value (EUR)
+          등락률
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("currentEUR"));
-      const formatted = new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "EUR",
-      }).format(amount);
-      return <div className="text-right font-medium">{formatted}</div>;
+      const formatted = row.original.changeRate;
+      return (
+        <div
+          className={cn(
+            "font-medium",
+            formatted < 0 ? "text-red-500" : "text-green-500",
+          )}
+        >
+          {formatted}%
+        </div>
+      );
     },
   },
   {
-    accessorKey: "currentUSD",
+    id: "KRW",
+    accessorFn: (row) => row.rawKRW,
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Value (USD)
+          시장가치 (KRW)
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("currentUSD"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-      return <div className="text-right font-medium">{formatted}</div>;
+      const formatted = row.original.currentKRW;
+      return <div className="font-medium">{formatted}</div>;
     },
   },
   {
-    accessorKey: "currentKRW",
+    id: "EUR",
+    accessorFn: (row) => row.rawEUR,
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Value (KRW)
+          시장가치 (EUR)
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("currentKRW"));
-      const formatted = new Intl.NumberFormat("ko-KR", {
-        style: "currency",
-        currency: "KRW",
-      }).format(amount);
-      return <div className="text-right font-medium">{formatted}</div>;
+      const formatted = row.original.currentEUR;
+      return <div className="font-medium">{formatted}</div>;
     },
   },
 ];

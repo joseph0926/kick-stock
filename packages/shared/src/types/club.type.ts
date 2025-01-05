@@ -11,6 +11,7 @@ export type ClubType = {
 
 export type ClubStockValueType = {
   year: string;
+  changeRate: number;
 } & { [key in CurrencyType]: number };
 export type ClubStockDataType = {
   name: string;
@@ -22,7 +23,11 @@ export type ClubStockType = {
 
 export type TeamValue = {
   name: string;
-  currentEUR: number;
-  currentUSD: number;
-  currentKRW: number;
+  rawEUR: number;
+  rawUSD: number;
+  rawKRW: number;
+  currentEUR: string;
+  currentUSD: string;
+  currentKRW: string;
+  changeRate: number;
 };
