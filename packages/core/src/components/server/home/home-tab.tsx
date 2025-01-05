@@ -9,7 +9,8 @@ import { homeTab } from "@kickstock/shared/src/constants/home/home-tab";
 import { useUrlContext } from "../../../hooks/use-url-context";
 import { HomeTabType } from "@kickstock/shared/src/types/common.type";
 import { cn } from "@kickstock/ui/src/lib/utils";
-import HomeInnerTab from "./home-inner-tab";
+import { HomeInnerTab } from "./home-inner-tab";
+import { HomeInnerTabMobile } from "./home-inner-tab.mobile";
 
 export const HomeTab = () => {
   const { onUpdateSearchParams, searchParams } = useUrlContext();
@@ -51,7 +52,7 @@ export const HomeTab = () => {
           </TabsTrigger>
         ))}
       </TabsList>
-      <div className="relative min-h-[50vh]">
+      <div className="relative hidden min-h-[50vh] md:block">
         <div
           className={cn(
             "absolute left-0 top-0 w-full transition-opacity duration-300",
@@ -69,6 +70,9 @@ export const HomeTab = () => {
             </TabsContent>
           </div>
         )}
+      </div>
+      <div className="block w-full p-6 pt-8 md:hidden">
+        <HomeInnerTabMobile outerTabValue={market} />
       </div>
     </Tabs>
   );

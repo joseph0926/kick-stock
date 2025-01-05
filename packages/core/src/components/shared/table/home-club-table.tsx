@@ -10,7 +10,7 @@ export const HomeClubTable = ({
 }) => {
   return (
     <div className="my-12 w-full">
-      <div className="h-[34.5vh] rounded-md border">
+      <div className="min-h-[34.5vh] rounded-md border">
         {clubStockData && <DataTable columns={columns} data={clubStockData} />}
       </div>
     </div>

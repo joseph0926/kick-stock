@@ -22,7 +22,7 @@ export const NavbarMobile = () => {
       <SheetTrigger asChild className="block md:hidden">
         <Menu className="size-5" />
       </SheetTrigger>
-      <SheetContent className="flex flex-col justify-between">
+      <SheetContent className="background flex flex-col justify-between">
         <div>
           <SheetHeader>
             <SheetTitle>KickStock</SheetTitle>

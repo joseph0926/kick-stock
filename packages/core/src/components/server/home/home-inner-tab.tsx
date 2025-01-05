@@ -20,7 +20,7 @@ type HomeInnerTabProps = {
   outerTabValue: HomeTabType;
 };
 
-const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
+export const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
   const { onUpdateSearchParams, searchParams } = useUrlContext();
   const indicator = searchParams.get("indicator") as
     | HomeInnerTabType
@@ -84,5 +84,3 @@ const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
 });
 
 HomeInnerTab.displayName = "HomeInnerTab";
-
-export default HomeInnerTab;
