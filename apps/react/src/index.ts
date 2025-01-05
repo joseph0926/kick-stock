@@ -8,6 +8,9 @@ import fastifyRateLimit from "@fastify/rate-limit";
 import { isProd } from "@/server/lib/env-utils";
 import { rootSteam } from "./server/steam";
 import { invalidateRoute } from "./redis/invalidate.route";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const PORT = parseInt(process.env.PORT || "4001") || 4001;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
