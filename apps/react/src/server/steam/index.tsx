@@ -14,17 +14,21 @@ import { HydrationBoundary } from "@tanstack/react-query";
 import { prefetchQuery } from "../query/prefetch.query";
 import { redisClient } from "@/redis/redis-client";
 import { PassThrough } from "stream";
+import { isProd } from "@/server/lib/env-utils";
 
 const { query, dataRoutes } = createStaticHandler(routes);
 
 export const rootSteam = (fastify: FastifyInstance) => {
   fastify.get("*", async (req, res) => {
-    const cachedPage = await redisClient.getCache(req.url);
-    if (cachedPage) {
-      res.raw.setHeader("content-type", "text/html");
-      res.raw.end(cachedPage);
-      return;
+    if (isProd) {
+      const cachedPage = await redisClient.getCache(req.url);
+      if (cachedPage) {
+        res.raw.setHeader("content-type", "text/html");
+        res.raw.end(cachedPage);
+        return;
+      }
     }
+
     const { prefetchQueries } = await prefetchQuery();
 
     const request = createWebRequest(req);
@@ -74,9 +78,11 @@ export const rootSteam = (fastify: FastifyInstance) => {
               chunks.push(Buffer.from(footer));
               res.raw.end();
 
-              const fullHtml = Buffer.concat(chunks).toString();
-              console.log("Caching HTML, length:", fullHtml.length);
-              redisClient.setCache(req.url, fullHtml).catch(console.error);
+              if (isProd) {
+                const fullHtml = Buffer.concat(chunks).toString();
+                console.log("Caching HTML, length:", fullHtml.length);
+                redisClient.setCache(req.url, fullHtml).catch(console.error);
+              }
             });
           } catch (error) {
             console.error("Streaming error:", error);

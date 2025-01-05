@@ -11,13 +11,13 @@ class RedisClient {
   private readonly DAY_IN_SECONDS = 86400;
 
   constructor() {
-    this.initializeRedis();
+    if (isProd) {
+      this.initializeRedis();
+    }
   }
 
   private getKeyPrefix() {
-    if (isProd) return "page:prod:";
-    if (process.env.NODE_ENV === "staging") return "page:staging:";
-    return "page:dev:";
+    return "page:prod:";
   }
 
   private async initializeRedis() {
@@ -26,16 +26,16 @@ class RedisClient {
 
       this.client.on("connect", () => {
         this.isConnected = true;
-        console.log("Successfully connected to Redis");
+        console.log("Redis 연결 성공!");
       });
 
       this.client.on("error", (err) => {
-        console.error("Redis connection error:", err);
+        console.error("Redis 연결 에러:", err);
         this.isConnected = false;
         this.closeConnection();
       });
     } catch (error) {
-      console.error("Failed to initialize Redis:", error);
+      console.error("Redis 초기화 에러:", error);
       this.isConnected = false;
     }
   }
@@ -52,15 +52,16 @@ class RedisClient {
   }
 
   async setCache(path: string, html: string): Promise<boolean> {
+    if (!isProd) return false;
     if (!this.isConnected || !this.client) {
-      console.log("Redis not connected, skipping cache set");
+      console.log("Redis가 연결되어있지 않아 캐싱에 실패하였습니다.");
       return false;
     }
 
     try {
       const key = this.getKey(path);
       await this.client.setex(key, this.DAY_IN_SECONDS, html);
-      console.log(`Cache set success for path: ${path}`);
+      console.log(`캐시 완료: ${path}`);
       console.log(`Cache size: ${html.length} bytes`);
 
       const savedValue = await this.client.get(key);
@@ -70,12 +71,13 @@ class RedisClient {
 
       return true;
     } catch (error) {
-      console.error("Redis set error:", error);
+      console.error("Redis setCache 에러:", error);
       return false;
     }
   }
 
   async getCache(path: string): Promise<string | null> {
+    if (!isProd) return null;
     if (!this.isConnected || !this.client) return null;
     try {
       const key = this.getKey(path);
@@ -83,7 +85,7 @@ class RedisClient {
       console.log(`Cache ${cached ? "hit" : "miss"} for ${key}`);
       return cached;
     } catch (error) {
-      console.error("Redis get error:", error);
+      console.error("Redis getCache 에러:", error);
       return null;
     }
   }
