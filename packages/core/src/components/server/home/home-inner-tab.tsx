@@ -1,7 +1,7 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import {
-  homeInnerTab,
-  homeTab,
+  homeClubTab,
+  homeLeagueTab,
 } from "@kickstock/shared/src/constants/home/home-tab";
 import {
   Tabs,
@@ -19,29 +19,53 @@ type HomeInnerTabProps = {
   outerTabValue: HomeTabType;
 };
 
-export const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
+const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
   const { onUpdateSearchParams, searchParams } = useUrlContext();
   const indicator = searchParams.get("indicator") as HomeInnerTabType;
 
+  const getTabValue = useCallback(() => {
+    switch (outerTabValue) {
+      case "all":
+        return homeLeagueTab;
+      case "club":
+        return homeClubTab;
+      case "player":
+        return [];
+      default:
+        return homeLeagueTab;
+    }
+  }, [outerTabValue]);
+
+  const innerTabValue = getTabValue();
+  const fallbackTabValue = innerTabValue[0].value;
+
   const translateX = useMemo(() => {
-    const index = homeInnerTab.findIndex((tab) => tab.value === indicator);
-    return `translateX(${index * 100}%)`;
-  }, [indicator]);
+    const index =
+      innerTabValue.findIndex((tab) => tab.value === indicator) === -1
+        ? 0
+        : innerTabValue.findIndex((tab) => tab.value === indicator);
+
+    const gapWidth = 16;
+    const slideWidth = 96;
+    const totalMove = slideWidth * index + gapWidth * index;
+
+    return `translateX(${totalMove}px)`;
+  }, [indicator, innerTabValue]);
 
   return (
     <Tabs
-      defaultValue={indicator || homeInnerTab[0].value}
+      defaultValue={indicator ?? fallbackTabValue}
       onValueChange={(e) => onUpdateSearchParams({ indicator: e }, "update")}
       className="px-2 pt-8"
     >
-      <TabsList className="relative bg-transparent">
+      <TabsList className="relative gap-4 bg-transparent">
         <div
-          className="absolute left-1 -z-10 h-10 w-24 rounded-2xl bg-background transition-transform duration-300 ease-in-out will-change-transform"
+          className="absolute left-1 -z-10 h-10 w-24 translate-x-0 rounded-2xl bg-background transition-transform duration-300 ease-in-out will-change-transform"
           style={{
             transform: indicator ? translateX : "translateX(0)",
           }}
         />
-        {homeInnerTab.map((item) => (
+        {innerTabValue.map((item) => (
           <TabsTrigger
             key={item.value}
             value={item.value}
@@ -51,11 +75,11 @@ export const HomeInnerTab = memo(({ outerTabValue }: HomeInnerTabProps) => {
           </TabsTrigger>
         ))}
       </TabsList>
-      {outerTabValue === "all" && (
-        <HomeTabContent innerTabValue={indicator || "index"} />
-      )}
+      <HomeTabContent outerTabValue={outerTabValue} innerTabValue={indicator} />
     </Tabs>
   );
 });
 
 HomeInnerTab.displayName = "HomeInnerTab";
+
+export default HomeInnerTab;

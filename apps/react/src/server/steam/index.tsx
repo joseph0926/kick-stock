@@ -11,13 +11,13 @@ import { QueryProvider } from "@kickstock/core/src/providers/query.provider";
 import { createWebRequest } from "@/server/lib/create-request";
 import { getHtmlFooter, getHtmlHeader } from "@/server/steam/header";
 import { HydrationBoundary } from "@tanstack/react-query";
-import { leagueDataPrefetch } from "../query/leagues.query";
+import { prefetchQuery } from "../query/prefetch.query";
 
 const { query, dataRoutes } = createStaticHandler(routes);
 
 export const rootSteam = (fastify: FastifyInstance) => {
   fastify.get("*", async (req, res) => {
-    const { leaguesQuery } = await leagueDataPrefetch();
+    const { prefetchQueries } = await prefetchQuery();
 
     const request = createWebRequest(req);
     const context = await query(request);
@@ -35,7 +35,7 @@ export const rootSteam = (fastify: FastifyInstance) => {
         disableTransitionOnChange
       >
         <QueryProvider>
-          <HydrationBoundary state={leaguesQuery}>
+          <HydrationBoundary state={prefetchQueries}>
             <StaticRouterProvider router={router} context={context} />
           </HydrationBoundary>
         </QueryProvider>
