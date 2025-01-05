@@ -12,7 +12,7 @@ jobs:
         id: invalidate-cache
         run: |
           echo "Attempting to invalidate cache..."
-          response=$(curl -X POST https://kick-stock.onrender.com/api/cache/invalidate \
+          response=$(curl -X POST https://kick-stock.onrender.com/api/redis/invalidate \
           -H "x-cache-secret: ${{ secrets.CACHE_SECRET }}" \
           -w "\n%{http_code}")
 
