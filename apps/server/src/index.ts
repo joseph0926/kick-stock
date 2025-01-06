@@ -1,5 +1,10 @@
 import Fastify from "fastify";
+import fastifyHelmet from "@fastify/helmet";
+import fastifyCors from "@fastify/cors";
+import fastifyRateLimit from "@fastify/rate-limit";
 import { healthRoute, clubRoute } from "./routes/index.js";
+import { isProd } from "./lib/utils.js";
+import { createSocketIoServer } from "./socket/index.js";
 
 const PORT = parseInt(process.env.PORT || "4000") || 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -21,6 +26,71 @@ const fastify = Fastify({
   maxRequestsPerSocket: 1000,
 });
 
+fastify.register(fastifyHelmet, {
+  global: true,
+  contentSecurityPolicy: isProd
+    ? {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          imgSrc: ["'self'", "data:", "https:"],
+          connectSrc: [
+            "'self'",
+            "https://api.steampowered.com",
+            "https://cdn.jsdelivr.net",
+          ],
+        },
+      }
+    : {
+        directives: {
+          defaultSrc: ["'self'", "'unsafe-inline'", "http://localhost:*"],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "http://localhost:*",
+          ],
+          styleSrc: ["'self'", "'unsafe-inline'", "http://localhost:*"],
+          imgSrc: ["'self'", "data:", "https:", "http://localhost:*"],
+          connectSrc: [
+            "'self'",
+            "ws://localhost:*",
+            "http://localhost:*",
+            "https://api.steampowered.com",
+            "https://cdn.jsdelivr.net",
+          ],
+          workerSrc: ["'self'", "blob:"],
+        },
+      },
+});
+fastify.register(fastifyCors, {
+  origin: isProd ? ["https://kick-stock.onrender.com"] : true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  credentials: true,
+  maxAge: 86400,
+  preflight: true,
+  strictPreflight: true,
+});
+fastify.register(fastifyRateLimit, {
+  max: 100,
+  timeWindow: "1 minute",
+  allowList: ["127.0.0.1"],
+  skipOnError: false,
+  errorResponseBuilder: function (_request, context) {
+    return {
+      code: 429,
+      error: "Too Many Requests",
+      message: `Rate limit exceeded, retry in ${context.after}`,
+      date: Date.now(),
+      expiresIn: context.after,
+    };
+  },
+});
+
+fastify.decorate("io");
+
 fastify.register(healthRoute, { prefix: "/health" });
 fastify.register(clubRoute, { prefix: `${API_PREFIX}/clubs` });
 
@@ -31,6 +101,10 @@ const start = async () => {
       host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
     });
     fastify.log.info(`서버가 실행되었습니다: ${address}`);
+    fastify.io = createSocketIoServer(fastify);
+    if (fastify.io) {
+      fastify.log.info(`[server]: Socket.IO 서버가 실행되었습니다`);
+    }
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
@@ -40,6 +114,14 @@ const start = async () => {
 const shutdown = async () => {
   try {
     fastify.log.info("서버를 종료합니다...");
+    if (fastify.io) {
+      await new Promise<void>((resolve) => {
+        fastify.io.close(() => {
+          fastify.log.info("[server]: Socket.IO 서버가 종료되었습니다");
+          resolve();
+        });
+      });
+    }
     await fastify.close();
     process.exit(0);
   } catch (err) {

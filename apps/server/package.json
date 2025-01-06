@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch ./src/index.ts",
+    "dev:server": "tsx watch ./src/index.ts",
     "db:reset": "prisma db push --force-reset",
     "db:seed": "tsx prisma/seed.ts",
     "clean": "rimraf node_modules"

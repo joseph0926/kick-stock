@@ -9,6 +9,7 @@
     "lint": "turbo run lint",
     "build:ssr": "turbo run build:ssr",
     "dev:ssr": "turbo run dev:ssr",
+    "dev:server": "turbo run dev:server",
     "start:ssr": "turbo run start:ssr",
     "clean": "turbo run clean"
   },
