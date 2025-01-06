@@ -50,5 +50,6 @@ model ClubValue {
   clubId String
   club   Club   @relation(fields: [clubId], references: [id])
 
+  @@unique([clubId, year])
   @@map("club_values")
 }

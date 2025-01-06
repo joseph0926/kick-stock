@@ -7,8 +7,8 @@ import fastifyCors from "@fastify/cors";
 import fastifyRateLimit from "@fastify/rate-limit";
 import { isProd } from "@/server/lib/env-utils";
 import { rootSteam } from "./server/steam";
-import { invalidateRoute } from "./redis/invalidate.route";
 import dotenv from "dotenv";
+import { redisRoute } from "./server/routes/redis.route";
 
 dotenv.config();
 
@@ -121,7 +121,7 @@ if (isProd) {
 }
 
 fastify.register(rootSteam);
-fastify.register(invalidateRoute);
+fastify.register(redisRoute);
 
 const start = async () => {
   try {

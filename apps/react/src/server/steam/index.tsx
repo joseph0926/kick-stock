@@ -12,7 +12,7 @@ import { createWebRequest } from "@/server/lib/create-request";
 import { getHtmlFooter, getHtmlHeader } from "@/server/steam/header";
 import { HydrationBoundary } from "@tanstack/react-query";
 import { prefetchQuery } from "../query/prefetch.query";
-import { redisClient } from "@/redis/redis-client";
+import { pageCache } from "@kickstock/redis/src";
 import { PassThrough } from "stream";
 import { isProd } from "@/server/lib/env-utils";
 
@@ -21,7 +21,7 @@ const { query, dataRoutes } = createStaticHandler(routes);
 export const rootSteam = (fastify: FastifyInstance) => {
   fastify.get("*", async (req, res) => {
     if (isProd) {
-      const cachedPage = await redisClient.getCache(req.url);
+      const cachedPage = await pageCache.get(req.url);
       if (cachedPage) {
         res.raw.setHeader("content-type", "text/html");
         res.raw.end(cachedPage);
@@ -81,7 +81,7 @@ export const rootSteam = (fastify: FastifyInstance) => {
               if (isProd) {
                 const fullHtml = Buffer.concat(chunks).toString();
                 console.log("Caching HTML, length:", fullHtml.length);
-                redisClient.setCache(req.url, fullHtml).catch(console.error);
+                pageCache.set(req.url, fullHtml).catch(console.error);
               }
             });
           } catch (error) {

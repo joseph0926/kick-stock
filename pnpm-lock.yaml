@@ -150,6 +150,9 @@ importers:
       '@kickstock/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@kickstock/redis':
+        specifier: workspace:*
+        version: link:../../packages/redis
       '@kickstock/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -187,6 +190,9 @@ importers:
 
   apps/server:
     dependencies:
+      '@kickstock/redis':
+        specifier: workspace:*
+        version: link:../../packages/redis
       '@prisma/client':
         specifier: ^6.1.0
         version: 6.1.0(prisma@6.1.0)
@@ -209,6 +215,12 @@ importers:
       socket.io-client:
         specifier: ^4.8.1
         version: 4.8.1
+
+  packages/redis:
+    dependencies:
+      '@kickstock/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/shared: {}
 

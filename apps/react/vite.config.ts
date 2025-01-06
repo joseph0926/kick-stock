@@ -71,11 +71,6 @@ const serverBuild = {
       "events",
     ],
   },
-  define: {
-    "import.meta.env.VITE_REDIS_URL": JSON.stringify(
-      process.env.VITE_REDIS_URL,
-    ),
-  },
 };
 
 const isServerBuild = (mode: string) => mode === "server";

@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { redisClient } from "./redis-client";
+import { pageCache } from "@kickstock/redis/src";
 
-export const invalidateRoute = (fastify: FastifyInstance) => {
+export const redisRoute = (fastify: FastifyInstance) => {
   fastify.post("/api/redis/invalidate", {
     handler: async (request, reply) => {
       const expectedSecret = process.env.CACHE_SECRET;
@@ -12,7 +12,7 @@ export const invalidateRoute = (fastify: FastifyInstance) => {
       }
 
       try {
-        const result = await redisClient.flushAll();
+        const result = await pageCache.invalidatePattern("/");
         return { success: result };
       } catch (error) {
         console.error("Cache invalidation error:", error);
