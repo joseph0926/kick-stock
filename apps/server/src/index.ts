@@ -4,7 +4,7 @@ import fastifyCors from "@fastify/cors";
 import fastifyRateLimit from "@fastify/rate-limit";
 import { healthRoute, clubRoute } from "./routes/index.js";
 import { isProd } from "./lib/utils.js";
-import { createSocketIoServer } from "./socket/index.js";
+import { StockSocketServer } from "./socket/index.js";
 
 const PORT = parseInt(process.env.PORT || "4000") || 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -101,7 +101,8 @@ const start = async () => {
       host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
     });
     fastify.log.info(`서버가 실행되었습니다: ${address}`);
-    fastify.io = createSocketIoServer(fastify);
+    const socket = new StockSocketServer(fastify);
+    fastify.io = socket.getIO();
     if (fastify.io) {
       fastify.log.info(`[server]: Socket.IO 서버가 실행되었습니다`);
     }

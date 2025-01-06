@@ -10,7 +10,8 @@
     "build:server": "vite build --mode server",
     "build:ssr": "vite build --mode client && vite build --mode server",
     "start:ssr": "NODE_ENV=production tsx ./src/index.ts",
-    "clean": "rimraf node_modules"
+    "clean": "rimraf node_modules",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@fastify/compress": "^8.0.1",

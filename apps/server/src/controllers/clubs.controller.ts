@@ -6,14 +6,13 @@ export const getAllClubs: RouteHandler<{
   Reply: ApiResponse<LeaguesType[]>;
 }> = async (req: FastifyRequest, res: FastifyReply) => {
   try {
-    const data = (await import("@/data/clubs.data.json"))
-      .default as LeaguesType[];
-
-    return {
-      data,
-      success: true,
-      message: "클럽 데이터를 전부 불러왔습니다.",
-    };
+    // const data = (await import("@/data/clubs.data.json"))
+    //   .default as LeaguesType[];
+    // return {
+    //   data,
+    //   success: true,
+    //   message: "클럽 데이터를 전부 불러왔습니다.",
+    // };
   } catch (error) {
     req.server.log.error("[getAllClubs methdo Error]:", error);
     return {

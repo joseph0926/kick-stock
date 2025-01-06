@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "format": "prettier --w \"**/*.{js,jsx,ts,tsx}\"",
-    "clean": "rimraf node_modules"
+    "clean": "rimraf node_modules",
+    "type-check": "tsc --noEmit"
   },
   "author": "",
   "license": "ISC",

@@ -1,6 +1,6 @@
-import { isProd } from "@/lib/utils";
-import { RedisClient } from "@/redis-client";
-import Redis from "ioredis";
+import { Redis } from "ioredis";
+import { isProd } from "../lib/utils.js";
+import { RedisClient } from "../redis-client.js";
 
 export class PageCache {
   private static readonly PREFIX = "page:prod:";

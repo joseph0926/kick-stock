@@ -11,7 +11,8 @@
     "dev:ssr": "turbo run dev:ssr",
     "dev:server": "turbo run dev:server",
     "start:ssr": "turbo run start:ssr",
-    "clean": "turbo run clean"
+    "clean": "turbo run clean",
+    "type-check": "turbo run type-check"
   },
   "keywords": [],
   "author": "joseph0926",

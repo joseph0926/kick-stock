@@ -1,5 +1,8 @@
-import Redis from "ioredis";
-import { isProd } from "./lib/utils";
+import { Redis } from "ioredis";
+import { isProd } from "./lib/utils.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export class RedisClient {
   private client: Redis | null = null;
@@ -9,6 +12,8 @@ export class RedisClient {
   private constructor() {
     if (isProd) {
       this.initializeRedis();
+    } else {
+      console.log("개발 환경에서는 Redis를 사용하지 않습니다.");
     }
   }
 
@@ -47,6 +52,13 @@ export class RedisClient {
   }
 
   getRedisClient() {
+    if (!isProd) {
+      return {
+        client: null,
+        isConnected: false,
+        message: "개발 환경에서는 Redis가 비활성화되어 있습니다.",
+      };
+    }
     return { client: this.client, isConnected: this.isConnected };
   }
 }

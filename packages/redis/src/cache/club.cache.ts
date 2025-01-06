@@ -1,7 +1,7 @@
-import { isProd } from "@/lib/utils";
-import { RedisClient } from "@/redis-client";
-import Redis from "ioredis";
-import { Club, ClubValue } from "@kickstock/shared/src/types/prisma.type";
+import { Redis } from "ioredis";
+import { isProd } from "../lib/utils.js";
+import { RedisClient } from "../redis-client.js";
+import { Club, ClubValue } from "@kickstock/shared/src/types/prisma.type.js";
 
 export class ClubCache {
   private static readonly PREFIX = "club:prod:";

@@ -5,7 +5,8 @@
   "type": "module",
   "keywords": [],
   "scripts": {
-    "clean": "rimraf node_modules"
+    "clean": "rimraf node_modules",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@kickstock/shared": "workspace:*",
