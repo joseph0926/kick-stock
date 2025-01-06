@@ -31,7 +31,7 @@
     {
       "id": "285d2f6a-d817-4ac6-9392-b6b003739728",
       "name": "리버풀",
-      "nameEng": "Liverpool",
+      "nameEng": "Liverpool FC",
       "league": "Premier League",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/atkcspuozprfdlndupik",
       "shortName": "LIV"
@@ -71,7 +71,7 @@
     {
       "id": "24799e92-38a1-4cf9-9622-d82f5b9dea52",
       "name": "브렌트포드",
-      "nameEng": "Brentford",
+      "nameEng": "Brentford FC",
       "league": "Premier League",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/lb8mzoiohshqwcsxzstk",
       "shortName": "BRE"
@@ -79,7 +79,7 @@
     {
       "id": "48e9d5f6-6508-47e2-b139-cec8c303e263",
       "name": "사우스햄튼",
-      "nameEng": "Southampton",
+      "nameEng": "Southampton FC",
       "league": "Premier League",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/jfbvk4vtc8sosfazdc27",
       "shortName": "SOU"
@@ -87,7 +87,7 @@
     {
       "id": "9a5d8800-555b-46b3-9a4d-1626e26e834a",
       "name": "아스날",
-      "nameEng": "Arsenal",
+      "nameEng": "Arsenal FC",
       "league": "Premier League",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/uwflmnj6yirybcskydym",
       "shortName": "ARS"
@@ -103,7 +103,7 @@
     {
       "id": "331a69ba-586d-4cf5-9d9c-a8688d01704f",
       "name": "에버튼",
-      "nameEng": "Everton",
+      "nameEng": "Everton FC",
       "league": "Premier League",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/nthxw0keufig0vujiuso",
       "shortName": "EVE"
@@ -135,7 +135,7 @@
     {
       "id": "78cc39a6-78f2-4b82-a302-50865295f52b",
       "name": "첼시",
-      "nameEng": "Chelsea",
+      "nameEng": "Chelsea FC",
       "league": "Premier League",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/nhutxvpgckpvn9nmrlsq",
       "shortName": "CHE"
@@ -159,7 +159,7 @@
     {
       "id": "38916c7e-2d5a-4130-9033-3714e0b47321",
       "name": "풀럼",
-      "nameEng": "Fulham",
+      "nameEng": "Fulham FC",
       "league": "Premier League",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/junnp6xewpscg9daeya6",
       "shortName": "FUL"

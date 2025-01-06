@@ -7,7 +7,7 @@
     {
       "id": "ca3308cc-7181-4384-bd39-b619f49379da",
       "name": "라스팔마스",
-      "nameEng": "Las Palmas",
+      "nameEng": "UD Las Palmas",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ncvzwuvjogr1wde2ob8r",
       "shortName": "LPA"
@@ -23,7 +23,7 @@
     {
       "id": "91136a20-e11c-42c0-992d-bb9d6084a7e1",
       "name": "레가네스",
-      "nameEng": "Leganés",
+      "nameEng": "CD Leganés",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/wizdiepbzj3svcf7rbsd",
       "shortName": "LEG"
@@ -39,7 +39,7 @@
     {
       "id": "99a4765c-aa92-479a-a4b8-a01d3a26b086",
       "name": "마요르카",
-      "nameEng": "Mallorca",
+      "nameEng": "RCD Mallorca",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/hrndx9slotypevdpph8m",
       "shortName": "MLL"
@@ -47,7 +47,7 @@
     {
       "id": "48ca8716-163a-4626-9654-d2c05824c195",
       "name": "바르셀로나",
-      "nameEng": "Barcelona",
+      "nameEng": "FC Barcelona",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/gwpnrlt1udmdpdlauqqc",
       "shortName": "BAR"
@@ -55,7 +55,7 @@
     {
       "id": "b6ee165b-87ab-4d37-9f3f-eb4defdfe4f2",
       "name": "바야돌리드",
-      "nameEng": "Valladolid",
+      "nameEng": "Real Valladolid CF",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/irezpv1dqc2xqynr7j34",
       "shortName": "VLD"
@@ -63,7 +63,7 @@
     {
       "id": "c77fde5b-0bc5-49d9-aa52-29f1ab16d4a6",
       "name": "발렌시아",
-      "nameEng": "Valencia",
+      "nameEng": "Valencia CF",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/qfqivsirglwlpkibw9r3",
       "shortName": "VAL"
@@ -71,7 +71,7 @@
     {
       "id": "3b49832c-7046-4796-86f9-cdb07ac55a9e",
       "name": "베티스",
-      "nameEng": "Real Betis",
+      "nameEng": "Real Betis Balompié",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ct8mmmy7awwq13azcbag",
       "shortName": "BET"
@@ -79,7 +79,7 @@
     {
       "id": "0c5669eb-9f2a-4817-97c6-c229cb151e7a",
       "name": "비야레알",
-      "nameEng": "Villarreal",
+      "nameEng": "Villarreal CF",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/c5oucibkf2kd5ugryylb",
       "shortName": "VIL"
@@ -87,7 +87,7 @@
     {
       "id": "92a5ade8-bb69-426e-93e5-0a5c30ecae85",
       "name": "세비야",
-      "nameEng": "Sevilla",
+      "nameEng": "Sevilla FC",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/xclhotvvyu8aalv4lkov",
       "shortName": "SEV"
@@ -95,7 +95,7 @@
     {
       "id": "ef9cca7f-6373-4433-876a-67801b80e458",
       "name": "셀타 비고",
-      "nameEng": "Celta Vigo",
+      "nameEng": "Celta de Vigo",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/mwcdiczjsoskuy0rygwe",
       "shortName": "CEL"
@@ -111,7 +111,7 @@
     {
       "id": "06d4b9ce-b0b6-4d22-a773-ca580b59536d",
       "name": "아틀레티코",
-      "nameEng": "Atlético Madrid",
+      "nameEng": "Atlético de Madrid",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/cnwq6vn6pgfp3fxgvntj",
       "shortName": "ATM"
@@ -127,7 +127,7 @@
     {
       "id": "b012f915-388e-4130-b9d4-f960fc5b6377",
       "name": "알라베스",
-      "nameEng": "Alavés",
+      "nameEng": "Deportivo Alavés",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/otovjhsut8uduukgnwfn",
       "shortName": "ALA"
@@ -135,7 +135,7 @@
     {
       "id": "446a7bdc-0923-4efd-90a6-93b7cd1d28f1",
       "name": "에스파뇰",
-      "nameEng": "Espanyol",
+      "nameEng": "RCD Espanyol Barcelona",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/mwdwzlobgf9at12tgro4",
       "shortName": "ESP"
@@ -143,7 +143,7 @@
     {
       "id": "073c85e2-25f6-4ed2-87d5-729e30566cd1",
       "name": "오사수나",
-      "nameEng": "Osasuna",
+      "nameEng": "CA Osasuna",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/cpibcesmdxtweu2po3tp",
       "shortName": "OSA"
@@ -151,7 +151,7 @@
     {
       "id": "77472e80-cf6f-460f-8046-3453c47b7696",
       "name": "지로나",
-      "nameEng": "Girona",
+      "nameEng": "Girona FC",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ejpfehlpal74xr5j2y8r",
       "shortName": "GIR"
@@ -159,7 +159,7 @@
     {
       "id": "aa44fa36-8b37-4237-b801-3d8a5105c705",
       "name": "헤타페",
-      "nameEng": "Getafe",
+      "nameEng": "Getafe CF",
       "league": "La Liga",
       "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/imgdiqpyxznas7xlext1",
       "shortName": "GET"

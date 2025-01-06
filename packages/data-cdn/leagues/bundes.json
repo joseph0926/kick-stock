@@ -23,7 +23,7 @@
     {
       "id": "e7e57ca7-1e01-4dcb-a48e-d7244378dbf8",
       "name": "레버쿠젠",
-      "nameEng": "Bayer Leverkusen",
+      "nameEng": "Bayer 04 Leverkusen",
       "league": "Bundesliga",
       "img": "",
       "shortName": "B04"
@@ -31,7 +31,7 @@
     {
       "id": "752e2387-4247-4a14-9491-d2b3feb63353",
       "name": "마인츠",
-      "nameEng": "Mainz 05",
+      "nameEng": "1.FSV Mainz 05",
       "league": "Bundesliga",
       "img": "",
       "shortName": "M05"
@@ -55,7 +55,7 @@
     {
       "id": "931e32e9-2cbb-4df2-b04f-2ed1ac843723",
       "name": "베르더",
-      "nameEng": "Werder Bremen",
+      "nameEng": "SV Werder Bremen",
       "league": "Bundesliga",
       "img": "",
       "shortName": "SVW"
@@ -95,7 +95,7 @@
     {
       "id": "95eba660-1c2b-4fc1-ab3d-5fcd78716d0d",
       "name": "우니온 베를린",
-      "nameEng": "Union Berlin",
+      "nameEng": "1.FC Union Berlin",
       "league": "Bundesliga",
       "img": "",
       "shortName": "FCU"
@@ -103,7 +103,7 @@
     {
       "id": "65fc8d89-c8c2-4e6f-8045-2dbe4421dfe3",
       "name": "장크트파울리",
-      "nameEng": "St. Pauli",
+      "nameEng": "FC St. Pauli",
       "league": "Bundesliga",
       "img": "",
       "shortName": "STP"
@@ -135,7 +135,7 @@
     {
       "id": "950ccf28-ce87-4929-ae58-e0f492b909bc",
       "name": "하이덴하임",
-      "nameEng": "Heidenheim",
+      "nameEng": "1.FC Heidenheim 1846",
       "league": "Bundesliga",
       "img": "",
       "shortName": "HDH"
@@ -143,7 +143,7 @@
     {
       "id": "3bfc5cdd-3eae-4beb-a36e-dd43e2678a15",
       "name": "호펜하임",
-      "nameEng": "Hoffenheim",
+      "nameEng": "TSG 1899 Hoffenheim",
       "league": "Bundesliga",
       "img": "",
       "shortName": "TSG"
