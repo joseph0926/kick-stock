@@ -30,8 +30,25 @@ model Club {
   img       String
   league    String
 
+  values ClubValue[]
+
   leagueId String
   League   League @relation(fields: [leagueId], references: [id])
 
   @@map("clubs")
+}
+
+model ClubValue {
+  id String @id @default(uuid())
+
+  year       String
+  EUR        Float
+  USD        Float
+  KRW        Float
+  changeRate Float
+
+  clubId String
+  club   Club   @relation(fields: [clubId], references: [id])
+
+  @@map("club_values")
 }
