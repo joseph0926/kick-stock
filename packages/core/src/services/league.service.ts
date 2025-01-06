@@ -11,7 +11,7 @@ export const getLeaguesData = async (): Promise<LeaguesDataType[]> => {
 };
 
 export const getLeague = async (league: LeagueType) => {
-  const { data } = await ssrCdnAxios(`/leagues/${league}.json`);
+  const { data } = await ssrCdnAxios(`/leagues/club/${league}.json`);
   return data;
 };
 
