@@ -11,10 +11,7 @@ export type LeaguesDataType = {
   img: string;
 };
 
-export type LeaguesType = {
-  id: string;
-  name: string;
-  nameEng: string;
+export type LeaguesType = LeaguesDataType & {
   clubs: ClubType[];
 };
 

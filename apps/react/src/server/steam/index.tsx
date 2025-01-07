@@ -46,7 +46,7 @@ export const rootSteam = (fastify: FastifyInstance) => {
       }
     }
 
-    const { prefetchQueries } = await prefetchQuery();
+    const { prefetchQueries } = await prefetchQuery(req.url);
     const request = createWebRequest(req);
     const context = await query(request);
     if (context instanceof Response) {

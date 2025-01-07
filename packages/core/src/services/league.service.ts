@@ -1,5 +1,6 @@
 import {
   LeaguesDataType,
+  LeaguesType,
   LeaguesValueType,
   LeagueType,
 } from "@kickstock/shared/src/types/league.type";
@@ -10,7 +11,7 @@ export const getLeaguesData = async (): Promise<LeaguesDataType[]> => {
   return data;
 };
 
-export const getLeague = async (league: LeagueType) => {
+export const getLeague = async (league: LeagueType): Promise<LeaguesType> => {
   const { data } = await ssrCdnAxios(`/leagues/club/${league}.json`);
   return data;
 };

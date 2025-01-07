@@ -1,0 +1,20 @@
+import React from "react";
+import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { getLeague } from "../../../services/league.service";
+import { LeagueType } from "@kickstock/shared/src/types/league.type";
+import { LeagueHeader } from "./league-header";
+
+export const LeagueWrapper = ({ league }: { league: LeagueType }) => {
+  const { data: leagueData } = useSuspenseQuery({
+    queryKey: QUERY_KEY.LEAGUE.DETAIL(league),
+    queryFn: () => getLeague(league),
+    staleTime: Infinity,
+  });
+
+  return (
+    <div className="">
+      <LeagueHeader name={leagueData.name} img={leagueData.img} />
+    </div>
+  );
+};
