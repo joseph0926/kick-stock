@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { pageCache } from "@kickstock/redis/src";
+import { PageCache } from "@kickstock/redis/src";
 import { isProd } from "../lib/env-utils";
 
 export const redisRoute = (fastify: FastifyInstance) => {
@@ -13,7 +13,9 @@ export const redisRoute = (fastify: FastifyInstance) => {
       }
 
       try {
-        const result = isProd ? await pageCache.invalidatePattern("/") : false;
+        const result = isProd
+          ? await (await PageCache.getInstance()).invalidatePattern("/")
+          : false;
         return { success: result };
       } catch (error) {
         console.error("Cache invalidation error:", error);

@@ -9,11 +9,35 @@ export class ClubCache {
 
   private client: Redis | null;
   private isConnected: boolean;
+  private static instance: ClubCache | null = null;
+  private initialized = false;
 
-  constructor() {
-    const { client, isConnected } = RedisClient.getInstance().getRedisClient();
+  private constructor(client: Redis | null, isConnected: boolean) {
     this.client = client;
     this.isConnected = isConnected;
+  }
+
+  static async getInstance(): Promise<ClubCache> {
+    if (!ClubCache.instance || !ClubCache.instance.initialized) {
+      const redisClient = await RedisClient.getInstance();
+      const { client, isConnected } = redisClient.getRedisClient();
+      ClubCache.instance = new ClubCache(client, isConnected);
+      ClubCache.instance.initialized = true;
+    }
+    return ClubCache.instance;
+  }
+
+  private validateInstance(): boolean {
+    if (!this.initialized) {
+      console.error("ClubCache가 초기화되지 않았습니다.");
+      return false;
+    }
+    if (!isProd) return false;
+    if (!this.isConnected || !this.client) {
+      console.log("Redis가 연결되어있지 않습니다.");
+      return false;
+    }
+    return true;
   }
 
   private getKey(clubId: string, year?: string): string {
@@ -21,11 +45,11 @@ export class ClubCache {
   }
 
   async setClub(club: Club): Promise<boolean> {
-    if (!isProd || !this.isConnected || !this.client) return false;
+    if (!this.validateInstance()) return false;
 
     try {
       const key = this.getKey(club.id);
-      await this.client.setex(key, ClubCache.TTL, JSON.stringify(club));
+      await this.client!.setex(key, ClubCache.TTL, JSON.stringify(club));
       console.log(`클럽 캐시 완료: ${club.name}`);
       return true;
     } catch (error) {
@@ -35,11 +59,11 @@ export class ClubCache {
   }
 
   async getClub(clubId: string): Promise<Club | null> {
-    if (!isProd || !this.isConnected || !this.client) return null;
+    if (!this.validateInstance()) return null;
 
     try {
       const key = this.getKey(clubId);
-      const cached = await this.client.get(key);
+      const cached = await this.client!.get(key);
       console.log(`클럽 캐시 ${cached ? "hit" : "miss"} for ${key}`);
       return cached ? JSON.parse(cached) : null;
     } catch (error) {
@@ -53,11 +77,11 @@ export class ClubCache {
     year: string,
     value: ClubValue
   ): Promise<boolean> {
-    if (!isProd || !this.isConnected || !this.client) return false;
+    if (!this.validateInstance()) return false;
 
     try {
       const key = this.getKey(clubId, year);
-      await this.client.setex(key, ClubCache.TTL, JSON.stringify(value));
+      await this.client!.setex(key, ClubCache.TTL, JSON.stringify(value));
       console.log(`클럽 가치 캐시 완료: ${clubId} ${year}`);
       return true;
     } catch (error) {
@@ -67,11 +91,11 @@ export class ClubCache {
   }
 
   async getClubValue(clubId: string, year: string): Promise<ClubValue | null> {
-    if (!isProd || !this.isConnected || !this.client) return null;
+    if (!this.validateInstance()) return null;
 
     try {
       const key = this.getKey(clubId, year);
-      const cached = await this.client.get(key);
+      const cached = await this.client!.get(key);
       console.log(`클럽 가치 캐시 ${cached ? "hit" : "miss"} for ${key}`);
       return cached ? JSON.parse(cached) : null;
     } catch (error) {
@@ -81,12 +105,12 @@ export class ClubCache {
   }
 
   async invalidateClub(clubId: string): Promise<boolean> {
-    if (!isProd || !this.isConnected || !this.client) return false;
+    if (!this.validateInstance()) return false;
 
     try {
-      const keys = await this.client.keys(`${ClubCache.PREFIX}${clubId}*`);
+      const keys = await this.client!.keys(`${ClubCache.PREFIX}${clubId}*`);
       if (keys.length > 0) {
-        const result = await this.client.del(...keys);
+        const result = await this.client!.del(...keys);
         console.log(
           `${result}개의 클럽 관련 캐시를 무효화하였습니다.: ${clubId}`
         );
