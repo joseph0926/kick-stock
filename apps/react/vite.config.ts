@@ -37,6 +37,12 @@ const clientBuild = {
         if (id.includes("embla")) {
           return "vendor-carousel";
         }
+        if (id.includes("recharts")) {
+          return "vendor-recharts";
+        }
+        if (id.includes("motion")) {
+          return "vendor-motion";
+        }
       },
     },
   },
@@ -82,7 +88,9 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       visualizer({
-        filename: "stats/index.html",
+        filename: isBuildingServer
+          ? "stats/index-server.html"
+          : "stats/index.html",
       }),
     ],
     resolve: {

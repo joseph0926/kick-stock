@@ -105,8 +105,14 @@ function generateProdTags(): string {
   if (reactChunk) {
     addAssetTag(reactChunk, "preload");
   }
-
-  const vendorOrder = ["floating", "radix", "carousel"] as const;
+  const vendorOrder = [
+    "react",
+    "floating",
+    "motion",
+    "radix",
+    "carousel",
+    "recharts",
+  ] as const;
   vendorOrder.forEach((vendorName) => {
     const vendorChunk = importedChunks.find(
       (chunk) => chunk.name === `vendor-${vendorName}`,
