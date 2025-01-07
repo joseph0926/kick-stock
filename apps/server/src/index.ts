@@ -2,7 +2,7 @@ import Fastify from "fastify";
 import fastifyHelmet from "@fastify/helmet";
 import fastifyCors from "@fastify/cors";
 import fastifyRateLimit from "@fastify/rate-limit";
-import { healthRoute, clubRoute } from "./routes/index.js";
+import { healthRoute, leagueRoute } from "./routes/index.js";
 import { isProd } from "./lib/utils.js";
 import { StockSocketServer } from "./socket/index.js";
 
@@ -92,7 +92,7 @@ fastify.register(fastifyRateLimit, {
 fastify.decorate("io");
 
 fastify.register(healthRoute, { prefix: "/health" });
-fastify.register(clubRoute, { prefix: `${API_PREFIX}/clubs` });
+fastify.register(leagueRoute, { prefix: `${API_PREFIX}/league` });
 
 const start = async () => {
   try {

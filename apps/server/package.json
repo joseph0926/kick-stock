@@ -16,10 +16,11 @@
   "license": "ISC",
   "dependencies": {
     "@kickstock/redis": "workspace:*",
-    "@prisma/client": "^6.1.0",
+    "@kickstock/shared": "workspace:*",
+    "@prisma/client": "^6.2.0",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
-    "prisma": "^6.1.0"
+    "prisma": "^6.2.0"
   }
 }

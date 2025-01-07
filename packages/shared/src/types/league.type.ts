@@ -20,7 +20,6 @@ export type LeagueTabData = {
   label: string;
   icon?: React.ReactNode;
 };
-
 export type CurrencyValueType = {
   year: string;
 } & { [key in CurrencyType]: number };

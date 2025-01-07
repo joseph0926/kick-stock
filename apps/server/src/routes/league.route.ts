@@ -1,9 +1,8 @@
-import { getAllClubs } from "@/controllers/clubs.controller.js";
-import { LeaguesSchema } from "@/schemas/club.schema.js";
+import { LeaguesSchema } from "@/schemas/league.schema.js";
 import { Type } from "@sinclair/typebox";
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 
-export const clubRoute = (
+export const leagueRoute = (
   fastify: FastifyInstance,
   options: FastifyPluginOptions
 ) => {
@@ -17,6 +16,6 @@ export const clubRoute = (
         }),
       },
     },
-    handler: getAllClubs,
+    handler: () => {},
   });
 };
