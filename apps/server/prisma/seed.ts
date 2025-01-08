@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import axios from "axios";
+import { LeagueType } from "@kickstock/shared/src/types/league.type.js";
 
 const prisma = new PrismaClient();
 
@@ -7,6 +8,7 @@ interface LeagueData {
   id: string;
   name: string;
   nameEng: string;
+  uniqueName: LeagueType;
   clubs: {
     id: string;
     name: string;
@@ -64,6 +66,7 @@ async function main() {
           id: leagueData.id,
           name: leagueData.name,
           nameEng: leagueData.nameEng,
+          uniqueName: leagueData.uniqueName,
         },
       });
 
