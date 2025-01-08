@@ -9,6 +9,7 @@ import { isProd } from "@/server/lib/env-utils";
 import { rootSteam } from "./server/steam";
 import dotenv from "dotenv";
 import { redisRoute } from "./server/routes/redis.route";
+import { cdnCacheRoute } from "./server/routes/cdn.route";
 
 dotenv.config();
 
@@ -122,6 +123,7 @@ if (isProd) {
 
 fastify.register(rootSteam);
 fastify.register(redisRoute);
+fastify.register(cdnCacheRoute);
 
 const start = async () => {
   try {
