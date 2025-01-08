@@ -7,14 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum LeagueUniqueName {
+  bundes
+  epl
+  laliga
+  ligue
+  serie
+}
+
 model League {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name    String
-  nameEng String
-  clubs   Club[]
+  name       String
+  nameEng    String
+  uniqueName LeagueUniqueName @unique
+  img        String
+  clubs      Club[]
 
   @@map("leagues")
 }
