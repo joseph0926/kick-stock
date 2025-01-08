@@ -32,6 +32,7 @@ export const getLeagueController: RouteHandler<RouteGeneric> = async (
       },
       include: {
         clubs: hasClub === true,
+        values: true,
       },
     });
 

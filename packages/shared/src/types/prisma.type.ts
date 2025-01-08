@@ -1,3 +1,11 @@
+export type ValuesType = {
+  id: string;
+  year: string;
+  KRW: number;
+  changeRate: number;
+  leagueId: string;
+};
+
 export type ClubValue = {
   id: string;
   year: string;

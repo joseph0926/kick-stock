@@ -1,3 +1,4 @@
+import React from "react";
 import { formatCurrency } from "@kickstock/shared/src/lib/format-currency";
 import {
   ChartConfig,

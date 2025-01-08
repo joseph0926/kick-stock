@@ -4,6 +4,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { getLeague } from "../../../services/league.service";
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
 import { LeagueHeader } from "./league-header";
+import { LeagueChart } from "../chart/league-chart";
 
 export const LeagueWrapper = ({ league }: { league: LeagueType }) => {
   const { data: leagueData } = useSuspenseQuery({
@@ -14,8 +15,9 @@ export const LeagueWrapper = ({ league }: { league: LeagueType }) => {
   });
 
   return (
-    <div className="">
+    <div className="flex flex-col gap-10">
       <LeagueHeader leagueData={leagueData} />
+      <LeagueChart />
     </div>
   );
 };
