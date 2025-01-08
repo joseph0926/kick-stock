@@ -98,6 +98,7 @@ async function main() {
       console.log(`Processing ${leagueName}...`);
 
       const leagueData = await fetchLeagueData(leagueName);
+      console.log(leagueData?.uniqueName);
 
       const league = await prisma.league.create({
         data: {
