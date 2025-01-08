@@ -1,4 +1,3 @@
-import { isServer } from "@tanstack/react-query";
 import axios from "axios";
 import { isProd } from "@kickstock/shared/src/lib/env-util";
 

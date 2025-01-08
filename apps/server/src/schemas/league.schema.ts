@@ -15,6 +15,7 @@ export const LeaguesSchema = Type.Object({
   name: Type.String(),
   nameEng: Type.String(),
   uniqueName: Type.Enum(LeagueUniqueName),
+  img: Type.String(),
   clubs: Type.Optional(Type.Array(ClubSchema)),
 });
 

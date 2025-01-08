@@ -34,6 +34,7 @@ export const getLeagueController: RouteHandler<RouteGeneric> = async (
         clubs: hasClub === true,
       },
     });
+
     if (!leagueData) {
       return {
         data: null,
@@ -41,6 +42,7 @@ export const getLeagueController: RouteHandler<RouteGeneric> = async (
         message: "해당 리그 데이터가 존재하지 않습니다.",
       };
     }
+    console.log(leagueData);
 
     return {
       data: leagueData,

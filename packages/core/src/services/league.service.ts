@@ -40,5 +40,6 @@ export const getLeague = async (
       hasClub,
     },
   });
+
   return data;
 };
