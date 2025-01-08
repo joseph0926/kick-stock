@@ -14,7 +14,7 @@ import { HydrationBoundary } from "@tanstack/react-query";
 import { prefetchQuery } from "../query/prefetch.query";
 import { PageCache } from "@kickstock/redis/src";
 import { PassThrough } from "stream";
-import { isProd } from "@/server/lib/env-utils";
+import { isProd } from "@kickstock/shared/src/lib/env-util";
 
 const { query, dataRoutes } = createStaticHandler(routes);
 

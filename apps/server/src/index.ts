@@ -3,7 +3,7 @@ import fastifyHelmet from "@fastify/helmet";
 import fastifyCors from "@fastify/cors";
 import fastifyRateLimit from "@fastify/rate-limit";
 import { healthRoute, leagueRoute } from "./routes/index.js";
-import { isProd } from "./lib/utils.js";
+import { isProd } from "@kickstock/shared/src/lib/env-util.js";
 import { StockSocketServer } from "./socket/index.js";
 
 const PORT = parseInt(process.env.PORT || "4000") || 4000;

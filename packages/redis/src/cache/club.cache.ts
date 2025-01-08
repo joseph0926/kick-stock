@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { isProd } from "../lib/utils.js";
+import { isProd } from "@kickstock/shared/src/lib/env-util.js";
 import { RedisClient } from "../redis-client.js";
 import { Club, ClubValue } from "@kickstock/shared/src/types/prisma.type.js";
 

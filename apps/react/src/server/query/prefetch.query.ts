@@ -121,8 +121,8 @@ export async function prefetchQuery(url: string) {
 
         if (leagueId) {
           await queryClient.prefetchQuery({
-            queryKey: QUERY_KEY.LEAGUE.DETAIL(leagueId),
-            queryFn: () => getLeague(leagueId),
+            queryKey: QUERY_KEY.LEAGUE.DETAIL(leagueId, false),
+            queryFn: () => getLeague(leagueId, false),
             staleTime: Infinity,
           });
         }

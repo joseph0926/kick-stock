@@ -112,6 +112,13 @@ export default defineConfig(({ mode }) => {
       hmr: {
         overlay: true,
       },
+      proxy: {
+        "/api": {
+          target: "http://localhost:4000/api/v1",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ""),
+        },
+      },
     },
   };
 });

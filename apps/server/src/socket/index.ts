@@ -1,7 +1,7 @@
 import { Server as SocketIoServer, Socket } from "socket.io";
 import { FastifyInstance } from "fastify";
 import { PrismaClient } from "@prisma/client";
-import { isProd } from "@/lib/utils.js";
+import { isProd } from "@kickstock/shared/src/lib/env-util.js";
 import { ClubCache } from "@kickstock/redis/src";
 
 const prisma = new PrismaClient();

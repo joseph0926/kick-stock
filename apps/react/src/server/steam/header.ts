@@ -1,4 +1,4 @@
-import { isProd } from "../lib/env-utils";
+import { isProd } from "@kickstock/shared/src/lib/env-util";
 import fs from "fs";
 import path from "path";
 

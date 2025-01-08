@@ -20,7 +20,11 @@ export const QUERY_KEY = {
     INDEX_VALUE: [DOMAIN.LEAGUE.DEFAULT, DOMAIN.LEAGUE.INDEX_VALUE],
     REVENUE_VALUE: [DOMAIN.LEAGUE.DEFAULT, DOMAIN.LEAGUE.REVENUE_VALUE],
     PROFIT_VALUE: [DOMAIN.LEAGUE.DEFAULT, DOMAIN.LEAGUE.PROFIT_VALUE],
-    DETAIL: (leage: LeagueType) => [DOMAIN.LEAGUE.DEFAULT, leage],
+    DETAIL: (leage: LeagueType, hasClub: boolean = false) => [
+      DOMAIN.LEAGUE.DEFAULT,
+      leage,
+      hasClub,
+    ],
   },
   CLUB: {
     DEFAULT: [DOMAIN.CLUB.DEFAULT],

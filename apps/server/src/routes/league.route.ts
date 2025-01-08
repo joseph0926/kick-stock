@@ -1,6 +1,6 @@
-import { getLeague } from "@/controllers/league.controller.js";
+import { getLeagueController } from "@/controllers/league.controller.js";
 import { LeaguesSchema, LeaguesType } from "@/schemas/league.schema.js";
-import { ApiResponse } from "@/types/api.type.js";
+import { ApiResponse } from "@kickstock/shared/src/types/common.type.js";
 import { LeagueType } from "@kickstock/shared/src/types/league.type.js";
 import { LeagueUniqueName } from "@prisma/client";
 import { Type } from "@sinclair/typebox";
@@ -30,6 +30,6 @@ export const leagueRoute = (
         }),
       },
     },
-    handler: getLeague,
+    handler: getLeagueController,
   });
 };

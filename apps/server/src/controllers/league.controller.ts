@@ -11,7 +11,7 @@ const validLeagues: LeagueType[] = [
   "serie",
 ];
 
-export const getLeague: RouteHandler<RouteGeneric> = async (
+export const getLeagueController: RouteHandler<RouteGeneric> = async (
   req: FastifyRequest<RouteGeneric>,
   res: FastifyReply
 ) => {

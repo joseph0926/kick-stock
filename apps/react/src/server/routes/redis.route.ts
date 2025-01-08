@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { PageCache } from "@kickstock/redis/src";
-import { isProd } from "../lib/env-utils";
+import { isProd } from "@kickstock/shared/src/lib/env-util";
 
 let pageCachePromise: Promise<PageCache> | null = null;
 

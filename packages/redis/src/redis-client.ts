@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { isProd } from "./lib/utils.js";
+import { isProd } from "@kickstock/shared/src/lib/env-util.js";
 import dotenv from "dotenv";
 
 dotenv.config();
