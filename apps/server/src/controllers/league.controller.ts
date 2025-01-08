@@ -1,7 +1,7 @@
-import { ApiResponse } from "@/types/api.type.js";
 import { FastifyReply, FastifyRequest, RouteHandler } from "fastify";
 import { prisma } from "@/lib/prisma.js";
 import { LeagueType } from "@kickstock/shared/src/types/league.type.js";
+import { RouteGeneric } from "@/routes/league.route.js";
 
 const validLeagues: LeagueType[] = [
   "bundes",
@@ -11,11 +11,12 @@ const validLeagues: LeagueType[] = [
   "serie",
 ];
 
-export const getLeague: RouteHandler<{ Reply: ApiResponse }> = async (
-  req: FastifyRequest,
+export const getLeague: RouteHandler<RouteGeneric> = async (
+  req: FastifyRequest<RouteGeneric>,
   res: FastifyReply
 ) => {
-  const { league } = req.params as { league: LeagueType };
+  const { league } = req.params;
+  const { hasClub = false } = req.query;
   if (!validLeagues.includes(league)) {
     return {
       data: null,
@@ -25,11 +26,27 @@ export const getLeague: RouteHandler<{ Reply: ApiResponse }> = async (
   }
 
   try {
-    const data = await prisma.league.findUnique({
+    const leagueData = await prisma.league.findUnique({
       where: {
-        nameEng: league,
+        uniqueName: league,
+      },
+      include: {
+        clubs: hasClub === true,
       },
     });
+    if (!leagueData) {
+      return {
+        data: null,
+        success: false,
+        message: "해당 리그 데이터가 존재하지 않습니다.",
+      };
+    }
+
+    return {
+      data: leagueData,
+      success: true,
+      message: "해당 리그 데이터를 정상적으로 불러왔습니다.",
+    };
   } catch (error) {
     req.server.log.error("[getLeague Error]: ", error);
     return {
@@ -39,24 +56,3 @@ export const getLeague: RouteHandler<{ Reply: ApiResponse }> = async (
     };
   }
 };
-
-// export const getAllClubs: RouteHandler<{
-//   Reply: ApiResponse<LeaguesType[]>;
-// }> = async (req: FastifyRequest, res: FastifyReply) => {
-//   try {
-//     const data = (await import("@/data/clubs.data.json"))
-//       .default as LeaguesType[];
-//     return {
-//       data,
-//       success: true,
-//       message: "클럽 데이터를 전부 불러왔습니다.",
-//     };
-//   } catch (error) {
-//     req.server.log.error("[getAllClubs methdo Error]:", error);
-//     return {
-//       data: null,
-//       success: false,
-//       message: "클럽 데이터를 불러오는데 실패하였습니다.",
-//     };
-//   }
-// };

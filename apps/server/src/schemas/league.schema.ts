@@ -1,3 +1,4 @@
+import { LeagueUniqueName } from "@prisma/client";
 import { Type, Static } from "@sinclair/typebox";
 
 export const ClubSchema = Type.Object({
@@ -13,7 +14,8 @@ export const LeaguesSchema = Type.Object({
   id: Type.String(),
   name: Type.String(),
   nameEng: Type.String(),
-  clubs: Type.Array(ClubSchema),
+  uniqueName: Type.Enum(LeagueUniqueName),
+  clubs: Type.Optional(Type.Array(ClubSchema)),
 });
 
 export type ClubType = Static<typeof ClubSchema>;
