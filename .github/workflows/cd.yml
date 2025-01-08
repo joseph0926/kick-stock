@@ -8,10 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Invalidate Cache
-        id: invalidate-cache
+
+      - name: Invalidate Redis Cache
+        id: invalidate-redis-cache
         run: |
-          echo "Attempting to invalidate cache..."
+          echo "Attempting to invalidate Redis cache..."
           response=$(curl -X POST https://kick-stock.onrender.com/api/redis/invalidate \
           -H "x-cache-secret: ${{ secrets.CACHE_SECRET }}" \
           -w "\n%{http_code}")
@@ -19,12 +20,31 @@ jobs:
           echo "Response: $response"
 
           if [[ $response == *"success"* ]]; then
-          echo "Cache invalidation successful!"
+            echo "Redis cache invalidation successful!"
           else
-            echo "Cache invalidation might have failed. Please check the response."
+            echo "Redis cache invalidation might have failed. Please check the response."
             exit 1
           fi
+
+      - name: Invalidate CDN Cache
+        id: invalidate-cdn-cache
+        run: |
+          echo "Attempting to invalidate CDN cache..."
+          response=$(curl -X POST https://kick-stock.onrender.com/api/cdn-cache/invalidate \
+          -H "x-cache-secret: ${{ secrets.CACHE_SECRET }}" \
+          -w "\n%{http_code}")
+
+          echo "Response: $response"
+
+          if [[ $response == *"success"* ]]; then
+            echo "CDN cache invalidation successful!"
+          else
+            echo "CDN cache invalidation might have failed. Please check the response."
+            exit 1
+          fi
+
       - name: Check Cache Invalidation
-        if: steps.invalidate-cache.outcome == 'failure'
+        if: steps.invalidate-redis-cache.outcome == 'failure' || steps.invalidate-cdn-cache.outcome == 'failure'
         run: |
           echo "Cache invalidation failed"
+          exit 1
