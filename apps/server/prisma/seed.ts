@@ -30,8 +30,28 @@ interface ClubValueData {
   }[];
 }
 
+interface LeagueValueData {
+  name: string;
+  values: {
+    year: string;
+    EUR: number;
+    USD: number;
+    KRW: number;
+  }[];
+}
+
 interface ValueData {
   data: ClubValueData[];
+}
+
+interface LeaguesValueData {
+  data: LeagueValueData[];
+  metadata: {
+    exchange_rates: {
+      EUR_to_USD: number;
+      EUR_to_KRW: number;
+    };
+  };
 }
 
 const LEAGUES = ["laliga", "epl", "bundes", "ligue", "serie"];
@@ -50,11 +70,29 @@ async function fetchClubValueData(leagueName: string): Promise<ValueData> {
   return response.data;
 }
 
+async function fetchLeaguesValueData(): Promise<LeaguesValueData> {
+  const response = await axios.get<LeaguesValueData>(
+    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/leagues.json`
+  );
+  return response.data;
+}
+
+function calculateChangeRate(
+  currentValue: number,
+  previousValue: number
+): number {
+  if (!previousValue) return 0;
+  return ((currentValue - previousValue) / previousValue) * 100;
+}
+
 async function main() {
   try {
     await prisma.clubValue.deleteMany();
+    await prisma.leagueValue.deleteMany();
     await prisma.club.deleteMany();
     await prisma.league.deleteMany();
+
+    const leaguesValueData = await fetchLeaguesValueData();
 
     for (const leagueName of LEAGUES) {
       console.log(`Processing ${leagueName}...`);
@@ -111,6 +149,29 @@ async function main() {
         } else {
           console.warn(`Could not find club for ${clubValueData.name}`);
         }
+      }
+
+      const leagueValueData = leaguesValueData.data.find(
+        (data) => data.name === leagueName
+      );
+
+      if (leagueValueData) {
+        const sortedValues = [...leagueValueData.values].sort(
+          (a, b) => Number(a.year) - Number(b.year)
+        );
+
+        await prisma.leagueValue.createMany({
+          data: sortedValues.map((value, index) => ({
+            year: value.year,
+            KRW: value.KRW,
+            changeRate: calculateChangeRate(
+              value.KRW,
+              index > 0 ? sortedValues[index - 1].KRW : 0
+            ),
+            leagueId: league.id,
+          })),
+        });
+        console.log(`Added league value data for ${leagueName}`);
       }
 
       console.log(`Completed ${leagueName}`);
