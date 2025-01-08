@@ -6,11 +6,11 @@
   "type": "module",
   "scripts": {
     "dev:server": "tsx watch ./src/index.ts",
-    "start:ssr": "prisma generate && NODE_ENV=production tsx ./src/index.ts",
+    "start:ssr": "NODE_ENV=production tsx ./src/index.ts",
     "db:reset": "prisma db push --force-reset",
     "db:gen": "prisma generate",
     "db:seed": "tsx prisma/seed.ts",
-    "build:ssr": "tsc -b",
+    "build:ssr": "prisma generate && tsc -b",
     "clean": "rimraf node_modules",
     "type-check": "tsc --noEmit"
   },
