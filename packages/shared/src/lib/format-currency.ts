@@ -7,7 +7,7 @@ export function formatCurrency(amount: number, currency: CurrencyType): string {
   if (currency === "KRW") {
     if (absoluteAmount >= 1_000_000_000_000) {
       const trillions = absoluteAmount / 1_000_000_000_000;
-      return `${isNegative ? "-" : ""}${trillions.toLocaleString("ko-KR", { maximumFractionDigits: 2 })}조`;
+      return `${isNegative ? "-" : ""}${trillions.toLocaleString("ko-KR", { maximumFractionDigits: 4 })}조`;
     }
 
     if (absoluteAmount >= 100_000_000) {
