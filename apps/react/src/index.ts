@@ -15,13 +15,6 @@ dotenv.config();
 
 const PORT = parseInt(process.env.PORT || "4001") || 4001;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
-const CORS_ORIGINS = isProd
-  ? [
-      "https://kick-stock.onrender.com",
-      "http://localhost:4001",
-      "http://127.0.0.1:4001",
-    ]
-  : ["http://localhost:4001", "http://127.0.0.1:4001"];
 
 const fastify = Fastify({
   trustProxy: process.env.NODE_ENV === "production" ? false : TRUST_PROXY,
@@ -38,30 +31,6 @@ const fastify = Fastify({
   keepAliveTimeout: 10000,
   maxRequestsPerSocket: 1000,
 });
-
-fastify.register(fastifyCors, {
-  origin: (origin, cb) => {
-    if (!origin || CORS_ORIGINS.includes(origin)) {
-      cb(null, true);
-      return;
-    }
-    fastify.log.warn(`Blocked request from unauthorized origin: ${origin}`);
-    cb(new Error("Not allowed by CORS"), false);
-  },
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "X-Requested-With",
-    "Origin",
-    "Accept",
-  ],
-  exposedHeaders: ["Content-Range", "X-Content-Range"],
-  credentials: true,
-  maxAge: 86400,
-  preflight: true,
-  strictPreflight: false,
-});
 fastify.register(fastifyHelmet, {
   global: true,
   contentSecurityPolicy: isProd
@@ -75,8 +44,6 @@ fastify.register(fastifyHelmet, {
             "'self'",
             "https://api.steampowered.com",
             "https://cdn.jsdelivr.net",
-            "wss://kick-stock.onrender.com",
-            "https://kick-stock.onrender.com",
           ],
         },
       }
@@ -97,32 +64,19 @@ fastify.register(fastifyHelmet, {
             "http://localhost:*",
             "https://api.steampowered.com",
             "https://cdn.jsdelivr.net",
-            "ws://localhost:4000",
           ],
           workerSrc: ["'self'", "blob:"],
         },
       },
 });
-
-fastify.addHook("preHandler", (request, reply, done) => {
-  const origin = request.headers.origin;
-
-  if (origin && CORS_ORIGINS.includes(origin)) {
-    reply.header("Access-Control-Allow-Origin", origin);
-    reply.header("Access-Control-Allow-Credentials", "true");
-
-    if (request.method === "OPTIONS") {
-      reply.header(
-        "Access-Control-Allow-Methods",
-        "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-      );
-      reply.header(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization, X-Requested-With, Origin, Accept",
-      );
-    }
-  }
-  done();
+fastify.register(fastifyCors, {
+  origin: isProd ? ["https://kick-stock.onrender.com"] : true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  credentials: true,
+  maxAge: 86400,
+  preflight: true,
+  strictPreflight: true,
 });
 fastify.register(fastifyRateLimit, {
   max: 100,

@@ -4,7 +4,7 @@ import { RedisClient } from "../redis-client.js";
 import { Club, ClubValue } from "@kickstock/shared/src/types/prisma.type.js";
 
 export class ClubCache {
-  private static readonly PREFIX = "club:prod:";
+  private static readonly PREFIX = isProd ? "club:prod:" : "club:dev";
   private static readonly TTL = 3600;
 
   private client: Redis | null;
@@ -32,7 +32,6 @@ export class ClubCache {
       console.error("ClubCache가 초기화되지 않았습니다.");
       return false;
     }
-    if (!isProd) return false;
     if (!this.isConnected || !this.client) {
       console.log("Redis가 연결되어있지 않습니다.");
       return false;

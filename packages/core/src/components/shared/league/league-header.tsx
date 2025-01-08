@@ -20,9 +20,8 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
     : { value: null };
 
   const changeRate = useMemo(() => {
-    if (leagueData && leagueData.values.length > 0)
-      return leagueData?.values[leagueData.values.length - 1].changeRate;
-  }, [leagueData]);
+    if (value && value.changeRate) return value.changeRate;
+  }, [value]);
   const valueKRW = useMemo(() => {
     if (value && value.KRW) {
       return formatCurrency(value.KRW, "KRW");
@@ -50,7 +49,7 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
           <span>{valueKRW ?? ""}</span>
         </div>
         <div className="flex items-center gap-2">
-          전월대비:
+          직전 대비(실제: 1분, 테스트: 6초):
           {changeRate ? (
             <span
               className={cn(

@@ -58,13 +58,15 @@ export class LeagueSocketHandler extends BaseSocketHandler {
     currentKRW: number
   ) {
     try {
-      const baseValue = Math.floor(currentKRW / 10000) * 10000;
+      const minChange = -0.5;
+      const maxChange = 0.5;
+      const changeRate = minChange + Math.random() * (maxChange - minChange);
 
-      const variation = Math.floor(Math.random() * 10000);
+      const newValue = Math.round(currentKRW * (1 + changeRate / 100));
 
-      const newValue = baseValue + variation;
-
-      const changeRate = ((newValue - currentKRW) / currentKRW) * 100;
+      if (newValue === currentKRW) {
+        return;
+      }
 
       const updatedValue = await this.prisma.leagueValue.update({
         where: {
@@ -98,9 +100,11 @@ export class LeagueSocketHandler extends BaseSocketHandler {
         updatedValue,
       });
 
-      this.fastify.log.info(
-        `[server]: ${key} 시뮬레이션 업데이트 - 새 값: ${newValue}, 변화율: ${changeRate.toFixed(2)}%`
-      );
+      if (Math.abs(changeRate) > 0.1) {
+        this.fastify.log.info(
+          `[server]: ${key} 시뮬레이션 업데이트 - 새 값: ${newValue}, 변화율: ${changeRate.toFixed(2)}%`
+        );
+      }
     } catch (error) {
       this.fastify.log.error(
         "[server]: league value 시뮬레이션 업데이트 실패:",
@@ -109,10 +113,43 @@ export class LeagueSocketHandler extends BaseSocketHandler {
     }
   }
 
+  private async initializeSimulation(leagueId: string, year: string) {
+    try {
+      const leagueValue = await this.prisma.leagueValue.findFirst({
+        where: {
+          AND: [{ leagueId }, { year }],
+        },
+        include: {
+          league: true,
+        },
+      });
+
+      if (leagueValue) {
+        const key = this.getSimulationKey(leagueId, year);
+        this.simulatedLeagues.set(key, {
+          leagueId,
+          year,
+          KRW: leagueValue.KRW,
+        });
+
+        if (this.leagueCache) {
+          await this.leagueCache.setLeagueValue(leagueId, year, leagueValue);
+        }
+
+        this.fastify.log.info(
+          `[server]: 리그 ${leagueId} - ${year}년도 시뮬레이션 초기화`
+        );
+      }
+    } catch (error) {
+      this.fastify.log.error("[server]: 리그 시뮬레이션 초기화 실패:", error);
+    }
+  }
+
   private startValueSimulation(leagueId: string, year: string) {
     const key = this.getSimulationKey(leagueId, year);
 
     if (this.simulationIntervals.has(key)) {
+      this.fastify.log.info(`[server]: ${key} 기존 시뮬레이션 중지`);
       clearInterval(this.simulationIntervals.get(key));
     }
 
@@ -120,11 +157,13 @@ export class LeagueSocketHandler extends BaseSocketHandler {
       const league = this.simulatedLeagues.get(key);
       if (league) {
         await this.simulateValueUpdate(leagueId, year, league.KRW);
+      } else {
+        this.fastify.log.warn(`[server]: ${key} 리그 데이터를 찾을 수 없음`);
       }
     }, 6000);
 
     this.simulationIntervals.set(key, interval);
-    this.fastify.log.info(`[server]: ${key} 시뮬레이션 시작`);
+    this.fastify.log.info(`[server]: ${key} 새로운 시뮬레이션 시작`);
   }
 
   stopValueSimulation(leagueId: string, year: string) {
@@ -138,9 +177,15 @@ export class LeagueSocketHandler extends BaseSocketHandler {
 
   startAllSimulations() {
     this.fastify.log.info("[server]: 모든 시뮬레이션 시작");
+    if (this.simulatedLeagues.size === 0) {
+      this.fastify.log.warn("[server]: 시뮬레이션할 리그가 없습니다.");
+      return;
+    }
+
     for (const [key, league] of this.simulatedLeagues) {
       const { leagueId, year } = league;
       this.startValueSimulation(leagueId, year);
+      this.fastify.log.info(`[server]: ${key} 시뮬레이션 시작됨`);
     }
   }
 
@@ -201,6 +246,14 @@ export class LeagueSocketHandler extends BaseSocketHandler {
       "requestLeagueValue",
       async (data: { leagueId: string; year: string }) => {
         try {
+          this.stopValueSimulation(data.leagueId, data.year);
+
+          await this.initializeSimulation(data.leagueId, data.year);
+          const key = this.getSimulationKey(data.leagueId, data.year);
+          if (this.simulatedLeagues.has(key)) {
+            this.startValueSimulation(data.leagueId, data.year);
+          }
+
           const leagueValue = await this.getLeagueValue(
             data.leagueId,
             data.year
@@ -212,6 +265,10 @@ export class LeagueSocketHandler extends BaseSocketHandler {
         }
       }
     );
+
+    socket.on("disconnect", () => {
+      this.stopAllSimulations();
+    });
 
     socket.on("updateLeagueValue", async (data: UpdateLeagueValueData) => {
       try {

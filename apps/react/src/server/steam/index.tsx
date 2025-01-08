@@ -14,19 +14,16 @@ import { HydrationBoundary } from "@tanstack/react-query";
 import { prefetchQuery } from "../query/prefetch.query";
 import { PageCache } from "@kickstock/redis/src";
 import { PassThrough } from "stream";
-import { isProd } from "@kickstock/shared/src/lib/env-util";
 
 const { query, dataRoutes } = createStaticHandler(routes);
 
 export const rootSteam = (fastify: FastifyInstance) => {
   let pageCachePromise: Promise<PageCache> | null = null;
-  if (isProd) {
-    pageCachePromise = PageCache.getInstance();
-  }
+  pageCachePromise = PageCache.getInstance();
 
   fastify.get("*", async (req, res) => {
     let cachedPage: string | null = null;
-    if (isProd && pageCachePromise) {
+    if (pageCachePromise) {
       try {
         const pageCache = await Promise.race([
           pageCachePromise,
@@ -92,7 +89,7 @@ export const rootSteam = (fastify: FastifyInstance) => {
               chunks.push(Buffer.from(footer));
               res.raw.end();
 
-              if (isProd && pageCachePromise) {
+              if (pageCachePromise) {
                 const fullHtml = Buffer.concat(chunks).toString();
                 pageCachePromise
                   .then(async (pageCache) => {

@@ -7,11 +7,7 @@ import { ClubSocketHandler } from "./handlers/club.handler.js";
 import { LeagueSocketHandler } from "./handlers/league.handler.js";
 
 const CORS_ORIGINS = isProd
-  ? [
-      "https://kick-stock.onrender.com",
-      "http://localhost:4001",
-      "http://127.0.0.1:4001",
-    ]
+  ? ["https://kick-stock.onrender.com"]
   : ["http://localhost:4001", "http://127.0.0.1:4001"];
 
 const prisma = new PrismaClient();
@@ -47,19 +43,17 @@ export class StockSocketServer {
   }
 
   private async initializeCache() {
-    if (isProd) {
-      try {
-        this.clubCache = await Promise.race([
-          ClubCache.getInstance(),
-          new Promise<null>((resolve) => setTimeout(() => resolve(null), 100)),
-        ]);
-        this.leagueCache = await Promise.race([
-          LeagueCache.getInstance(),
-          new Promise<null>((resolve) => setTimeout(() => resolve(null), 100)),
-        ]);
-      } catch (error) {
-        this.fastify.log.error("[server]: Cache 초기화 실패:", error);
-      }
+    try {
+      this.clubCache = await Promise.race([
+        ClubCache.getInstance(),
+        new Promise<null>((resolve) => setTimeout(() => resolve(null), 100)),
+      ]);
+      this.leagueCache = await Promise.race([
+        LeagueCache.getInstance(),
+        new Promise<null>((resolve) => setTimeout(() => resolve(null), 100)),
+      ]);
+    } catch (error) {
+      this.fastify.log.error("[server]: Cache 초기화 실패:", error);
     }
   }
 

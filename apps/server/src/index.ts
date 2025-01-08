@@ -9,13 +9,6 @@ import { StockSocketServer } from "./socket/server.js";
 const PORT = parseInt(process.env.PORT || "4000") || 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
 const API_PREFIX = "/api/v1";
-const CORS_ORIGINS = isProd
-  ? [
-      "https://kick-stock.onrender.com",
-      "http://localhost:4001",
-      "http://127.0.0.1:4001",
-    ]
-  : ["http://localhost:4001", "http://127.0.0.1:4001"];
 
 const fastify = Fastify({
   trustProxy: process.env.NODE_ENV === "production" ? false : TRUST_PROXY,
@@ -33,92 +26,52 @@ const fastify = Fastify({
   maxRequestsPerSocket: 1000,
 });
 
-fastify.addHook("preHandler", (request, reply, done) => {
-  const origin = request.headers.origin;
-
-  if (origin && CORS_ORIGINS.includes(origin)) {
-    reply.header("Access-Control-Allow-Origin", origin);
-    reply.header("Access-Control-Allow-Credentials", "true");
-
-    if (request.method === "OPTIONS") {
-      reply.header(
-        "Access-Control-Allow-Methods",
-        "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-      );
-      reply.header(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization, X-Requested-With, Origin, Accept"
-      );
-    }
-  }
-  done();
+fastify.register(fastifyHelmet, {
+  global: true,
+  contentSecurityPolicy: isProd
+    ? {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          imgSrc: ["'self'", "data:", "https:"],
+          connectSrc: [
+            "'self'",
+            "https://api.steampowered.com",
+            "https://cdn.jsdelivr.net",
+          ],
+        },
+      }
+    : {
+        directives: {
+          defaultSrc: ["'self'", "'unsafe-inline'", "http://localhost:*"],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "http://localhost:*",
+          ],
+          styleSrc: ["'self'", "'unsafe-inline'", "http://localhost:*"],
+          imgSrc: ["'self'", "data:", "https:", "http://localhost:*"],
+          connectSrc: [
+            "'self'",
+            "ws://localhost:*",
+            "http://localhost:*",
+            "https://api.steampowered.com",
+            "https://cdn.jsdelivr.net",
+          ],
+          workerSrc: ["'self'", "blob:"],
+        },
+      },
 });
-
-fastify.addHook("onRequest", async (request, reply) => {
-  const origin = request.headers.origin;
-  if (origin && CORS_ORIGINS.includes(origin)) {
-    reply.header("Access-Control-Allow-Origin", origin);
-    reply.header("Access-Control-Allow-Credentials", "true");
-  }
-});
-
-fastify.addHook("onSend", async (request, reply) => {
-  const origin = request.headers.origin;
-  if (origin && CORS_ORIGINS.includes(origin)) {
-    reply.header("Access-Control-Allow-Origin", origin);
-    reply.header("Access-Control-Allow-Credentials", "true");
-  }
-});
-
 fastify.register(fastifyCors, {
-  origin: (origin, cb) => {
-    if (!origin || CORS_ORIGINS.includes(origin)) {
-      cb(null, true);
-      return;
-    }
-    fastify.log.warn(`Blocked request from unauthorized origin: ${origin}`);
-    cb(new Error("Not allowed by CORS"), false);
-  },
+  origin: isProd ? ["https://kick-stock.onrender.com"] : true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "X-Requested-With",
-    "Origin",
-    "Accept",
-  ],
-  exposedHeaders: ["Content-Range", "X-Content-Range"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   credentials: true,
   maxAge: 86400,
   preflight: true,
-  strictPreflight: false,
-});
-await fastify.register(fastifyHelmet, {
-  global: true,
-  crossOriginResourcePolicy: false,
-  crossOriginEmbedderPolicy: false,
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'", ...CORS_ORIGINS],
-      connectSrc: [
-        "'self'",
-        ...CORS_ORIGINS,
-        "ws://localhost:*",
-        "wss://kick-stock.onrender.com",
-        "https://api.steampowered.com",
-        "https://cdn.jsdelivr.net",
-      ],
-      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"],
-      workerSrc: ["'self'", "blob:"],
-      frameSrc: ["'self'"],
-      objectSrc: ["'none'"],
-      baseUri: ["'self'"],
-    },
-  },
-  xssFilter: false,
-  noSniff: false,
+  strictPreflight: true,
 });
 
 fastify.register(fastifyRateLimit, {

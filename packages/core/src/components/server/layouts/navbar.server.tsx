@@ -3,6 +3,8 @@ import { cn } from "@kickstock/ui/src/lib/utils";
 import { NavbarAuth } from "../../client/layouts/navbar-auth";
 import { NavbarClient } from "../../client/layouts/navbar.client";
 import { NavbarMobile } from "../../client/layouts/navbar.mobile";
+import { Link } from "react-router";
+import { ROUTER } from "@kickstock/shared/src/constants/router";
 
 export function NavbarServer({ className }: { className?: string }) {
   return (
@@ -12,9 +14,9 @@ export function NavbarServer({ className }: { className?: string }) {
         className,
       )}
     >
-      <h1 className="text-3xl font-bold">
+      <Link to={ROUTER.HOME} className="text-3xl font-bold">
         <span className="text-primary">Kick</span>Stock
-      </h1>
+      </Link>
       <NavbarClient />
       <NavbarAuth />
       <NavbarMobile />

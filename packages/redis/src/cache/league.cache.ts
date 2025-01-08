@@ -7,7 +7,7 @@ import {
 } from "@kickstock/shared/src/types/prisma.type.js";
 
 export class LeagueCache {
-  private static readonly PREFIX = "league:prod:";
+  private static readonly PREFIX = isProd ? "league:prod:" : "league:dev";
   private static readonly TTL = 3600;
 
   private client: Redis | null;
@@ -21,13 +21,34 @@ export class LeagueCache {
   }
 
   static async getInstance(): Promise<LeagueCache> {
-    if (!LeagueCache.instance || !LeagueCache.instance.initialized) {
-      const redisClient = await RedisClient.getInstance();
-      const { client, isConnected } = redisClient.getRedisClient();
-      LeagueCache.instance = new LeagueCache(client, isConnected);
-      LeagueCache.instance.initialized = true;
+    try {
+      if (!LeagueCache.instance || !LeagueCache.instance.initialized) {
+        const redisClient = await RedisClient.getInstance();
+        const { client, isConnected } = redisClient.getRedisClient();
+
+        if (!client || !isConnected) {
+          throw new Error("Redis 클라이언트가 연결되지 않았습니다.");
+        }
+
+        LeagueCache.instance = new LeagueCache(client, isConnected);
+        LeagueCache.instance.initialized = true;
+      } else if (!LeagueCache.instance.isConnected) {
+        const redisClient = await RedisClient.getInstance();
+        const { client, isConnected } = redisClient.getRedisClient();
+
+        if (!client || !isConnected) {
+          throw new Error("Redis 재연결 실패");
+        }
+
+        LeagueCache.instance.client = client;
+        LeagueCache.instance.isConnected = isConnected;
+      }
+
+      return LeagueCache.instance;
+    } catch (error) {
+      console.error("LeagueCache 초기화 에러:", error);
+      throw error;
     }
-    return LeagueCache.instance;
   }
 
   private validateInstance(): boolean {
@@ -35,9 +56,11 @@ export class LeagueCache {
       console.error("LeagueCache가 초기화되지 않았습니다.");
       return false;
     }
-    if (!isProd) return false;
     if (!this.isConnected || !this.client) {
-      console.log("Redis가 연결되어있지 않습니다.");
+      console.error("Redis가 연결되어있지 않습니다. 재연결을 시도합니다.");
+      LeagueCache.getInstance().catch((err) => {
+        console.error("Redis 재연결 실패:", err);
+      });
       return false;
     }
     return true;
