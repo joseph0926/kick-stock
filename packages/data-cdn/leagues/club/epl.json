@@ -2,6 +2,7 @@
   "id": "fb192207-b743-4b0f-ba4b-978676c74058",
   "name": "프리미어리그",
   "nameEng": "English Premier League",
+  "uniqueName": "epl",
   "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/lo7dtlnlrcydv8wusfy2",
   "clubs": [
     {

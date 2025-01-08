@@ -2,6 +2,7 @@
   "id": "e3c66299-ea02-4ded-ab2f-04cb1cea5db5",
   "name": "리그앙",
   "nameEng": "Ligue 1",
+  "uniqueName": "ligue",
   "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/hzfdphhxgylziyyeefqs",
   "clubs": [
     {
