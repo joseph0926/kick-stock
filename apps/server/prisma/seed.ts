@@ -58,7 +58,7 @@ const LEAGUES = ["laliga", "epl", "bundes", "ligue", "serie"];
 
 async function fetchLeagueData(leagueName: string): Promise<LeagueData> {
   const response = await axios.get<LeagueData>(
-    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/club/${leagueName}.json`
+    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/2024/${leagueName}.json`
   );
   return response.data;
 }
