@@ -24,9 +24,25 @@ model League {
   nameEng    String
   uniqueName LeagueUniqueName @unique
   img        String
-  clubs      Club[]
+
+  values LeagueValue[]
+  clubs  Club[]
 
   @@map("leagues")
+}
+
+model LeagueValue {
+  id String @id @default(uuid())
+
+  year       String
+  KRW        Float
+  changeRate Float
+
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id])
+
+  @@unique([leagueId, year])
+  @@map("league_values")
 }
 
 model Club {
