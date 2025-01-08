@@ -72,7 +72,7 @@ async function fetchClubValueData(leagueName: string): Promise<ValueData> {
 
 async function fetchLeaguesValueData(): Promise<LeaguesValueData> {
   const response = await axios.get<LeaguesValueData>(
-    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/leagues.json`
+    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/index-value.json`
   );
   return response.data;
 }
