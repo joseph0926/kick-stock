@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { isProd } from "./lib/utils.js";
+import { isProd } from "@kickstock/shared/src/lib/env-util.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -15,37 +15,78 @@ export class RedisClient {
   static async getInstance() {
     if (!RedisClient.instance) {
       RedisClient.instance = new RedisClient();
-      if (isProd) {
-        await RedisClient.instance.initializeRedis();
-      } else {
-        console.log("개발 환경에서는 Redis를 사용하지 않습니다.");
-      }
+      await RedisClient.instance.initializeRedis();
       RedisClient.instance.initialized = true;
+    } else if (!RedisClient.instance.isConnected) {
+      await RedisClient.instance.initializeRedis();
     }
     return RedisClient.instance;
   }
 
+  private static getRedisUrl(): string {
+    if (typeof window === "undefined") {
+      if (!process.env.REDIS_URL || !process.env.REDIS_DEV_URL) {
+        throw new Error("Redis URL 환경변수가 설정되지 않았습니다.");
+      }
+      return isProd ? process.env.REDIS_URL : process.env.REDIS_DEV_URL;
+    }
+
+    return isProd
+      ? import.meta.env.VITE_REDIS_URL
+      : import.meta.env.VITE_REDIS_DEV_URL;
+  }
+
   private async initializeRedis() {
     try {
-      this.client = new Redis(process.env.REDIS_URL as string);
+      if (this.client && this.isConnected) {
+        return;
+      }
+
+      const redisUrl = RedisClient.getRedisUrl();
+      if (!redisUrl) {
+        throw new Error("Redis URL이 정의되지 않았습니다.");
+      }
+
+      this.client = new Redis(redisUrl, {
+        retryStrategy(times) {
+          return Math.min(times * 100, 3000);
+        },
+        reconnectOnError: (err) => {
+          const targetError = "READONLY";
+          if (err.message.includes(targetError)) {
+            return true;
+          }
+          return false;
+        },
+      });
 
       await new Promise<void>((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+          reject(new Error("Redis 연결 타임아웃"));
+        }, 5000);
+
         this.client!.on("connect", () => {
           this.isConnected = true;
+          clearTimeout(timeoutId);
           console.log("Redis 연결 성공!");
           resolve();
         });
 
         this.client!.on("error", (err) => {
+          clearTimeout(timeoutId);
           console.error("Redis 연결 에러:", err);
           this.isConnected = false;
-          this.closeConnection();
           reject(err);
         });
+      });
 
-        setTimeout(() => {
-          reject(new Error("Redis 연결 타임아웃"));
-        }, 5000);
+      this.client.on("close", () => {
+        console.log("Redis 연결이 종료되었습니다.");
+        this.isConnected = false;
+      });
+
+      this.client.on("reconnecting", () => {
+        console.log("Redis 재연결 시도 중...");
       });
     } catch (error) {
       console.error("Redis 초기화 에러:", error);
@@ -54,32 +95,11 @@ export class RedisClient {
     }
   }
 
-  private closeConnection() {
-    if (this.client) {
-      this.client.disconnect();
-      this.client = null;
-      this.isConnected = false;
-    }
-  }
-
   getRedisClient() {
-    if (!this.initialized) {
-      console.error(
+    if (!this.initialized || !this.client) {
+      throw new Error(
         "RedisClient가 초기화되지 않았습니다. getInstance()를 먼저 호출해주세요."
       );
-      return {
-        client: null,
-        isConnected: false,
-        message: "RedisClient가 초기화되지 않았습니다.",
-      };
-    }
-
-    if (!isProd) {
-      return {
-        client: null,
-        isConnected: false,
-        message: "개발 환경에서는 Redis가 비활성화되어 있습니다.",
-      };
     }
 
     return {

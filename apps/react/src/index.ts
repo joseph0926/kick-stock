@@ -5,11 +5,11 @@ import fastifyCompress from "@fastify/compress";
 import fastifyHelmet from "@fastify/helmet";
 import fastifyCors from "@fastify/cors";
 import fastifyRateLimit from "@fastify/rate-limit";
-import { isProd } from "@/server/lib/env-utils";
 import { rootSteam } from "./server/steam";
 import dotenv from "dotenv";
 import { redisRoute } from "./server/routes/redis.route";
 import { cdnCacheRoute } from "./server/routes/cdn.route";
+import { isProd } from "@kickstock/shared/src/lib/env-util";
 
 dotenv.config();
 

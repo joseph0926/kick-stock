@@ -2,9 +2,9 @@ import Fastify from "fastify";
 import fastifyHelmet from "@fastify/helmet";
 import fastifyCors from "@fastify/cors";
 import fastifyRateLimit from "@fastify/rate-limit";
-import { healthRoute, clubRoute } from "./routes/index.js";
-import { isProd } from "./lib/utils.js";
-import { StockSocketServer } from "./socket/index.js";
+import { healthRoute, leagueRoute } from "./routes/index.js";
+import { isProd } from "@kickstock/shared/src/lib/env-util.js";
+import { StockSocketServer } from "./socket/server.js";
 
 const PORT = parseInt(process.env.PORT || "4000") || 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -73,6 +73,7 @@ fastify.register(fastifyCors, {
   preflight: true,
   strictPreflight: true,
 });
+
 fastify.register(fastifyRateLimit, {
   max: 100,
   timeWindow: "1 minute",
@@ -92,7 +93,7 @@ fastify.register(fastifyRateLimit, {
 fastify.decorate("io");
 
 fastify.register(healthRoute, { prefix: "/health" });
-fastify.register(clubRoute, { prefix: `${API_PREFIX}/clubs` });
+fastify.register(leagueRoute, { prefix: `${API_PREFIX}/league` });
 
 const start = async () => {
   try {

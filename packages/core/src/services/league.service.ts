@@ -1,17 +1,16 @@
 import {
   LeaguesDataType,
+  LeaguesType,
   LeaguesValueType,
   LeagueType,
 } from "@kickstock/shared/src/types/league.type";
-import { ssrCdnAxios } from "./api";
+import { apiAxios, ssrCdnAxios } from "./api";
+import { ApiResponse } from "@kickstock/shared/src/types/common.type";
+
+// CDN api
 
 export const getLeaguesData = async (): Promise<LeaguesDataType[]> => {
   const { data } = await ssrCdnAxios.get("/leagues/leagues.json");
-  return data;
-};
-
-export const getLeague = async (league: LeagueType) => {
-  const { data } = await ssrCdnAxios(`/leagues/2024/${league}.json`);
   return data;
 };
 
@@ -27,5 +26,20 @@ export const getLeaguesProfitValue = async (): Promise<LeaguesValueType> => {
 
 export const getLeaguesIndexValue = async (): Promise<LeaguesValueType> => {
   const { data } = await ssrCdnAxios.get("/leagues/index2-value.json");
+  return data;
+};
+
+// Server api
+
+export const getLeague = async (
+  league: LeagueType,
+  hasClub: boolean = false,
+): Promise<ApiResponse<LeaguesType>> => {
+  const { data } = await apiAxios(`/league/${league}`, {
+    params: {
+      hasClub,
+    },
+  });
+
   return data;
 };

@@ -1,14 +1,11 @@
 import { FastifyInstance } from "fastify";
 import { PageCache } from "@kickstock/redis/src";
-import { isProd } from "../lib/env-utils";
 
 let pageCachePromise: Promise<PageCache> | null = null;
 
 const getPageCacheInstance = async (
   timeout = 100,
 ): Promise<PageCache | null> => {
-  if (!isProd) return null;
-
   if (!pageCachePromise) {
     pageCachePromise = PageCache.getInstance();
   }

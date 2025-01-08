@@ -1,5 +1,6 @@
 import { type ClubType } from "./club.type";
 import { type CurrencyType } from "./common.type";
+import { type ValuesType } from "./prisma.type";
 
 export type LeagueType = "bundes" | "epl" | "laliga" | "ligue" | "serie";
 
@@ -11,11 +12,9 @@ export type LeaguesDataType = {
   img: string;
 };
 
-export type LeaguesType = {
-  id: string;
-  name: string;
-  nameEng: string;
+export type LeaguesType = LeaguesDataType & {
   clubs: ClubType[];
+  values: ValuesType[];
 };
 
 export type LeagueTabData = {
@@ -23,7 +22,6 @@ export type LeagueTabData = {
   label: string;
   icon?: React.ReactNode;
 };
-
 export type CurrencyValueType = {
   year: string;
 } & { [key in CurrencyType]: number };

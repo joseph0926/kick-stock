@@ -1,9 +1,9 @@
 import { Redis } from "ioredis";
-import { isProd } from "../lib/utils.js";
+import { isProd } from "@kickstock/shared/src/lib/env-util.js";
 import { RedisClient } from "../redis-client.js";
 
 export class PageCache {
-  private static readonly PREFIX = "page:prod:";
+  private static readonly PREFIX = isProd ? "page:prod:" : "page:dev";
   private static readonly TTL = 86400;
 
   private client: Redis | null;
@@ -31,7 +31,6 @@ export class PageCache {
       console.error("PageCache가 초기화되지 않았습니다.");
       return false;
     }
-    if (!isProd) return false;
     if (!this.isConnected || !this.client) {
       console.log("Redis가 연결되어있지 않습니다.");
       return false;

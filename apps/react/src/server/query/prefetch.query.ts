@@ -1,27 +1,134 @@
 import { dehydrate } from "@tanstack/react-query";
 import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
-import { getLeaguesData } from "@kickstock/core/src/services/league.service";
+import {
+  getLeague,
+  getLeaguesData,
+} from "@kickstock/core/src/services/league.service";
 import { makeQueryClient } from "@kickstock/core/src/providers/query.provider";
 import { getClubStocksData } from "@kickstock/core/src/services/club.service";
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
+import { ROUTER } from "@kickstock/shared/src/constants/router";
+
+type RouteParams = {
+  leagueId: LeagueType;
+};
+
+type RoutePattern = {
+  pattern: RegExp;
+  paramNames: (keyof RouteParams)[];
+  validate?: (params: Partial<RouteParams>) => boolean;
+};
+
+type RouteMatch = {
+  type: keyof typeof ROUTER;
+  params: Partial<RouteParams>;
+};
 
 const leagues: LeagueType[] = ["bundes", "epl", "laliga", "ligue", "serie"];
 
-export async function prefetchQuery() {
+const ROUTE_PATTERNS: Record<keyof typeof ROUTER, RoutePattern> = {
+  HOME: {
+    pattern: new RegExp("^/$"),
+    paramNames: [],
+  },
+  LANDING: {
+    pattern: new RegExp("^/landing$"),
+    paramNames: [],
+  },
+  SIGNIN: {
+    pattern: new RegExp("^/sign-in$"),
+    paramNames: [],
+  },
+  SIGNUP: {
+    pattern: new RegExp("^/sign-up$"),
+    paramNames: [],
+  },
+  LEAGUE: {
+    pattern: new RegExp("^/league/([^/]+)$"),
+    paramNames: ["leagueId"],
+    validate: (params) => {
+      return params.leagueId ? leagues.includes(params.leagueId) : false;
+    },
+  },
+};
+
+const urlMatcher = (url: string): RouteMatch | null => {
+  const cleanUrl = url.replace(/\/$/, "");
+
+  for (const [routeKey, routePattern] of Object.entries(ROUTE_PATTERNS)) {
+    const matches = cleanUrl.match(routePattern.pattern);
+
+    if (matches) {
+      const params = routePattern.paramNames.reduce<Partial<RouteParams>>(
+        (acc, paramName, index) => {
+          const value = matches[index + 1];
+
+          switch (paramName) {
+            case "leagueId":
+              if (value && typeof value === "string") {
+                acc[paramName] = value as LeagueType;
+              }
+              break;
+          }
+          return acc;
+        },
+        {},
+      );
+
+      if (routePattern.validate && !routePattern.validate(params)) {
+        continue;
+      }
+
+      return {
+        type: routeKey as keyof typeof ROUTER,
+        params,
+      };
+    }
+  }
+
+  return null;
+};
+
+export async function prefetchQuery(url: string) {
+  const match = urlMatcher(url);
+  if (!match) return { prefetchQueries: null };
+
   const queryClient = makeQueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: QUERY_KEY.LEAGUE.DEFAULT,
-    queryFn: getLeaguesData,
-    staleTime: Infinity,
-  });
-  leagues.map(async (league) => {
-    await queryClient.prefetchQuery({
-      queryKey: QUERY_KEY.CLUB.STOCK(league),
-      queryFn: () => getClubStocksData(league),
-      staleTime: Infinity,
-    });
-  });
+  switch (match.type) {
+    case "HOME":
+      await queryClient.prefetchQuery({
+        queryKey: QUERY_KEY.LEAGUE.DEFAULT,
+        queryFn: getLeaguesData,
+        staleTime: Infinity,
+      });
+      await queryClient.prefetchQuery({
+        queryKey: QUERY_KEY.LEAGUE.DEFAULT,
+        queryFn: getLeaguesData,
+        staleTime: Infinity,
+      });
+      leagues.map(async (league) => {
+        await queryClient.prefetchQuery({
+          queryKey: QUERY_KEY.CLUB.STOCK(league),
+          queryFn: () => getClubStocksData(league),
+          staleTime: Infinity,
+        });
+      });
+      break;
+    case "LEAGUE":
+      if (match.params.leagueId) {
+        const { leagueId } = match.params;
+
+        if (leagueId) {
+          await queryClient.prefetchQuery({
+            queryKey: QUERY_KEY.LEAGUE.DETAIL(leagueId, false),
+            queryFn: () => getLeague(leagueId, false),
+            staleTime: Infinity,
+          });
+        }
+      }
+      break;
+  }
 
   return { prefetchQueries: dehydrate(queryClient) };
 }

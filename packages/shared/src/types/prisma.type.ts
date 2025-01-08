@@ -1,3 +1,23 @@
+import { LeagueType } from "./league.type";
+
+export type ValuesType = {
+  id: string;
+  year: string;
+  KRW: number;
+  changeRate: number;
+  leagueId: string;
+};
+
+export type League = {
+  id: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  nameEng: string;
+  img: string;
+  uniqueName: LeagueType;
+};
+
 export type ClubValue = {
   id: string;
   year: string;

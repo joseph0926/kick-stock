@@ -19,15 +19,22 @@ export const useSocket = () => {
     [],
   );
 
-  // TODO: 테스트용 - 제거 예정
-  const sendMessage = useCallback((message: string) => {
-    socketStore.sendMessage(message);
+  const requestLeagueValue = useCallback((leagueId: string, year: string) => {
+    socketStore.requestLeagueValue(leagueId, year);
   }, []);
+
+  const updateLeagueValue = useCallback(
+    (leagueId: string, year: string, KRW: number) => {
+      socketStore.updateLeagueValue(leagueId, year, KRW);
+    },
+    [],
+  );
 
   return {
     ...state,
     requestClubValue,
     updateClubValue,
-    sendMessage,
+    requestLeagueValue,
+    updateLeagueValue,
   };
 };
