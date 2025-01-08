@@ -1,4 +1,4 @@
-import { LeagueType } from "./league.type";
+import { LeagueType } from "./league.type.js";
 
 export type ValuesType = {
   id: string;

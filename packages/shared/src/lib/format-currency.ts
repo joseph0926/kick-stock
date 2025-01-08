@@ -1,4 +1,4 @@
-import { CurrencyType } from "../types/common.type";
+import { CurrencyType } from "../types/common.type.js";
 
 export function formatCurrency(amount: number, currency: CurrencyType): string {
   const isNegative = amount < 0;

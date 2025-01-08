@@ -1,4 +1,4 @@
-import { LeagueType } from "../types/league.type";
+import { LeagueType } from "../types/league.type.js";
 
 const DOMAIN = {
   LEAGUE: {

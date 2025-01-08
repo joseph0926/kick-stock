@@ -1,6 +1,6 @@
-import { type ClubType } from "./club.type";
-import { type CurrencyType } from "./common.type";
-import { type ValuesType } from "./prisma.type";
+import { type ClubType } from "./club.type.js";
+import { type CurrencyType } from "./common.type.js";
+import { type ValuesType } from "./prisma.type.js";
 
 export type LeagueType = "bundes" | "epl" | "laliga" | "ligue" | "serie";
 

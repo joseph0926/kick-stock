@@ -1,4 +1,4 @@
-import { CurrencyType } from "../types/common.type";
+import { CurrencyType } from "../types/common.type.js";
 import {
   FormatedLeaguesValueType,
   LeaguesValueType,

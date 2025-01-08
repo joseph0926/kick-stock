@@ -1,4 +1,4 @@
-import { CurrencyType } from "./common.type";
+import { CurrencyType } from "./common.type.js";
 
 export type ClubType = {
   id: string;
