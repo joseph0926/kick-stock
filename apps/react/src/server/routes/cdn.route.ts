@@ -64,7 +64,7 @@ export const cdnCacheRoute = (fastify: FastifyInstance) => {
         });
 
         LEAGUES.forEach((league) => {
-          paths.push(`/leagues/club/${league}.json`);
+          paths.push(`/leagues/2024/${league}.json`);
         });
 
         YEARS.forEach((year) => {

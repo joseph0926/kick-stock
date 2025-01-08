@@ -58,7 +58,7 @@ const LEAGUES = ["laliga", "epl", "bundes", "ligue", "serie"];
 
 async function fetchLeagueData(leagueName: string): Promise<LeagueData> {
   const response = await axios.get<LeagueData>(
-    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/club/${leagueName}.json`
+    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/2024/${leagueName}.json`
   );
   return response.data;
 }
@@ -72,7 +72,7 @@ async function fetchClubValueData(leagueName: string): Promise<ValueData> {
 
 async function fetchLeaguesValueData(): Promise<LeaguesValueData> {
   const response = await axios.get<LeaguesValueData>(
-    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/leagues.json`
+    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/index-value.json`
   );
   return response.data;
 }
@@ -98,6 +98,7 @@ async function main() {
       console.log(`Processing ${leagueName}...`);
 
       const leagueData = await fetchLeagueData(leagueName);
+      console.log(leagueData?.uniqueName);
 
       const league = await prisma.league.create({
         data: {
