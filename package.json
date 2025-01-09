@@ -35,8 +35,7 @@
     "tsx": "^4.19.2",
     "turbo": "^2.3.3",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.18.1",
-    "vite": "^6.0.7"
+    "typescript-eslint": "^8.18.1"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.2",
@@ -64,6 +63,7 @@
     "recharts": "^2.15.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "vite": "^6.0.7",
     "zod": "^3.24.1"
   },
   "packageManager": "pnpm@9.15.0",
