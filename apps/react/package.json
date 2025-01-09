@@ -5,12 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev:ssr": "concurrently \"vite\" \"tsx watch ./src/index.ts\"",
-    "build:client": "vite build --mode client",
-    "build:server": "vite build --mode server",
-    "build:ssr": "vite build --mode client && vite build --mode server",
-    "start:ssr": "NODE_ENV=production tsx ./src/index.ts",
-    "clean": "rimraf node_modules",
+    "dev": "env-cmd -f ../../.env.development concurrently \"vite\" \"tsx watch ./src/index.ts\"",
+    "build": "vite build --mode client && vite build --mode server",
+    "build:prod": "vite build --mode client && vite build --mode server",
+    "start": "env-cmd -f ../../.env.production tsx ./src/index.ts",
+    "start:prod": "tsx ./src/index.ts",
+    "clean": "rimraf node_modules dist",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

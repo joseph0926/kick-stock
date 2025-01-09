@@ -5,14 +5,16 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev:server": "tsx watch ./src/index.ts",
-    "start:ssr": "NODE_ENV=production tsx ./src/index.ts",
+    "dev": "env-cmd -f ../../.env.development tsx watch ./src/index.ts",
+    "build": "prisma generate && tsc -b",
+    "build:prod": "prisma generate && tsc -b",
+    "start": "env-cmd -f ../../.env.production tsx ./src/index.ts",
+    "start:prod": "tsx ./src/index.ts",
+    "clean": "rimraf node_modules dist",
+    "type-check": "tsc --noEmit",
     "db:reset": "prisma db push --force-reset",
     "db:gen": "prisma generate",
-    "db:seed": "tsx prisma/seed.ts",
-    "build:ssr": "prisma generate && tsc -b",
-    "clean": "rimraf node_modules",
-    "type-check": "tsc --noEmit"
+    "db:seed": "tsx prisma/seed.ts"
   },
   "keywords": [],
   "author": "",

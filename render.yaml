@@ -8,8 +8,8 @@ services:
       pnpm install --include-workspace-root
       cd apps/react
       NODE_ENV=development pnpm install
-      NODE_ENV=production pnpm build:ssr
-    startCommand: cd apps/react && pnpm start:ssr
+      NODE_ENV=production pnpm build:prod
+    startCommand: cd apps/react && pnpm start:prod
     buildFilter:
       paths:
         - apps/react/**
@@ -39,8 +39,8 @@ services:
       cd apps/server
       NODE_ENV=development pnpm install
       NODE_ENV=development pnpm dlx prisma generate
-      NODE_ENV=production pnpm build:ssr
-    startCommand: cd apps/server && pnpm start:ssr
+      NODE_ENV=production pnpm build:prod
+    startCommand: cd apps/server && pnpm start:prod
     buildFilter:
       paths:
         - apps/server/**
