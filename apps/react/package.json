@@ -9,7 +9,7 @@
     "build:client": "vite build --mode client",
     "build:server": "vite build --mode server",
     "build:ssr": "vite build --mode client && vite build --mode server",
-    "start:ssr": "cross-env NODE_ENV=production tsx -r dotenv/config ./src/index.ts",
+    "start:ssr": "tsx ./src/index.ts",
     "clean": "rimraf node_modules",
     "type-check": "tsc --noEmit"
   },
