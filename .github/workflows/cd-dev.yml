@@ -1,13 +1,13 @@
 name: Deploy
 on:
   push:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      CACHE_ENV: prod
+      CACHE_ENV: dev
     steps:
       - uses: actions/checkout@v4
 
@@ -32,9 +32,10 @@ jobs:
       - name: Invalidate CDN Cache
         id: invalidate-cdn-cache
         run: |
-          echo "Attempting to invalidate CDN cache..."
+          echo "Attempting to invalidate CDN cache for ${CACHE_ENV} environment..."
           response=$(curl -X POST https://kick-stock.onrender.com/api/cdn-cache/invalidate \
           -H "x-cache-secret: ${{ secrets.CACHE_SECRET }}" \
+          -H "x-cache-env: ${CACHE_ENV}" \
           -w "\n%{http_code}")
 
           echo "Response: $response"

@@ -78,7 +78,7 @@ export class PageCache {
       if (keys.length > 0) {
         const result = await this.client!.del(...keys);
         console.log(
-          `${result}개의 페이지 캐시를 무효화하였습니다.: ${pattern}`
+          `${result}개의 ${isProd ? "prod" : "dev"} 페이지 캐시를 무효화하였습니다.: ${pattern}`
         );
         return true;
       }

@@ -29,6 +29,7 @@ export const redisRoute = (fastify: FastifyInstance) => {
         required: ["x-cache-secret"],
         properties: {
           "x-cache-secret": { type: "string" },
+          "x-cache-env": { type: "string", enum: ["dev", "prod"] },
         },
       },
       response: {
@@ -55,9 +56,18 @@ export const redisRoute = (fastify: FastifyInstance) => {
     handler: async (request, reply) => {
       const expectedSecret = process.env.CACHE_SECRET;
       const providedSecret = request.headers["x-cache-secret"];
+      const cacheEnv = (request.headers["x-cache-env"] as string) || "prod";
 
       if (!expectedSecret || expectedSecret !== providedSecret) {
         return reply.code(401).send({ error: "Unauthorized" });
+      }
+
+      const currentEnv = process.env.NODE_ENV === "production" ? "prod" : "dev";
+      if (currentEnv !== cacheEnv) {
+        console.log(
+          `Skipping cache invalidation for ${cacheEnv} environment (current: ${currentEnv})`,
+        );
+        return { success: true };
       }
 
       try {
@@ -66,7 +76,7 @@ export const redisRoute = (fastify: FastifyInstance) => {
           return { success: false };
         }
 
-        const result = await pageCache.invalidatePattern("/");
+        const result = await pageCache.invalidatePattern("");
         return { success: result };
       } catch (error) {
         console.error("Cache invalidation error:", error);
