@@ -27,7 +27,7 @@ export class RedisClient {
     if (typeof window === "undefined") {
       return isProd
         ? (process.env.REDIS_URL ?? import.meta.env.VITE_REDIS_URL)
-        : (process.env.REDIS_DEV_UR ?? import.meta.env.VITE_REDIS_DEV_URLL);
+        : (process.env.REDIS_DEV_URL ?? import.meta.env.VITE_REDIS_DEV_URL);
     }
 
     return isProd
