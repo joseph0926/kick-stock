@@ -5,9 +5,10 @@ services:
     rootDir: .
     buildCommand: |
       npm install -g pnpm
-      pnpm install
+      pnpm install --include-workspace-root
       cd apps/react
-      pnpm build:ssr
+      NODE_ENV=development pnpm install
+      NODE_ENV=production pnpm build:ssr
     startCommand: cd apps/react && pnpm start:ssr
     buildFilter:
       paths:
@@ -34,10 +35,11 @@ services:
     rootDir: .
     buildCommand: |
       npm install -g pnpm
-      pnpm install
+      pnpm install --include-workspace-root
       cd apps/server
-      pnpm dlx prisma generate
-      pnpm build:ssr
+      NODE_ENV=development pnpm install
+      NODE_ENV=development pnpm dlx prisma generate
+      NODE_ENV=production pnpm build:ssr
     startCommand: cd apps/server && pnpm start:ssr
     buildFilter:
       paths:
