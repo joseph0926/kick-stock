@@ -36,7 +36,7 @@ services:
       npm install -g pnpm
       pnpm install
       cd apps/server
-      pnpm db:gen
+      pnpm dlx prisma generate
       pnpm build:ssr
     startCommand: cd apps/server && pnpm start:ssr
     buildFilter:
