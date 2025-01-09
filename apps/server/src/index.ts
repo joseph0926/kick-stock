@@ -37,9 +37,14 @@ fastify.register(fastifyHelmet, {
           imgSrc: ["'self'", "data:", "https:"],
           connectSrc: [
             "'self'",
-            "https://api.steampowered.com",
-            "https://cdn.jsdelivr.net",
+            "https://kick-stock.onrender.com",
+            "wss://kick-stock.onrender.com",
           ],
+          workerSrc: ["'self'", "blob:"],
+          fontSrc: ["'self'", "data:", "https:"],
+          mediaSrc: ["'self'"],
+          objectSrc: ["'none'"],
+          frameSrc: ["'none'"],
         },
       }
     : {
@@ -53,17 +58,12 @@ fastify.register(fastifyHelmet, {
           ],
           styleSrc: ["'self'", "'unsafe-inline'", "http://localhost:*"],
           imgSrc: ["'self'", "data:", "https:", "http://localhost:*"],
-          connectSrc: [
-            "'self'",
-            "ws://localhost:*",
-            "http://localhost:*",
-            "https://api.steampowered.com",
-            "https://cdn.jsdelivr.net",
-          ],
+          connectSrc: ["'self'", "ws://localhost:*", "http://localhost:*"],
           workerSrc: ["'self'", "blob:"],
         },
       },
 });
+
 fastify.register(fastifyCors, {
   origin: isProd ? ["https://kick-stock.onrender.com"] : true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],

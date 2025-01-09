@@ -31,20 +31,33 @@ const fastify = Fastify({
   keepAliveTimeout: 10000,
   maxRequestsPerSocket: 1000,
 });
+
 fastify.register(fastifyHelmet, {
   global: true,
   contentSecurityPolicy: isProd
     ? {
         directives: {
-          defaultSrc: ["'self'"],
-          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+          defaultSrc: ["'self'", "https://api-kick-stock.onrender.com"],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "https://api-kick-stock.onrender.com",
+          ],
           styleSrc: ["'self'", "'unsafe-inline'"],
           imgSrc: ["'self'", "data:", "https:"],
           connectSrc: [
             "'self'",
+            "https://api-kick-stock.onrender.com",
+            "wss://api-kick-stock.onrender.com",
             "https://api.steampowered.com",
             "https://cdn.jsdelivr.net",
           ],
+          workerSrc: ["'self'", "blob:"],
+          fontSrc: ["'self'", "data:", "https:"],
+          mediaSrc: ["'self'"],
+          objectSrc: ["'none'"],
+          frameSrc: ["'none'"],
         },
       }
     : {
@@ -69,8 +82,9 @@ fastify.register(fastifyHelmet, {
         },
       },
 });
+
 fastify.register(fastifyCors, {
-  origin: isProd ? ["https://kick-stock.onrender.com"] : true,
+  origin: isProd ? ["https://api-kick-stock.onrender.com"] : true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   credentials: true,
