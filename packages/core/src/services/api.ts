@@ -8,9 +8,6 @@ export const ssrCdnAxios = axios.create({
 
 export const apiAxios = axios.create({
   baseURL: isProd
-    ? "https://kick-stock.onrender.com/api/v1"
-    : // : isServer
-      //   ? "http://localhost:4000/api/v1"
-      //   : "/api",
-      "http://localhost:4000/api/v1",
+    ? "https://api.kick-stock.onrender.com/api/v1"
+    : "http://localhost:4000/api/v1",
 });

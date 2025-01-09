@@ -26,6 +26,8 @@ services:
         sync: false
     healthCheckPath: /health
     autoDeploy: true
+    domains:
+      - kick-stock.onrender.com
 
   - type: web
     name: app-backend
@@ -50,7 +52,7 @@ services:
         value: 10001
       - key: REDIS_URL
         sync: false
-      - key: DATABASE_URL
-        sync: false
     healthCheckPath: /health
     autoDeploy: true
+    domains:
+      - api.kick-stock.onrender.com
