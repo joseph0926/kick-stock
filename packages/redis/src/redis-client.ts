@@ -25,10 +25,9 @@ export class RedisClient {
 
   private static getRedisUrl(): string {
     if (typeof window === "undefined") {
-      if (!process.env.REDIS_URL || !process.env.REDIS_DEV_URL) {
-        throw new Error("Redis URL 환경변수가 설정되지 않았습니다.");
-      }
-      return isProd ? process.env.REDIS_URL : process.env.REDIS_DEV_URL;
+      return isProd
+        ? (process.env.REDIS_URL ?? import.meta.env.VITE_REDIS_URL)
+        : (process.env.REDIS_DEV_UR ?? import.meta.env.VITE_REDIS_DEV_URLL);
     }
 
     return isProd
