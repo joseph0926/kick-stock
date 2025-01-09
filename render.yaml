@@ -2,12 +2,13 @@ services:
   - type: web
     name: kick-stock
     runtime: node
-    rootDir: apps/react
+    rootDir: .
     buildCommand: |
       npm install -g pnpm
       pnpm install
+      cd apps/react
       pnpm build:ssr
-    startCommand: pnpm start:ssr
+    startCommand: cd apps/react && pnpm start:ssr
     buildFilter:
       paths:
         - apps/react/**
@@ -30,13 +31,14 @@ services:
   - type: web
     name: api.kick-stock
     runtime: node
-    rootDir: apps/server
+    rootDir: .
     buildCommand: |
       npm install -g pnpm
       pnpm install
+      cd apps/server
       pnpm db:gen
       pnpm build:ssr
-    startCommand: pnpm start:ssr
+    startCommand: cd apps/server && pnpm start:ssr
     buildFilter:
       paths:
         - apps/server/**
