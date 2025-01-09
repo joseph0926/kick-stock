@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: app-frontend
+    name: kick-stock
     runtime: node
     rootDir: apps/react
     buildCommand: |
@@ -26,11 +26,9 @@ services:
         sync: false
     healthCheckPath: /health
     autoDeploy: true
-    domains:
-      - kick-stock.onrender.com
 
   - type: web
-    name: app-backend
+    name: api.kick-stock
     runtime: node
     rootDir: apps/server
     buildCommand: |
@@ -54,5 +52,3 @@ services:
         sync: false
     healthCheckPath: /health
     autoDeploy: true
-    domains:
-      - api.kick-stock.onrender.com
