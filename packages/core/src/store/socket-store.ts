@@ -62,7 +62,7 @@ class SocketStoreImpl {
 
     const serverUrl =
       process.env.NODE_ENV === "production"
-        ? "https://api.kick-stock.onrender.com"
+        ? "https://api-kick-stock.onrender.com"
         : "http://localhost:4000";
 
     const socket = io(serverUrl, {
