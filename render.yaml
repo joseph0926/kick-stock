@@ -34,7 +34,6 @@ services:
     rootDir: .
     buildCommand: |
       npm install -g pnpm
-      npm install -g prisma
       pnpm install
       cd apps/server
       pnpm db:gen
