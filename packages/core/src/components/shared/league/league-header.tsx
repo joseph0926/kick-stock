@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
-import { LeaguesType } from "@kickstock/shared/src/types/league.type";
 import { Skeleton } from "@kickstock/ui/src/components/ui/skeleton";
 import { cn } from "@kickstock/ui/src/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useSocketValue } from "../../../hooks/use-socket-value";
 import { formatCurrency } from "@kickstock/shared/src/lib/format-currency";
+import { LeagueBasicType } from "@kickstock/shared/src/types/prisma/league.type";
 
 type LeagueHeaderProps = {
-  leagueData: LeaguesType | null;
+  leagueData: LeagueBasicType | null;
 };
 
 export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {

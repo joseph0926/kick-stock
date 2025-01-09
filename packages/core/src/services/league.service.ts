@@ -1,9 +1,12 @@
 import {
   LeaguesDataType,
-  LeaguesType,
   LeaguesValueType,
   LeagueType,
 } from "@kickstock/shared/src/types/league.type";
+import {
+  LeagueBasicType,
+  LeagueClubsType,
+} from "@kickstock/shared/src/types/prisma/league.type";
 import { apiAxios, ssrCdnAxios } from "./api";
 import { ApiResponse } from "@kickstock/shared/src/types/common.type";
 
@@ -31,15 +34,16 @@ export const getLeaguesIndexValue = async (): Promise<LeaguesValueType> => {
 
 // Server api
 
-export const getLeague = async (
+export const getLeagueBasic = async (
   league: LeagueType,
-  hasClub: boolean = false,
-): Promise<ApiResponse<LeaguesType>> => {
-  const { data } = await apiAxios(`/league/${league}`, {
-    params: {
-      hasClub,
-    },
-  });
+): Promise<ApiResponse<LeagueBasicType>> => {
+  const { data } = await apiAxios(`/league/${league}/basic`);
+  return data;
+};
 
+export const getLeagueClubs = async (
+  league: LeagueType,
+): Promise<ApiResponse<LeagueClubsType>> => {
+  const { data } = await apiAxios(`/league/${league}/clubs`);
   return data;
 };

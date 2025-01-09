@@ -10,12 +10,27 @@ export const ClubSchema = Type.Object({
   shortName: Type.String(),
 });
 
-export const LeageValueSchema = Type.Object({
+export const LeagueValueSchema = Type.Object({
   id: Type.String(),
   year: Type.String(),
   KRW: Type.Number(),
   changeRate: Type.Number(),
   leagueId: Type.String(),
+});
+
+export const LeagueBasicSchema = Type.Object({
+  id: Type.String(),
+  name: Type.String(),
+  nameEng: Type.String(),
+  uniqueName: Type.Enum(LeagueUniqueName),
+  img: Type.String(),
+  values: Type.Array(LeagueValueSchema),
+});
+
+export const LeagueClubsSchema = Type.Object({
+  id: Type.String(),
+  uniqueName: Type.Enum(LeagueUniqueName),
+  clubs: Type.Array(ClubSchema),
 });
 
 export const LeaguesSchema = Type.Object({
@@ -24,10 +39,12 @@ export const LeaguesSchema = Type.Object({
   nameEng: Type.String(),
   uniqueName: Type.Enum(LeagueUniqueName),
   img: Type.String(),
-  values: Type.Array(LeageValueSchema),
+  values: Type.Array(LeagueValueSchema),
   clubs: Type.Optional(Type.Array(ClubSchema)),
 });
 
-export type ValuesType = Static<typeof LeageValueSchema>;
 export type ClubType = Static<typeof ClubSchema>;
+export type LeagueValueType = Static<typeof LeagueValueSchema>;
+export type LeagueBasicType = Static<typeof LeagueBasicSchema>;
+export type LeagueClubsType = Static<typeof LeagueClubsSchema>;
 export type LeaguesType = Static<typeof LeaguesSchema>;

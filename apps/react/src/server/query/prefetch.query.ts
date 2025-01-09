@@ -1,7 +1,8 @@
 import { dehydrate } from "@tanstack/react-query";
 import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
 import {
-  getLeague,
+  getLeagueBasic,
+  getLeagueClubs,
   getLeaguesData,
 } from "@kickstock/core/src/services/league.service";
 import { makeQueryClient } from "@kickstock/core/src/providers/query.provider";
@@ -97,35 +98,37 @@ export async function prefetchQuery(url: string) {
 
   switch (match.type) {
     case "HOME":
-      await queryClient.prefetchQuery({
-        queryKey: QUERY_KEY.LEAGUE.DEFAULT,
-        queryFn: getLeaguesData,
-        staleTime: Infinity,
-      });
-      await queryClient.prefetchQuery({
-        queryKey: QUERY_KEY.LEAGUE.DEFAULT,
-        queryFn: getLeaguesData,
-        staleTime: Infinity,
-      });
-      leagues.map(async (league) => {
-        await queryClient.prefetchQuery({
-          queryKey: QUERY_KEY.CLUB.STOCK(league),
-          queryFn: () => getClubStocksData(league),
+      await Promise.all([
+        queryClient.prefetchQuery({
+          queryKey: QUERY_KEY.LEAGUE.DEFAULT,
+          queryFn: getLeaguesData,
           staleTime: Infinity,
-        });
-      });
+        }),
+        ...leagues.map((league) =>
+          queryClient.prefetchQuery({
+            queryKey: QUERY_KEY.CLUB.STOCK(league),
+            queryFn: () => getClubStocksData(league),
+            staleTime: Infinity,
+          }),
+        ),
+      ]);
       break;
+
     case "LEAGUE":
       if (match.params.leagueId) {
         const { leagueId } = match.params;
-
-        if (leagueId) {
-          await queryClient.prefetchQuery({
-            queryKey: QUERY_KEY.LEAGUE.DETAIL(leagueId, false),
-            queryFn: () => getLeague(leagueId, false),
+        await Promise.all([
+          queryClient.prefetchQuery({
+            queryKey: QUERY_KEY.LEAGUE.BASIC(leagueId),
+            queryFn: () => getLeagueBasic(leagueId),
             staleTime: Infinity,
-          });
-        }
+          }),
+          queryClient.prefetchQuery({
+            queryKey: QUERY_KEY.LEAGUE.CLUBS(leagueId),
+            queryFn: () => getLeagueClubs(leagueId),
+            staleTime: 5 * 60 * 1000,
+          }),
+        ]);
       }
       break;
   }
