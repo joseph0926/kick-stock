@@ -41,6 +41,7 @@
     "@fastify/csrf-protection": "^7.0.2",
     "@fastify/helmet": "^13.0.1",
     "@fastify/rate-limit": "^10.2.1",
+    "@prisma/client": "^6.2.1",
     "@sinclair/typebox": "^0.34.13",
     "@tanstack/react-query": "^5.62.10",
     "@tanstack/react-query-devtools": "^5.62.10",
