@@ -50,5 +50,7 @@ services:
         value: 10001
       - key: REDIS_URL
         sync: false
+      - key: DATABASE_URL
+        sync: false
     healthCheckPath: /health
     autoDeploy: true
