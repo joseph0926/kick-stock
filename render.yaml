@@ -3,8 +3,11 @@ services:
     name: app-frontend
     runtime: node
     rootDir: apps/react
-    buildCommand: pnpm install && pnpm build
-    startCommand: node dist/server/index.js
+    buildCommand: |
+      npm install -g pnpm
+      pnpm install
+      pnpm build:ssr
+    startCommand: pnpm start:ssr
     buildFilter:
       paths:
         - apps/react/**
@@ -17,13 +20,23 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 10000
+      - key: VITE_REDIS_URL
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
 
   - type: web
     name: app-backend
     runtime: node
     rootDir: apps/server
-    buildCommand: pnpm install && pnpm build
-    startCommand: node dist/index.js
+    buildCommand: |
+      npm install -g pnpm
+      pnpm install
+      pnpm db:gen
+      pnpm build:ssr
+    startCommand: pnpm start:ssr
     buildFilter:
       paths:
         - apps/server/**
@@ -33,3 +46,9 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 10001
+      - key: REDIS_URL
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
