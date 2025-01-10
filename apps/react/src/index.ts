@@ -84,13 +84,24 @@ fastify.register(fastifyHelmet, {
 });
 
 fastify.register(fastifyCors, {
-  origin: isProd ? ["https://api-kick-stock.onrender.com"] : true,
+  origin: (origin, cb) => {
+    cb(null, true);
+  },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  allowedHeaders: [
+    "Origin",
+    "X-Requested-With",
+    "Content-Type",
+    "Accept",
+    "Authorization",
+    "x-cache-secret",
+    "x-cache-env",
+  ],
+  exposedHeaders: ["Content-Length", "Content-Range"],
   credentials: true,
   maxAge: 86400,
   preflight: true,
-  strictPreflight: true,
+  strictPreflight: false,
 });
 fastify.register(fastifyRateLimit, {
   max: 100,
