@@ -63,10 +63,6 @@ export class StockSocketServer {
 
       this.activeClients.add(socket.id);
 
-      if (this.activeClients.size === 1) {
-        this.leagueHandler.startAllSimulations();
-      }
-
       this.clubHandler.registerHandlers(socket);
       this.leagueHandler.registerHandlers(socket);
 

@@ -11,13 +11,11 @@ type LeagueHeaderProps = {
 };
 
 export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
-  const { value } = leagueData
-    ? useSocketValue({
-        type: "league",
-        id: leagueData.id,
-        year: "2023",
-      })
-    : { value: null };
+  const { value } = useSocketValue({
+    type: "league",
+    id: leagueData?.id ?? "",
+    year: "2023",
+  });
 
   const changeRate = useMemo(() => {
     if (value && value.changeRate) return value.changeRate;

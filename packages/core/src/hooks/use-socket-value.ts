@@ -1,9 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { socketStore } from "../store/socket-store";
-import {
-  ClubValue,
-  ValuesType as LeagueValue,
-} from "@kickstock/shared/src/types/prisma.type";
 
 type UseSocketValueProps = {
   type: "league" | "club";
@@ -11,13 +7,12 @@ type UseSocketValueProps = {
   year: string;
 };
 
-type ValueType = ClubValue | LeagueValue;
-
 export const useSocketValue = ({ type, id, year }: UseSocketValueProps) => {
-  const [value, setValue] = useState<ValueType | null>(
-    () => socketStore.getValue(type, id, year) || null,
+  const value = useSyncExternalStore(
+    (callback) => socketStore.subscribe(callback),
+    () => socketStore.getValue(type, id, year),
+    () => socketStore.getValue(type, id, year),
   );
-  const [isLoading, setIsLoading] = useState(!value);
 
   useEffect(() => {
     if (!value) {
@@ -27,43 +22,9 @@ export const useSocketValue = ({ type, id, year }: UseSocketValueProps) => {
         socketStore.requestClubValue(id, year);
       }
     }
+  }, [value, type, id, year]);
 
-    const unsubResponse = socketStore.subscribeToEvent(
-      `${type}ValueResponse`,
-      (data: LeagueValue | ClubValue) => {
-        if (
-          (type === "league" && (data as LeagueValue).leagueId === id) ||
-          (type === "club" && (data as ClubValue).clubId === id)
-        ) {
-          setValue(data);
-          setIsLoading(false);
-        }
-      },
-    );
-
-    const unsubUpdate = socketStore.subscribeToEvent(
-      `${type}ValueUpdated`,
-      (data: {
-        leagueId?: string;
-        clubId?: string;
-        updatedValue: LeagueValue | ClubValue;
-      }) => {
-        const updatedValue = data.updatedValue;
-        if (
-          (type === "league" && data.leagueId === id) ||
-          (type === "club" && data.clubId === id)
-        ) {
-          setValue(updatedValue);
-          setIsLoading(false);
-        }
-      },
-    );
-
-    return () => {
-      unsubResponse();
-      unsubUpdate();
-    };
-  }, [type, id, year]);
+  const isLoading = !value;
 
   const updateValue = useCallback(
     (KRW: number) => {

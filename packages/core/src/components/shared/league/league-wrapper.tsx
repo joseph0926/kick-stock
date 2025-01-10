@@ -7,7 +7,6 @@ import {
   LeagueType,
 } from "@kickstock/shared/src/types/league.type";
 import { LeagueHeader } from "./league-header";
-import { LeagueChart } from "../chart/league-chart";
 import { useLocation } from "react-router";
 
 export const LeagueWrapper = ({ league }: { league: LeagueType }) => {
