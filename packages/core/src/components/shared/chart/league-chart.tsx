@@ -1,50 +1,93 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { LeagueBasicType } from "@kickstock/shared/src/types/prisma/league.type";
+import { useSocketValue } from "../../../hooks/use-socket-value";
 import { formatCurrency } from "@kickstock/shared/src/lib/format-currency";
 import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@kickstock/ui/src/components/ui/chart";
-import { LineChart } from "lucide-react";
-import { CartesianGrid, XAxis, YAxis, Line } from "recharts";
+  LineChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Line,
+  Tooltip,
+  // ResponsiveContainer,
+} from "recharts";
 
-const chartConfig = {
-  value: {
-    label: "year",
-    color: "#2563eb",
-  },
-} satisfies ChartConfig;
+/**
+ * 차트에 표시할 데이터 구조
+ * - time: 소켓 업데이트가 들어온 시점(타임스탬프) or 카운터
+ * - rawValue: 해당 연도의 KRW 값
+ */
+type ChartData = {
+  time: number; // Date.now() 등
+  rawValue: number; // KRW
+};
 
-export const LeagueChart = () => {
+const recentYear = "2023";
+
+export const LeagueChart = ({
+  leagueData,
+}: {
+  leagueData: LeagueBasicType;
+}) => {
+  const [chartData, setChartData] = useState<ChartData[]>([]);
+
+  useEffect(() => {
+    const recentValue = leagueData.values.find((v) => v.year === recentYear);
+    if (recentValue) {
+      setChartData([
+        {
+          time: Date.now(),
+          rawValue: recentValue.KRW,
+        },
+      ]);
+    }
+  }, [leagueData, recentYear]);
+
+  const { value } = useSocketValue({
+    type: "league",
+    id: leagueData.id,
+    year: recentYear,
+  });
+
+  useEffect(() => {
+    if (!value) return;
+    setChartData((prev) => [
+      ...prev,
+      {
+        time: Date.now(),
+        rawValue: value.KRW,
+      },
+    ]);
+  }, [value]);
+
+  useEffect(() => {
+    if (chartData.length > 60) {
+      setChartData((prev) => prev.slice(-60));
+    }
+  }, [chartData]);
+
+  const formatYAxis = (val: number) => formatCurrency(val, "KRW");
+
+  const formatXAxis = (ts: number) => {
+    const date = new Date(ts);
+    const hh = String(date.getHours()).padStart(2, "0");
+    const mm = String(date.getMinutes()).padStart(2, "0");
+    const ss = String(date.getSeconds()).padStart(2, "0");
+    return `${hh}:${mm}:${ss}`;
+  };
+
   return (
-    // <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-    //   <LineChart data={filteredMarketValue}>
-    //     <CartesianGrid strokeDasharray="3 3" />
-    //     <XAxis dataKey="year" tickFormatter={(value) => value.slice(2)} />
-    //     <YAxis tickFormatter={formatYAxis} domain={["auto", "auto"]} />
-    //     <ChartTooltip
-    //       content={
-    //         <ChartTooltipContent
-    //           formatter={(data) => (
-    //             <div className="flex items-center gap-2.5 space-y-2">
-    //               <p className="text-sm font-medium text-primary">{year}: </p>
-    //               <p className="pb-2 text-sm font-medium">
-    //                 {formatCurrency(+data, "KRW")}
-    //               </p>
-    //             </div>
-    //           )}
-    //         />
-    //       }
-    //     />
-    //     <Line
-    //       type="monotone"
-    //       dataKey="rawValue"
-    //       stroke="var(--color-value)"
-    //       dot={false}
-    //     />
-    //   </LineChart>
-    // </ChartContainer>
-    <div></div>
+    <div className="min-h-[200px] w-full">
+      <LineChart width={600} height={300} data={chartData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="time" tickFormatter={formatXAxis} />
+        <YAxis tickFormatter={formatYAxis} />
+        <Tooltip
+          labelFormatter={(label) => `Time: ${formatXAxis(label as number)}`}
+          formatter={(val: number) => formatCurrency(val, "KRW")}
+        />
+        <Line type="monotone" dataKey="rawValue" stroke="#2563eb" dot={false} />
+      </LineChart>
+    </div>
   );
 };

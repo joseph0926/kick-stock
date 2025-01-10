@@ -7,7 +7,7 @@ import { formatCurrency } from "@kickstock/shared/src/lib/format-currency";
 import { LeagueBasicType } from "@kickstock/shared/src/types/prisma/league.type";
 
 type LeagueHeaderProps = {
-  leagueData: LeagueBasicType | null;
+  leagueData?: LeagueBasicType | null;
 };
 
 export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
@@ -15,7 +15,7 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
     ? useSocketValue({
         type: "league",
         id: leagueData.id,
-        year: leagueData.values[leagueData.values.length - 1].year,
+        year: "2023",
       })
     : { value: null };
 

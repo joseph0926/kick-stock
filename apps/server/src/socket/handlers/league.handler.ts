@@ -18,12 +18,6 @@ export class LeagueSocketHandler extends BaseSocketHandler {
     if (this.leagueCache) {
       const cachedValue = await this.leagueCache.getLeagueValue(leagueId, year);
       if (cachedValue) {
-        const key = this.getSimulationKey(leagueId, year);
-        this.simulatedLeagues.set(key, {
-          leagueId,
-          year,
-          KRW: cachedValue.KRW,
-        });
         return cachedValue;
       }
     }
@@ -36,13 +30,6 @@ export class LeagueSocketHandler extends BaseSocketHandler {
 
     if (dbValue && this.leagueCache) {
       await this.leagueCache.setLeagueValue(leagueId, year, dbValue);
-
-      const key = this.getSimulationKey(leagueId, year);
-      this.simulatedLeagues.set(key, {
-        leagueId,
-        year,
-        KRW: dbValue.KRW,
-      });
     }
 
     return dbValue;
@@ -89,6 +76,7 @@ export class LeagueSocketHandler extends BaseSocketHandler {
       }
 
       const key = this.getSimulationKey(leagueId, year);
+
       this.simulatedLeagues.set(key, {
         leagueId,
         year,
@@ -171,12 +159,15 @@ export class LeagueSocketHandler extends BaseSocketHandler {
     if (this.simulationIntervals.has(key)) {
       clearInterval(this.simulationIntervals.get(key));
       this.simulationIntervals.delete(key);
+      this.simulatedLeagues.delete(key);
       this.fastify.log.info(`[server]: ${key} 시뮬레이션 중지`);
     }
   }
 
   startAllSimulations() {
     this.fastify.log.info("[server]: 모든 시뮬레이션 시작");
+    console.log(this.simulatedLeagues);
+
     if (this.simulatedLeagues.size === 0) {
       this.fastify.log.warn("[server]: 시뮬레이션할 리그가 없습니다.");
       return;
@@ -242,22 +233,29 @@ export class LeagueSocketHandler extends BaseSocketHandler {
   }
 
   registerHandlers(socket: Socket): void {
+    socket.on("connect", () => {
+      this.fastify.log.info(`[server]: client 연결 성공: ${socket.id}`);
+    });
+
     socket.on(
       "requestLeagueValue",
       async (data: { leagueId: string; year: string }) => {
         try {
-          this.stopValueSimulation(data.leagueId, data.year);
-
-          await this.initializeSimulation(data.leagueId, data.year);
-          const key = this.getSimulationKey(data.leagueId, data.year);
-          if (this.simulatedLeagues.has(key)) {
-            this.startValueSimulation(data.leagueId, data.year);
-          }
+          this.stopAllSimulations();
 
           const leagueValue = await this.getLeagueValue(
             data.leagueId,
             data.year
           );
+
+          if (leagueValue) {
+            await this.initializeSimulation(data.leagueId, data.year);
+            const key = this.getSimulationKey(data.leagueId, data.year);
+            if (this.simulatedLeagues.has(key)) {
+              this.startValueSimulation(data.leagueId, data.year);
+            }
+          }
+
           socket.emit("leagueValueResponse", leagueValue);
         } catch (error) {
           this.fastify.log.error("[server]: league value 조회 실패:", error);
