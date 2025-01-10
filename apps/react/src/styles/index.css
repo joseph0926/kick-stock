@@ -61,7 +61,7 @@
 
 @layer utilities {
   .background {
-    @apply bg-blue-100 dark:bg-blue-900;
+    @apply bg-gradient-to-b from-[#ffffff] from-0% to-[#fafafe] to-[50vh] dark:from-[#0d1116] dark:to-[#070d12];
   }
 }
 

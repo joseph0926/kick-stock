@@ -23,7 +23,7 @@ export const LeaguesCardWrapper = ({
       {leaguesData.map((league) => (
         <CarouselItem
           key={league.id}
-          className="pl-1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+          className="px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
         >
           <Link
             to={`/league/${league.nameShort}`}
