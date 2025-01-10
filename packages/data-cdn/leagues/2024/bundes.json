@@ -1,12 +1,10 @@
 {
-  "id": "228619cd-c399-4a1e-9624-8f4d1d47e94f",
   "name": "분데스리가",
   "nameEng": "Bundesliga",
   "uniqueName": "bundes",
   "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ndy1qbqf50qc01tj1mcf",
   "clubs": [
     {
-      "id": "59dd1885-d75c-4d35-aa6e-0de2c70f2e43",
       "name": "도르트문트",
       "nameEng": "Borussia Dortmund",
       "league": "Bundesliga",
@@ -14,7 +12,6 @@
       "shortName": "BVB"
     },
     {
-      "id": "652484ef-ae7b-426e-9ca1-1811ad9044de",
       "name": "라이프치히",
       "nameEng": "RB Leipzig",
       "league": "Bundesliga",
@@ -22,7 +19,6 @@
       "shortName": "RBL"
     },
     {
-      "id": "e7e57ca7-1e01-4dcb-a48e-d7244378dbf8",
       "name": "레버쿠젠",
       "nameEng": "Bayer 04 Leverkusen",
       "league": "Bundesliga",
@@ -30,7 +26,6 @@
       "shortName": "B04"
     },
     {
-      "id": "752e2387-4247-4a14-9491-d2b3feb63353",
       "name": "마인츠",
       "nameEng": "1.FSV Mainz 05",
       "league": "Bundesliga",
@@ -38,7 +33,6 @@
       "shortName": "M05"
     },
     {
-      "id": "99f00c8f-c0da-4af1-b016-1121745e8b1b",
       "name": "묀헨글라트바흐",
       "nameEng": "Borussia Mönchengladbach",
       "league": "Bundesliga",
@@ -46,7 +40,6 @@
       "shortName": "BMG"
     },
     {
-      "id": "38e1a15c-bedc-4017-a9f4-21d471c5c6d8",
       "name": "바이에른",
       "nameEng": "Bayern Munich",
       "league": "Bundesliga",
@@ -54,7 +47,6 @@
       "shortName": "FCB"
     },
     {
-      "id": "931e32e9-2cbb-4df2-b04f-2ed1ac843723",
       "name": "베르더",
       "nameEng": "SV Werder Bremen",
       "league": "Bundesliga",
@@ -62,7 +54,6 @@
       "shortName": "SVW"
     },
     {
-      "id": "6552be7d-5227-4a59-a76f-ca8bed21e6b6",
       "name": "보훔",
       "nameEng": "VfL Bochum",
       "league": "Bundesliga",
@@ -70,7 +61,6 @@
       "shortName": "BOC"
     },
     {
-      "id": "19c06aed-2224-4118-a657-9ac3d66dabf6",
       "name": "볼프스부르크",
       "nameEng": "VfL Wolfsburg",
       "league": "Bundesliga",
@@ -78,7 +68,6 @@
       "shortName": "WOB"
     },
     {
-      "id": "25042e8e-e8da-4eaa-8c85-928725166c21",
       "name": "슈투트가르트",
       "nameEng": "VfB Stuttgart",
       "league": "Bundesliga",
@@ -86,7 +75,6 @@
       "shortName": "VFB"
     },
     {
-      "id": "7d968934-7899-4484-8355-083a0ef6efa6",
       "name": "아우크스부르크",
       "nameEng": "FC Augsburg",
       "league": "Bundesliga",
@@ -94,7 +82,6 @@
       "shortName": "FCA"
     },
     {
-      "id": "95eba660-1c2b-4fc1-ab3d-5fcd78716d0d",
       "name": "우니온 베를린",
       "nameEng": "1.FC Union Berlin",
       "league": "Bundesliga",
@@ -102,7 +89,6 @@
       "shortName": "FCU"
     },
     {
-      "id": "65fc8d89-c8c2-4e6f-8045-2dbe4421dfe3",
       "name": "장크트파울리",
       "nameEng": "FC St. Pauli",
       "league": "Bundesliga",
@@ -110,7 +96,6 @@
       "shortName": "STP"
     },
     {
-      "id": "541130ba-8aa1-4033-9dc9-0320579dc356",
       "name": "킬",
       "nameEng": "Holstein Kiel",
       "league": "Bundesliga",
@@ -118,7 +103,6 @@
       "shortName": "KIE"
     },
     {
-      "id": "00250bbf-b898-4eb0-acf3-2c9267d7ca7f",
       "name": "프라이부르크",
       "nameEng": "SC Freiburg",
       "league": "Bundesliga",
@@ -126,7 +110,6 @@
       "shortName": "SCF"
     },
     {
-      "id": "d634e8ae-3997-4c5b-a233-bba5c2911927",
       "name": "프랑크푸르트",
       "nameEng": "Eintracht Frankfurt",
       "league": "Bundesliga",
@@ -134,7 +117,6 @@
       "shortName": "SGE"
     },
     {
-      "id": "950ccf28-ce87-4929-ae58-e0f492b909bc",
       "name": "하이덴하임",
       "nameEng": "1.FC Heidenheim 1846",
       "league": "Bundesliga",
@@ -142,7 +124,6 @@
       "shortName": "HDH"
     },
     {
-      "id": "3bfc5cdd-3eae-4beb-a36e-dd43e2678a15",
       "name": "호펜하임",
       "nameEng": "TSG 1899 Hoffenheim",
       "league": "Bundesliga",

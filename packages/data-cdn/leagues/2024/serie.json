@@ -1,12 +1,10 @@
 {
-  "id": "e585cfeb-9dd5-420e-b9ce-621a16285047",
   "name": "세리에 A",
   "nameEng": "Serie A",
   "uniqueName": "serie",
   "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/bzq25krs9x0bpsmbl9fl",
   "clubs": [
     {
-      "id": "dae93ef0-04d5-4abe-9ee5-f77fa7331161",
       "name": "나폴리",
       "nameEng": "SSC Napoli",
       "league": "Serie A",
@@ -14,7 +12,6 @@
       "shortName": "NAP"
     },
     {
-      "id": "842504d0-3daa-4189-aa5b-5bc83b3aa51e",
       "name": "라치오",
       "nameEng": "SS Lazio",
       "league": "Serie A",
@@ -22,7 +19,6 @@
       "shortName": "LAZ"
     },
     {
-      "id": "bdf7cf59-5f11-4dfd-a756-243d5ae2f9fe",
       "name": "레체",
       "nameEng": "US Lecce",
       "league": "Serie A",
@@ -30,7 +26,6 @@
       "shortName": "LEC"
     },
     {
-      "id": "2ccb2e54-d46d-4ec7-a11e-af95f68655c6",
       "name": "로마",
       "nameEng": "AS Roma",
       "league": "Serie A",
@@ -38,7 +33,6 @@
       "shortName": "ROM"
     },
     {
-      "id": "b8657e85-c146-45f2-a175-3904e631a74c",
       "name": "몬차",
       "nameEng": "AC Monza",
       "league": "Serie A",
@@ -46,7 +40,6 @@
       "shortName": "MON"
     },
     {
-      "id": "19d6b9d8-74f9-4300-84d4-4342f4c5204f",
       "name": "밀란",
       "nameEng": "AC Milan",
       "league": "Serie A",
@@ -54,7 +47,6 @@
       "shortName": "MIL"
     },
     {
-      "id": "aeb67d7d-8d45-4e72-940b-8c5e4b888ae5",
       "name": "베네치아",
       "nameEng": "Venezia FC",
       "league": "Serie A",
@@ -62,7 +54,6 @@
       "shortName": "VEN"
     },
     {
-      "id": "782fe78a-3842-4724-ac9e-3b1fb3c73b30",
       "name": "베로나",
       "nameEng": "Hellas Verona",
       "league": "Serie A",
@@ -70,7 +61,6 @@
       "shortName": "VER"
     },
     {
-      "id": "e8d28095-190a-49af-ab50-3ce6cb86782e",
       "name": "볼로냐",
       "nameEng": "Bologna FC 1909",
       "league": "Serie A",
@@ -78,7 +68,6 @@
       "shortName": "BOL"
     },
     {
-      "id": "b55cf30f-4fcc-4000-9f5a-51f34d8da86b",
       "name": "아탈란타",
       "nameEng": "Atalanta BC",
       "league": "Serie A",
@@ -86,7 +75,6 @@
       "shortName": "ATA"
     },
     {
-      "id": "3054fd89-6c10-4f39-83b1-2febb702a9c6",
       "name": "엠폴리",
       "nameEng": "FC Empoli",
       "league": "Serie A",
@@ -94,7 +82,6 @@
       "shortName": "EMP"
     },
     {
-      "id": "5c585eea-2c96-44d1-83da-5721acb71259",
       "name": "우디네세",
       "nameEng": "Udinese Calcio",
       "league": "Serie A",
@@ -102,7 +89,6 @@
       "shortName": "UDI"
     },
     {
-      "id": "999581a5-c42f-44af-8662-4a532bac0883",
       "name": "유벤투스",
       "nameEng": "Juventus FC",
       "league": "Serie A",
@@ -110,7 +96,6 @@
       "shortName": "JUV"
     },
     {
-      "id": "68dfe46f-0c0f-4ebc-ae5d-b60380d3c915",
       "name": "인테르",
       "nameEng": "Inter Milan",
       "league": "Serie A",
@@ -118,7 +103,6 @@
       "shortName": "INT"
     },
     {
-      "id": "0690e489-8a8a-4fa3-8764-92bbafd30d7c",
       "name": "제노아",
       "nameEng": "Genoa CFC",
       "league": "Serie A",
@@ -126,7 +110,6 @@
       "shortName": "GEN"
     },
     {
-      "id": "b12bebd2-4f52-40b1-a614-0feef2175ba2",
       "name": "칼리아리",
       "nameEng": "Cagliari Calcio",
       "league": "Serie A",
@@ -134,7 +117,6 @@
       "shortName": "CAG"
     },
     {
-      "id": "513d1479-53f4-4dc9-af1e-a7dd854f073a",
       "name": "코모",
       "nameEng": "Como 1907",
       "league": "Serie A",
@@ -142,7 +124,6 @@
       "shortName": "COMO"
     },
     {
-      "id": "fb22085f-d00d-4fad-8828-8b747f3ac934",
       "name": "토리노",
       "nameEng": "Torino FC",
       "league": "Serie A",
@@ -150,7 +131,6 @@
       "shortName": "TOR"
     },
     {
-      "id": "88dd1763-da75-4254-889d-a0957f444899",
       "name": "파르마",
       "nameEng": "Parma Calcio 1913",
       "league": "Serie A",
@@ -158,7 +138,6 @@
       "shortName": "PAR"
     },
     {
-      "id": "fe17288a-bcc2-423f-b9b7-a3c7a366b876",
       "name": "피오렌티나",
       "nameEng": "ACF Fiorentina",
       "league": "Serie A",

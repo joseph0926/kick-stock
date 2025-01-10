@@ -1,34 +1,29 @@
 [
   {
-    "id": "228619cd-c399-4a1e-9624-8f4d1d47e94f",
     "name": "분데스리가",
     "nameShort": "bundes",
     "nameEng": "Bundesliga",
     "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ndy1qbqf50qc01tj1mcf"
   },
   {
-    "id": "fb192207-b743-4b0f-ba4b-978676c74058",
     "name": "프리미어리그",
     "nameShort": "epl",
     "nameEng": "English Premier League",
     "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/lo7dtlnlrcydv8wusfy2"
   },
   {
-    "id": "bb519bdd-db25-4ebc-9fce-f78d61696040",
     "name": "라리가",
     "nameShort": "laliga",
     "nameEng": "La Liga",
     "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/jvzcdoq15dsqwpexvwu4"
   },
   {
-    "id": "e3c66299-ea02-4ded-ab2f-04cb1cea5db5",
     "name": "리그앙",
     "nameShort": "ligue",
     "nameEng": "Ligue 1",
     "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/hzfdphhxgylziyyeefqs"
   },
   {
-    "id": "e585cfeb-9dd5-420e-b9ce-621a16285047",
     "name": "세리에 A",
     "nameShort": "serie",
     "nameEng": "Serie A",

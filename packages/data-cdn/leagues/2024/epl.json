@@ -1,12 +1,10 @@
 {
-  "id": "fb192207-b743-4b0f-ba4b-978676c74058",
   "name": "프리미어리그",
   "nameEng": "English Premier League",
   "uniqueName": "epl",
   "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/lo7dtlnlrcydv8wusfy2",
   "clubs": [
     {
-      "id": "59940ec0-311d-45a0-80c0-0acbdb6b21b5",
       "name": "노팅엄",
       "nameEng": "Nottingham Forest",
       "league": "Premier League",
@@ -14,7 +12,6 @@
       "shortName": "NOT"
     },
     {
-      "id": "7132aeaa-4c06-499a-8cff-e644512acaaa",
       "name": "뉴캐슬",
       "nameEng": "Newcastle United",
       "league": "Premier League",
@@ -22,7 +19,6 @@
       "shortName": "NEW"
     },
     {
-      "id": "28810ab2-37ff-4791-ad13-6e1083620f31",
       "name": "레스터",
       "nameEng": "Leicester City",
       "league": "Premier League",
@@ -30,7 +26,6 @@
       "shortName": "LEI"
     },
     {
-      "id": "285d2f6a-d817-4ac6-9392-b6b003739728",
       "name": "리버풀",
       "nameEng": "Liverpool FC",
       "league": "Premier League",
@@ -38,7 +33,6 @@
       "shortName": "LIV"
     },
     {
-      "id": "e5dff2ca-260a-4406-9763-5f279e415de7",
       "name": "맨시티",
       "nameEng": "Manchester City",
       "league": "Premier League",
@@ -46,7 +40,6 @@
       "shortName": "MCI"
     },
     {
-      "id": "4b8aff16-e4bf-448d-84cc-ae6bdfef5e66",
       "name": "맨유",
       "nameEng": "Manchester United",
       "league": "Premier League",
@@ -54,7 +47,6 @@
       "shortName": "MUN"
     },
     {
-      "id": "dcccf588-2081-4e14-ac64-e1d56067f0e6",
       "name": "본머스",
       "nameEng": "AFC Bournemouth",
       "league": "Premier League",
@@ -62,7 +54,6 @@
       "shortName": "BOU"
     },
     {
-      "id": "4217a5f6-b3da-4d13-bd49-5ec52b84b847",
       "name": "브라이튼",
       "nameEng": "Brighton & Hove Albion",
       "league": "Premier League",
@@ -70,7 +61,6 @@
       "shortName": "BHA"
     },
     {
-      "id": "24799e92-38a1-4cf9-9622-d82f5b9dea52",
       "name": "브렌트포드",
       "nameEng": "Brentford FC",
       "league": "Premier League",
@@ -78,7 +68,6 @@
       "shortName": "BRE"
     },
     {
-      "id": "48e9d5f6-6508-47e2-b139-cec8c303e263",
       "name": "사우스햄튼",
       "nameEng": "Southampton FC",
       "league": "Premier League",
@@ -86,7 +75,6 @@
       "shortName": "SOU"
     },
     {
-      "id": "9a5d8800-555b-46b3-9a4d-1626e26e834a",
       "name": "아스날",
       "nameEng": "Arsenal FC",
       "league": "Premier League",
@@ -94,7 +82,6 @@
       "shortName": "ARS"
     },
     {
-      "id": "5ef410e1-b8b5-44d2-860a-5ba80e111e51",
       "name": "아스톤 빌라",
       "nameEng": "Aston Villa",
       "league": "Premier League",
@@ -102,7 +89,6 @@
       "shortName": "AVL"
     },
     {
-      "id": "331a69ba-586d-4cf5-9d9c-a8688d01704f",
       "name": "에버튼",
       "nameEng": "Everton FC",
       "league": "Premier League",
@@ -110,7 +96,6 @@
       "shortName": "EVE"
     },
     {
-      "id": "673c9d38-4731-4980-8e98-448a6dc13534",
       "name": "울버햄튼",
       "nameEng": "Wolverhampton Wanderers",
       "league": "Premier League",
@@ -118,7 +103,6 @@
       "shortName": "WOL"
     },
     {
-      "id": "1be3b739-e1ca-49f0-9962-4575c456c152",
       "name": "웨스트햄",
       "nameEng": "West Ham United",
       "league": "Premier League",
@@ -126,7 +110,6 @@
       "shortName": "WHU"
     },
     {
-      "id": "b045cee9-9a12-4ae7-ba6a-e8a5be5b8ee8",
       "name": "입스위치",
       "nameEng": "Ipswich Town",
       "league": "Premier League",
@@ -134,7 +117,6 @@
       "shortName": "IPS"
     },
     {
-      "id": "78cc39a6-78f2-4b82-a302-50865295f52b",
       "name": "첼시",
       "nameEng": "Chelsea FC",
       "league": "Premier League",
@@ -142,7 +124,6 @@
       "shortName": "CHE"
     },
     {
-      "id": "211c90de-91ec-40ef-89f2-a2649d982ffb",
       "name": "토트넘",
       "nameEng": "Tottenham Hotspur",
       "league": "Premier League",
@@ -150,7 +131,6 @@
       "shortName": "TOT"
     },
     {
-      "id": "8ce044da-43e8-4574-8145-484779120921",
       "name": "팰리스",
       "nameEng": "Crystal Palace",
       "league": "Premier League",
@@ -158,7 +138,6 @@
       "shortName": "CRY"
     },
     {
-      "id": "38916c7e-2d5a-4130-9033-3714e0b47321",
       "name": "풀럼",
       "nameEng": "Fulham FC",
       "league": "Premier League",

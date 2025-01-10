@@ -1,12 +1,10 @@
 {
-  "id": "bb519bdd-db25-4ebc-9fce-f78d61696040",
   "name": "라리가",
   "nameEng": "La Liga",
   "uniqueName": "laliga",
   "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/jvzcdoq15dsqwpexvwu4",
   "clubs": [
     {
-      "id": "ca3308cc-7181-4384-bd39-b619f49379da",
       "name": "라스팔마스",
       "nameEng": "UD Las Palmas",
       "league": "La Liga",
@@ -14,7 +12,6 @@
       "shortName": "LPA"
     },
     {
-      "id": "1f46c792-cc59-43b3-8d49-c7077dcd90aa",
       "name": "라요",
       "nameEng": "Rayo Vallecano",
       "league": "La Liga",
@@ -22,7 +19,6 @@
       "shortName": "RYO"
     },
     {
-      "id": "91136a20-e11c-42c0-992d-bb9d6084a7e1",
       "name": "레가네스",
       "nameEng": "CD Leganés",
       "league": "La Liga",
@@ -30,7 +26,6 @@
       "shortName": "LEG"
     },
     {
-      "id": "be1c88f9-5cf9-4555-b99b-937793d6c5f8",
       "name": "레알 마드리드",
       "nameEng": "Real Madrid",
       "league": "La Liga",
@@ -38,7 +33,6 @@
       "shortName": "RMA"
     },
     {
-      "id": "99a4765c-aa92-479a-a4b8-a01d3a26b086",
       "name": "마요르카",
       "nameEng": "RCD Mallorca",
       "league": "La Liga",
@@ -46,7 +40,6 @@
       "shortName": "MLL"
     },
     {
-      "id": "48ca8716-163a-4626-9654-d2c05824c195",
       "name": "바르셀로나",
       "nameEng": "FC Barcelona",
       "league": "La Liga",
@@ -54,7 +47,6 @@
       "shortName": "BAR"
     },
     {
-      "id": "b6ee165b-87ab-4d37-9f3f-eb4defdfe4f2",
       "name": "바야돌리드",
       "nameEng": "Real Valladolid CF",
       "league": "La Liga",
@@ -62,7 +54,6 @@
       "shortName": "VLD"
     },
     {
-      "id": "c77fde5b-0bc5-49d9-aa52-29f1ab16d4a6",
       "name": "발렌시아",
       "nameEng": "Valencia CF",
       "league": "La Liga",
@@ -70,7 +61,6 @@
       "shortName": "VAL"
     },
     {
-      "id": "3b49832c-7046-4796-86f9-cdb07ac55a9e",
       "name": "베티스",
       "nameEng": "Real Betis Balompié",
       "league": "La Liga",
@@ -78,7 +68,6 @@
       "shortName": "BET"
     },
     {
-      "id": "0c5669eb-9f2a-4817-97c6-c229cb151e7a",
       "name": "비야레알",
       "nameEng": "Villarreal CF",
       "league": "La Liga",
@@ -86,7 +75,6 @@
       "shortName": "VIL"
     },
     {
-      "id": "92a5ade8-bb69-426e-93e5-0a5c30ecae85",
       "name": "세비야",
       "nameEng": "Sevilla FC",
       "league": "La Liga",
@@ -94,7 +82,6 @@
       "shortName": "SEV"
     },
     {
-      "id": "ef9cca7f-6373-4433-876a-67801b80e458",
       "name": "셀타 비고",
       "nameEng": "Celta de Vigo",
       "league": "La Liga",
@@ -102,7 +89,6 @@
       "shortName": "CEL"
     },
     {
-      "id": "d0839f03-2d55-477e-92ed-1d25de86beff",
       "name": "소시에다드",
       "nameEng": "Real Sociedad",
       "league": "La Liga",
@@ -110,7 +96,6 @@
       "shortName": "SOC"
     },
     {
-      "id": "06d4b9ce-b0b6-4d22-a773-ca580b59536d",
       "name": "아틀레티코",
       "nameEng": "Atlético de Madrid",
       "league": "La Liga",
@@ -118,7 +103,6 @@
       "shortName": "ATM"
     },
     {
-      "id": "aab89b37-64cd-4b97-bb8e-6628245ed553",
       "name": "아틀레틱",
       "nameEng": "Athletic Bilbao",
       "league": "La Liga",
@@ -126,7 +110,6 @@
       "shortName": "ATH"
     },
     {
-      "id": "b012f915-388e-4130-b9d4-f960fc5b6377",
       "name": "알라베스",
       "nameEng": "Deportivo Alavés",
       "league": "La Liga",
@@ -134,7 +117,6 @@
       "shortName": "ALA"
     },
     {
-      "id": "446a7bdc-0923-4efd-90a6-93b7cd1d28f1",
       "name": "에스파뇰",
       "nameEng": "RCD Espanyol Barcelona",
       "league": "La Liga",
@@ -142,7 +124,6 @@
       "shortName": "ESP"
     },
     {
-      "id": "073c85e2-25f6-4ed2-87d5-729e30566cd1",
       "name": "오사수나",
       "nameEng": "CA Osasuna",
       "league": "La Liga",
@@ -150,7 +131,6 @@
       "shortName": "OSA"
     },
     {
-      "id": "77472e80-cf6f-460f-8046-3453c47b7696",
       "name": "지로나",
       "nameEng": "Girona FC",
       "league": "La Liga",
@@ -158,7 +138,6 @@
       "shortName": "GIR"
     },
     {
-      "id": "aa44fa36-8b37-4237-b801-3d8a5105c705",
       "name": "헤타페",
       "nameEng": "Getafe CF",
       "league": "La Liga",

@@ -1,12 +1,10 @@
 {
-  "id": "e3c66299-ea02-4ded-ab2f-04cb1cea5db5",
   "name": "리그앙",
   "nameEng": "Ligue 1",
   "uniqueName": "ligue",
   "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/hzfdphhxgylziyyeefqs",
   "clubs": [
     {
-      "id": "2ce201ea-bff8-498d-9605-8cb648600be9",
       "name": "낭트",
       "nameEng": "Nantes",
       "league": "Ligue 1",
@@ -14,7 +12,6 @@
       "shortName": "NAN"
     },
     {
-      "id": "76c19e22-1f25-4100-9be2-60299fc86460",
       "name": "니스",
       "nameEng": "Nice",
       "league": "Ligue 1",
@@ -22,7 +19,6 @@
       "shortName": "NIC"
     },
     {
-      "id": "5bd87f49-c341-4dea-be1b-ae9f8d1145b6",
       "name": "랑스",
       "nameEng": "Lens",
       "league": "Ligue 1",
@@ -30,7 +26,6 @@
       "shortName": "LEN"
     },
     {
-      "id": "c66c15ee-5732-430c-873d-ca63efcdb54c",
       "name": "렌",
       "nameEng": "Rennes",
       "league": "Ligue 1",
@@ -38,7 +33,6 @@
       "shortName": "REN"
     },
     {
-      "id": "f0f72c50-af45-4231-8c88-a375d9b75ec3",
       "name": "르아브르",
       "nameEng": "Le Havre",
       "league": "Ligue 1",
@@ -46,7 +40,6 @@
       "shortName": "LEH"
     },
     {
-      "id": "bb0961b9-ea2f-4ac3-ae1f-554ae7f4a4cf",
       "name": "리옹",
       "nameEng": "Lyon",
       "league": "Ligue 1",
@@ -54,7 +47,6 @@
       "shortName": "LYO"
     },
     {
-      "id": "3512a7ed-d34f-44c2-ba1c-66a78bfd4559",
       "name": "릴",
       "nameEng": "Lille",
       "league": "Ligue 1",
@@ -62,7 +54,6 @@
       "shortName": "LIL"
     },
     {
-      "id": "957848fb-c618-44c0-bdf8-01665e449049",
       "name": "마르세유",
       "nameEng": "Marseille",
       "league": "Ligue 1",
@@ -70,7 +61,6 @@
       "shortName": "MAR"
     },
     {
-      "id": "7f81a7b5-f3e6-42ed-9c03-0d55269774f1",
       "name": "모나코",
       "nameEng": "Monaco",
       "league": "Ligue 1",
@@ -78,7 +68,6 @@
       "shortName": "MON"
     },
     {
-      "id": "9c4d5c59-4249-4730-9b05-d29a4b5c2ef3",
       "name": "몽펠리에",
       "nameEng": "Montpellier",
       "league": "Ligue 1",
@@ -86,7 +75,6 @@
       "shortName": "MONP"
     },
     {
-      "id": "ffc3ed7c-7774-4184-8cac-f4ac3dc90500",
       "name": "브레스트",
       "nameEng": "Brest",
       "league": "Ligue 1",
@@ -94,7 +82,6 @@
       "shortName": "BRE"
     },
     {
-      "id": "6ddc99c2-f439-42fc-a0ba-5fc7ca485410",
       "name": "생테티엔",
       "nameEng": "Saint-Étienne",
       "league": "Ligue 1",
@@ -102,7 +89,6 @@
       "shortName": "STE"
     },
     {
-      "id": "89c8356e-6f9c-4f10-8d83-4a5551b65f24",
       "name": "스타드 랭스",
       "nameEng": "Stade de Reims",
       "league": "Ligue 1",
@@ -110,7 +96,6 @@
       "shortName": "REI"
     },
     {
-      "id": "15419e15-86b4-47f6-a669-7dbf2ee910b4",
       "name": "스트라스부르",
       "nameEng": "Strasbourg",
       "league": "Ligue 1",
@@ -118,7 +103,6 @@
       "shortName": "STR"
     },
     {
-      "id": "88e501f8-8782-4237-9ed2-73e85f66e9f4",
       "name": "앙제",
       "nameEng": "Angers",
       "league": "Ligue 1",
@@ -126,7 +110,6 @@
       "shortName": "ANG"
     },
     {
-      "id": "c322c081-efe4-4e7b-832c-5b37e4488e47",
       "name": "오세르",
       "nameEng": "Auxerre",
       "league": "Ligue 1",
@@ -134,7 +117,6 @@
       "shortName": "AUX"
     },
     {
-      "id": "e5e71082-8fa8-445f-ab81-5338ef6d4dee",
       "name": "툴루즈",
       "nameEng": "Toulouse",
       "league": "Ligue 1",
@@ -142,7 +124,6 @@
       "shortName": "TOU"
     },
     {
-      "id": "49a3a881-0bc2-4275-bdc9-0f71410f6a33",
       "name": "파리",
       "nameEng": "Paris Saint-Germain",
       "league": "Ligue 1",
@@ -150,7 +131,6 @@
       "shortName": "PSG"
     },
     {
-      "id": "3e80d8da-f43e-4673-8008-7191d861a848",
       "name": "발렌시엔",
       "nameEng": "Valenciennes",
       "league": "Ligue 1",
@@ -158,7 +138,6 @@
       "shortName": "VAL"
     },
     {
-      "id": "d34865f5-4fb3-4f63-884a-fd850c14dd8b",
       "name": "메스",
       "nameEng": "Metz",
       "league": "Ligue 1",
