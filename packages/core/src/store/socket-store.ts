@@ -64,43 +64,10 @@ const createSocketStore = () => {
     emitChange();
   };
 
-  const setupSocket = () => {
-    if (state.socket?.connected) return;
-
-    const socket = io(SOCKET_URL, {
-      withCredentials: true,
-      transports: ["websocket"],
-      path: "/socket.io",
-    });
-
-    socket.on("connect", () => {
-      console.log("[client]: Socket.IO 연결 성공");
-      state.socket = socket;
-      state.isConnected = true;
-      emitChange();
-    });
-
-    socket.on("disconnect", () => {
-      state.isConnected = false;
-      emitChange();
-    });
-
-    socket.on("connect_error", (err) => {
-      console.error("[client]: Socket.IO 연결 실패:", err);
-      state.isConnected = false;
-      emitChange();
-      notifyEventSubscribers("error", "Socket.IO 연결에 실패했습니다.");
-    });
-
-    setupEventHandlers(socket);
-    state.socket = socket;
-  };
-
   const setupEventHandlers = (socket: Socket) => {
     socket.on(
       "leagueValueHistory",
       (data: { leagueId: string; values: LeagueValue[] }) => {
-        console.log("[Socket] Received history:", data);
         const newMap = new Map(state.valueMap.league);
         newMap.set(data.leagueId, data.values);
 
@@ -120,8 +87,6 @@ const createSocketStore = () => {
     socket.on(
       "leagueValueUpdated",
       (data: { leagueId: string; value: LeagueValue }) => {
-        console.log("[Socket] Received update:", data);
-
         const currentValues = state.valueMap.league.get(data.leagueId) ?? [];
         const updatedValues = [...currentValues, data.value].slice(-50);
 
@@ -140,10 +105,6 @@ const createSocketStore = () => {
         notifyEventSubscribers("leagueValueUpdated", data);
       },
     );
-
-    socket.onAny((eventName, ...args) => {
-      console.log(`[Socket Debug] Event received: ${eventName}`, args);
-    });
 
     socket.on("error", (message: string) => {
       notifyEventSubscribers("error", message);

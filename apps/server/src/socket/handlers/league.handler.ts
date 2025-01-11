@@ -34,6 +34,44 @@ export const leagueHandler = async () => {
       "WITHSCORES"
     );
 
+    if (rawData.length === 0) {
+      const historicalData = await prisma.leagueRealTimeValue.findMany({
+        where: { leagueId },
+        orderBy: { timestamp: "desc" },
+        take: MAX_HISTORY_SIZE,
+      });
+
+      if (historicalData.length > 0) {
+        const pipeline = redis.pipeline();
+
+        for (const record of historicalData) {
+          const valueData: LeagueValueData = {
+            leagueId,
+            KRW: record.KRW,
+            timestamp: record.timestamp,
+            changeRate: record.changeRate,
+          };
+          pipeline.zadd(
+            key,
+            record.timestamp.getTime(),
+            JSON.stringify(valueData)
+          );
+        }
+
+        await pipeline.exec();
+        await redis.expire(key, 86400);
+
+        return historicalData
+          .map((record) => ({
+            leagueId,
+            KRW: record.KRW,
+            timestamp: record.timestamp,
+            changeRate: record.changeRate,
+          }))
+          .reverse();
+      }
+    }
+
     const values: LeagueValueData[] = [];
     for (let i = 0; i < rawData.length; i += 2) {
       const data = JSON.parse(rawData[i]);
@@ -64,6 +102,7 @@ export const leagueHandler = async () => {
           leagueId: value.leagueId,
           KRW: value.KRW,
           timestamp: value.timestamp,
+          changeRate: value.changeRate,
         })),
       });
 
@@ -76,28 +115,24 @@ export const leagueHandler = async () => {
   const updateValue = async (
     leagueId: string,
     newValue: number,
-    previousValue?: number
+    currentChangeRate?: number
   ): Promise<LeagueValueData | null> => {
     try {
       const timestamp = new Date();
-      const values = await getCachedValues(leagueId);
-      const lastValue = values[values.length - 1]?.KRW ?? previousValue;
-
-      const changeRate = lastValue
-        ? calculateChangeRate(lastValue, newValue)
-        : 0;
 
       const valueData: LeagueValueData = {
         leagueId,
         KRW: newValue,
         timestamp,
-        changeRate,
+        changeRate: currentChangeRate ?? 0,
       };
 
       const key = getRedisKey(leagueId);
 
-      await redis.zadd(key, timestamp.getTime(), JSON.stringify(valueData));
-      await redis.zremrangebyrank(key, 0, -MAX_HISTORY_SIZE - 1);
+      const pipeline = redis.pipeline();
+      pipeline.zadd(key, timestamp.getTime(), JSON.stringify(valueData));
+      pipeline.zremrangebyrank(key, 0, -MAX_HISTORY_SIZE - 1);
+      await pipeline.exec();
 
       addToBuffer(leagueId, valueData);
 
@@ -112,14 +147,23 @@ export const leagueHandler = async () => {
     leagueId: string,
     currentValue: number
   ): Promise<LeagueValueData | null> => {
+    if (!currentValue || isNaN(currentValue)) {
+      console.error(
+        `[simulateValueChange Error] Invalid current value for ${leagueId}`
+      );
+      return null;
+    }
+
     const minChange = -0.5;
     const maxChange = 0.5;
     const changeRate = minChange + Math.random() * (maxChange - minChange);
     const newValue = Math.round(currentValue * (1 + changeRate / 100));
 
-    if (newValue === currentValue) return null;
+    if (newValue === currentValue || newValue <= 0) {
+      return null;
+    }
 
-    return updateValue(leagueId, newValue, currentValue);
+    return updateValue(leagueId, newValue, changeRate);
   };
 
   const flushAllBuffers = async () => {
@@ -143,6 +187,7 @@ export const leagueHandler = async () => {
     updateValue,
     simulateValueChange,
     flushAllBuffers,
+    flushBufferToDB,
     checkRedisConnection,
   };
 };

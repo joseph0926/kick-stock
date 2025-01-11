@@ -51,8 +51,9 @@ model LeagueRealTimeValue {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  KRW       Float
-  timestamp DateTime
+  KRW        Float
+  timestamp  DateTime
+  changeRate Float
 
   leagueId String
   league   League @relation(fields: [leagueId], references: [id])

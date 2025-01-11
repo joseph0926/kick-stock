@@ -29,6 +29,16 @@ export const baseSocketHandler = async (
 
     const initializeLeagueValue = async () => {
       try {
+        const cachedValues = await valueService.getCachedValues(leagueId);
+        if (cachedValues.length > 0) {
+          const latestValue = cachedValues[cachedValues.length - 1];
+          await valueService.updateValue(leagueId, latestValue.KRW);
+          fastify.log.info(
+            `[Simulation Init] Set cached value for ${leagueId}: ${latestValue.KRW}`
+          );
+          return;
+        }
+
         const initialValue = await prisma.leagueValue.findFirst({
           where: { leagueId },
           orderBy: { createdAt: "desc" },
@@ -53,61 +63,57 @@ export const baseSocketHandler = async (
       }
     };
 
-    initializeLeagueValue().then(() => {
-      const interval = setInterval(async () => {
-        fastify.log.info(
-          `[Simulation Tick] Running simulation for League ID: ${leagueId}`
+    const runSimulation = async () => {
+      const { isConnected } = valueService.checkRedisConnection();
+      if (!isConnected) {
+        fastify.log.error(
+          `[Simulation Error] Redis connection lost for ${leagueId}`
+        );
+        stopSimulation(leagueId);
+        return;
+      }
+
+      try {
+        const values = await valueService.getCachedValues(leagueId);
+        const currentValue = values[values.length - 1]?.KRW;
+
+        if (!currentValue) {
+          fastify.log.warn(
+            `[Simulation Warning] No current value found for ${leagueId}`
+          );
+          return;
+        }
+
+        const updatedValue = await valueService.simulateValueChange(
+          leagueId,
+          currentValue
         );
 
-        try {
-          const values = await valueService.getCachedValues(leagueId);
-          fastify.log.info(
-            `[Simulation Data] Retrieved values for ${leagueId}:`,
-            values
-          );
-
-          const currentValue = values[values.length - 1]?.KRW;
-          fastify.log.info(
-            `[Simulation Current] Current value for ${leagueId}: ${currentValue}`
-          );
-
-          if (!currentValue) {
-            fastify.log.warn(
-              `[Simulation Warning] No current value found for ${leagueId}`
-            );
-            return;
-          }
-
-          const updatedValue = await valueService.simulateValueChange(
-            leagueId,
-            currentValue
-          );
-
-          fastify.log.info(
-            `[Simulation Update] New value for ${leagueId}:`,
-            updatedValue
-          );
-
-          if (updatedValue) {
-            const subscribers = activeSubscriptions.get(leagueId);
-            if (subscribers?.size) {
-              subscribers.forEach((socketId) => {
-                io.to(socketId).emit("leagueValueUpdated", {
-                  leagueId,
-                  value: updatedValue,
-                });
+        if (updatedValue) {
+          const subscribers = activeSubscriptions.get(leagueId);
+          if (subscribers?.size) {
+            subscribers.forEach((socketId) => {
+              io.to(socketId).emit("leagueValueUpdated", {
+                leagueId,
+                value: updatedValue,
               });
-              fastify.log.info(
-                `[Simulation Broadcast] Value updated broadcasted to ${subscribers.size} subscribers`
-              );
-            }
+            });
           }
-        } catch (error) {
-          fastify.log.error(`[Simulation Error] League ID ${leagueId}:`, error);
-          stopSimulation(leagueId);
         }
-      }, 10000);
+      } catch (error) {
+        fastify.log.error(`[Simulation Error] League ID ${leagueId}:`, error);
+        stopSimulation(leagueId);
+      }
+    };
 
+    initializeLeagueValue().then(async () => {
+      fastify.log.info(
+        `[Simulation Tick] Running simulation for League ID: ${leagueId}`
+      );
+
+      await runSimulation();
+
+      const interval = setInterval(runSimulation, 10000);
       simulationIntervals.set(leagueId, interval);
       fastify.log.info(`[Simulation Started] League ID: ${leagueId}`);
     });
@@ -136,6 +142,9 @@ export const baseSocketHandler = async (
       if (subscribers.size === 0) {
         activeSubscriptions.delete(leagueId);
         stopSimulation(leagueId);
+        valueService.flushBufferToDB(leagueId).catch((error) => {
+          fastify.log.error(`[Buffer Flush Error] ${leagueId}:`, error);
+        });
       }
     }
   };
@@ -144,13 +153,30 @@ export const baseSocketHandler = async (
     fastify.log.info(`[Connection] Client connected: ${socket.id}`);
 
     socket.on("subscribeLeagueValue", async (leagueId: string) => {
+      if (!leagueId || typeof leagueId !== "string") {
+        socket.emit("error", "유효하지 않은 리그 ID입니다.");
+        return;
+      }
+
       try {
+        const initialValue = await prisma.leagueValue.findFirst({
+          where: { leagueId },
+          orderBy: { createdAt: "desc" },
+        });
+
+        if (initialValue) {
+          await valueService.updateValue(leagueId, initialValue.KRW, 0);
+        }
+
         const values = await valueService.getCachedValues(leagueId);
         socket.emit("leagueValueHistory", { leagueId, values });
 
         addSubscription(leagueId, socket.id);
 
         if (activeSubscriptions.get(leagueId)?.size === 1) {
+          if (values.length === 0 && initialValue) {
+            await valueService.updateValue(leagueId, initialValue.KRW, 0);
+          }
           startSimulation(leagueId);
         }
       } catch (error) {

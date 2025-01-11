@@ -12,7 +12,8 @@
     "start:prod": "tsx ./src/index.ts",
     "clean": "rimraf node_modules dist",
     "type-check": "tsc --noEmit",
-    "db:reset": "prisma db push --force-reset",
+    "db:reset": "prisma migrate reset",
+    "db:push": "prisma db push",
     "db:gen": "prisma generate",
     "db:seed": "tsx prisma/seed.ts"
   },

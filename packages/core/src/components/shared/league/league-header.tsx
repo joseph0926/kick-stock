@@ -14,7 +14,7 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
   const { latestValue } = useLeagueValues(leagueData?.id ?? "");
 
   const changeRate = useMemo(() => {
-    if (latestValue && latestValue.changeRate) return latestValue.changeRate;
+    return latestValue?.changeRate;
   }, [latestValue]);
   const valueKRW = useMemo(() => {
     if (latestValue && latestValue.KRW) {
@@ -43,15 +43,15 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
           <span>{valueKRW ?? ""}</span>
         </div>
         <div className="flex items-center gap-2">
-          직전 대비(실제: 1분, 테스트: 6초):
-          {changeRate ? (
+          직전 대비(실제: 1분, 테스트: 10초):
+          {typeof changeRate === "number" ? (
             <span
               className={cn(
                 "font-semibold",
-                changeRate < 0 ? "text-red-500" : "text-green-500",
+                changeRate <= 0 ? "text-red-500" : "text-green-500",
               )}
             >
-              {changeRate.toFixed(2)}%
+              {changeRate?.toFixed(2)}%
             </span>
           ) : (
             <Loader2 className="size-4 animate-spin" />
