@@ -14,15 +14,6 @@ export const leagueHandler = async () => {
 
   const getRedisKey = (leagueId: string) => `${CACHE_KEY_PREFIX}:${leagueId}`;
 
-  const calculateChangeRate = (
-    previousValue: number,
-    currentValue: number
-  ): number => {
-    return Number(
-      (((currentValue - previousValue) / previousValue) * 100).toFixed(2)
-    );
-  };
-
   const getCachedValues = async (
     leagueId: string
   ): Promise<LeagueValueData[]> => {
@@ -154,8 +145,8 @@ export const leagueHandler = async () => {
       return null;
     }
 
-    const minChange = -0.5;
-    const maxChange = 0.5;
+    const minChange = -0.25;
+    const maxChange = 0.25;
     const changeRate = minChange + Math.random() * (maxChange - minChange);
     const newValue = Math.round(currentValue * (1 + changeRate / 100));
 

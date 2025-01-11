@@ -32,11 +32,8 @@ export const baseSocketHandler = async (
         const cachedValues = await valueService.getCachedValues(leagueId);
         if (cachedValues.length > 0) {
           const latestValue = cachedValues[cachedValues.length - 1];
-          await valueService.updateValue(leagueId, latestValue.KRW);
-          fastify.log.info(
-            `[Simulation Init] Set cached value for ${leagueId}: ${latestValue.KRW}`
-          );
-          return;
+
+          return latestValue;
         }
 
         const initialValue = await prisma.leagueValue.findFirst({
@@ -48,26 +45,21 @@ export const baseSocketHandler = async (
           fastify.log.error(
             `[Simulation Error] No initial value found in DB for ${leagueId}`
           );
-          return;
+          return null;
         }
 
         await valueService.updateValue(leagueId, initialValue.KRW);
-        fastify.log.info(
-          `[Simulation Init] Set initial value for ${leagueId}: ${initialValue.KRW}`
-        );
+        return { KRW: initialValue.KRW };
       } catch (error) {
         fastify.log.error(
           `[Simulation Init Error] Failed to set initial value for ${leagueId}:`,
           error
         );
+        return null;
       }
     };
 
     const runSimulation = async () => {
-      fastify.log.info(
-        `[Simulation Tick] Running simulation for League ID: ${leagueId}`
-      );
-
       const { isConnected } = valueService.checkRedisConnection();
       if (!isConnected) {
         fastify.log.error(
@@ -110,10 +102,14 @@ export const baseSocketHandler = async (
       }
     };
 
-    initializeLeagueValue().then(() => {
-      const interval = setInterval(runSimulation, 10000);
-      simulationIntervals.set(leagueId, interval);
-      fastify.log.info(`[Simulation Started] League ID: ${leagueId}`);
+    initializeLeagueValue().then(async (initialValue) => {
+      if (initialValue) {
+        await runSimulation();
+
+        const interval = setInterval(runSimulation, 10000);
+        simulationIntervals.set(leagueId, interval);
+        fastify.log.info(`[Simulation Started] League ID: ${leagueId}`);
+      }
     });
   };
 
