@@ -2,29 +2,25 @@ import React, { useMemo } from "react";
 import { Skeleton } from "@kickstock/ui/src/components/ui/skeleton";
 import { cn } from "@kickstock/ui/src/lib/utils";
 import { Loader2 } from "lucide-react";
-import { useSocketValue } from "../../../hooks/use-socket-value";
 import { formatCurrency } from "@kickstock/shared/src/lib/format-currency";
 import { LeagueBasicType } from "@kickstock/shared/src/types/prisma/league.type";
+import { useLeagueValues } from "../../../hooks/use-league-value";
 
 type LeagueHeaderProps = {
   leagueData?: LeagueBasicType | null;
 };
 
 export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
-  const { value } = useSocketValue({
-    type: "league",
-    id: leagueData?.id ?? "",
-    year: "2023",
-  });
+  const { latestValue } = useLeagueValues(leagueData?.id ?? "");
 
   const changeRate = useMemo(() => {
-    if (value && value.changeRate) return value.changeRate;
-  }, [value]);
+    if (latestValue && latestValue.changeRate) return latestValue.changeRate;
+  }, [latestValue]);
   const valueKRW = useMemo(() => {
-    if (value && value.KRW) {
-      return formatCurrency(value.KRW, "KRW");
+    if (latestValue && latestValue.KRW) {
+      return formatCurrency(latestValue.KRW, "KRW");
     }
-  }, [value]);
+  }, [latestValue]);
 
   return (
     <div className="flex items-center justify-start gap-4">

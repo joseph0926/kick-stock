@@ -4,7 +4,7 @@ import fastifyCors from "@fastify/cors";
 import fastifyRateLimit from "@fastify/rate-limit";
 import { healthRoute, leagueRoute } from "./routes/index.js";
 import { isProd } from "@kickstock/shared/src/lib/env-util.js";
-import { StockSocketServer } from "./socket/server.js";
+import { initializeSocketServer } from "./socket/server.js";
 
 const PORT = parseInt(process.env.PORT || "4000") || 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -97,13 +97,16 @@ fastify.register(leagueRoute, { prefix: `${API_PREFIX}/league` });
 
 const start = async () => {
   try {
+    const { io, cleanup } = await initializeSocketServer(fastify);
+    fastify.addHook("onClose", async () => {
+      await cleanup();
+    });
     const address = await fastify.listen({
       port: PORT,
       host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
     });
     fastify.log.info(`서버가 실행되었습니다: ${address}`);
-    const socket = new StockSocketServer(fastify);
-    fastify.io = socket.getIO();
+    fastify.io = io;
     if (fastify.io) {
       fastify.log.info(`[server]: Socket.IO 서버가 실행되었습니다`);
     }

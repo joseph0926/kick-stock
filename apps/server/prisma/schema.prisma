@@ -25,14 +25,16 @@ model League {
   uniqueName LeagueUniqueName @unique
   img        String
 
-  values LeagueValue[]
-  clubs  Club[]
+  values         LeagueValue[]
+  realTimeValues LeagueRealTimeValue[]
+  clubs          Club[]
 
   @@map("leagues")
 }
 
 model LeagueValue {
-  id String @id @default(uuid())
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
 
   year       String
   KRW        Float
@@ -43,6 +45,20 @@ model LeagueValue {
 
   @@unique([leagueId, year])
   @@map("league_values")
+}
+
+model LeagueRealTimeValue {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  KRW       Float
+  timestamp DateTime
+
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id])
+
+  @@index([leagueId, timestamp])
+  @@map("league_realtime_values")
 }
 
 model Club {

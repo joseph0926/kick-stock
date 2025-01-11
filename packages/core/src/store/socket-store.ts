@@ -1,209 +1,242 @@
-import { io, Socket } from "socket.io-client";
+import { type Socket, io } from "socket.io-client";
 import {
   ClubValue,
   ValuesType as LeagueValue,
 } from "@kickstock/shared/src/types/prisma.type";
 
-interface SocketStore {
+export type SocketState = {
   socket: Socket | null;
   isConnected: boolean;
   valueMap: {
     club: Map<string, ClubValue>;
-    league: Map<string, LeagueValue>;
+    league: Map<string, LeagueValue[]>;
   };
-}
-
-type SocketEventMap = {
-  clubValueResponse: (data: ClubValue) => void;
-  clubValueUpdated: (data: { clubId: string; updatedValue: ClubValue }) => void;
-  leagueValueResponse: (data: LeagueValue) => void;
-  leagueValueUpdated: (data: {
-    leagueId: string;
-    updatedValue: LeagueValue;
-  }) => void;
 };
 
-class SocketStoreImpl {
-  private static instance: SocketStoreImpl;
-  private state: SocketStore;
-  private subscribers: Set<() => void>;
-  private eventSubscribers: Map<string, Set<(data: any) => void>>;
+export type SocketEventMap = {
+  leagueValueHistory: (data: {
+    leagueId: string;
+    values: LeagueValue[];
+  }) => void;
+  leagueValueUpdated: (data: { leagueId: string; value: LeagueValue }) => void;
+  error: (message: string) => void;
+};
 
-  private constructor() {
-    this.state = {
-      socket: null,
-      isConnected: false,
+const SOCKET_URL =
+  process.env.NODE_ENV === "production"
+    ? "wss://api-kick-stock.onrender.com"
+    : "http://localhost:4000";
+
+const createSocketStore = () => {
+  let state: SocketState = {
+    socket: null,
+    isConnected: false,
+    valueMap: {
+      club: new Map(),
+      league: new Map(),
+    },
+  };
+
+  const subscribers = new Set<() => void>();
+  const eventSubscribers = new Map<string, Set<(data: any) => void>>();
+
+  const emitChange = () => {
+    console.log("[Store] Notifying subscribers of state change");
+    subscribers.forEach((callback) => callback());
+  };
+
+  const notifyEventSubscribers = <K extends keyof SocketEventMap>(
+    event: K,
+    data: Parameters<SocketEventMap[K]>[0],
+  ) => {
+    eventSubscribers.get(event)?.forEach((callback) => callback(data));
+  };
+
+  const updateState = (newState: Partial<SocketState>) => {
+    state = {
+      ...state,
+      ...newState,
       valueMap: {
-        club: new Map(),
-        league: new Map(),
+        ...state.valueMap,
+        league: new Map(state.valueMap.league),
       },
     };
-    this.subscribers = new Set();
-    this.eventSubscribers = new Map();
-  }
+    emitChange();
+  };
 
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new SocketStoreImpl();
-    }
-    return this.instance;
-  }
+  const setupSocket = () => {
+    if (state.socket?.connected) return;
 
-  private getKey(id: string, year: string) {
-    return `${id}_${year}`;
-  }
-
-  private emitChange() {
-    this.subscribers.forEach((callback) => callback());
-  }
-
-  connect() {
-    if (this.state.socket?.connected) return;
-
-    const serverUrl =
-      process.env.NODE_ENV === "production"
-        ? "wss://api-kick-stock.onrender.com"
-        : "http://localhost:4000";
-
-    const socket = io(serverUrl, {
+    const socket = io(SOCKET_URL, {
       withCredentials: true,
       transports: ["websocket"],
       path: "/socket.io",
     });
 
     socket.on("connect", () => {
-      console.log(`[client]: Socket.IO 연결 성공`);
-      this.state = { ...this.state, socket, isConnected: true };
-      this.emitChange();
+      console.log("[client]: Socket.IO 연결 성공");
+      state.socket = socket;
+      state.isConnected = true;
+      emitChange();
     });
 
     socket.on("disconnect", () => {
-      this.state = { ...this.state, isConnected: false };
-      this.emitChange();
+      state.isConnected = false;
+      emitChange();
     });
 
     socket.on("connect_error", (err) => {
-      console.error("[client]: Socket.IO 연결에 실패하였습니다:", err);
-      this.state = { ...this.state, isConnected: false };
-      this.emitChange();
+      console.error("[client]: Socket.IO 연결 실패:", err);
+      state.isConnected = false;
+      emitChange();
+      notifyEventSubscribers("error", "Socket.IO 연결에 실패했습니다.");
     });
 
-    this.setupValueHandlers(socket);
-  }
+    setupEventHandlers(socket);
+    state.socket = socket;
+  };
 
-  private setupValueHandlers(socket: Socket) {
-    socket.on("clubValueResponse", (data: ClubValue) => {
-      const key = this.getKey(data.clubId, data.year);
-      this.state.valueMap.club.set(key, data);
-      this.emitChange();
-      this.notifyEventSubscribers("clubValueResponse", data);
-    });
-
+  const setupEventHandlers = (socket: Socket) => {
     socket.on(
-      "clubValueUpdated",
-      (data: { clubId: string; updatedValue: ClubValue }) => {
-        const key = this.getKey(data.clubId, data.updatedValue.year);
-        this.state.valueMap.club.set(key, data.updatedValue);
-        this.emitChange();
-        this.notifyEventSubscribers("clubValueUpdated", data);
+      "leagueValueHistory",
+      (data: { leagueId: string; values: LeagueValue[] }) => {
+        console.log("[Socket] Received history:", data);
+        const newMap = new Map(state.valueMap.league);
+        newMap.set(data.leagueId, data.values);
+
+        state = {
+          ...state,
+          valueMap: {
+            ...state.valueMap,
+            league: newMap,
+          },
+        };
+
+        emitChange();
+        notifyEventSubscribers("leagueValueHistory", data);
       },
     );
-
-    socket.on("leagueValueResponse", (data: LeagueValue) => {
-      const key = this.getKey(data.leagueId, data.year);
-      this.state.valueMap.league.set(key, data);
-      this.emitChange();
-      this.notifyEventSubscribers("leagueValueResponse", data);
-    });
 
     socket.on(
       "leagueValueUpdated",
-      (data: { leagueId: string; updatedValue: LeagueValue }) => {
-        const key = this.getKey(data.leagueId, data.updatedValue.year);
-        this.state.valueMap.league.set(key, data.updatedValue);
-        this.emitChange();
-        this.notifyEventSubscribers("leagueValueUpdated", data);
+      (data: { leagueId: string; value: LeagueValue }) => {
+        console.log("[Socket] Received update:", data);
+
+        const currentValues = state.valueMap.league.get(data.leagueId) ?? [];
+        const updatedValues = [...currentValues, data.value].slice(-50);
+
+        const newMap = new Map(state.valueMap.league);
+        newMap.set(data.leagueId, updatedValues);
+
+        state = {
+          ...state,
+          valueMap: {
+            ...state.valueMap,
+            league: newMap,
+          },
+        };
+
+        emitChange();
+        notifyEventSubscribers("leagueValueUpdated", data);
       },
     );
-  }
 
-  private notifyEventSubscribers<K extends keyof SocketEventMap>(
-    event: K,
-    data: Parameters<SocketEventMap[K]>[0],
-  ) {
-    const subscribers = this.eventSubscribers.get(event);
-    subscribers?.forEach((callback) => callback(data));
-  }
+    socket.onAny((eventName, ...args) => {
+      console.log(`[Socket Debug] Event received: ${eventName}`, args);
+    });
 
-  subscribe(callback: () => void) {
-    this.subscribers.add(callback);
-    return () => {
-      this.subscribers.delete(callback);
-    };
-  }
+    socket.on("error", (message: string) => {
+      notifyEventSubscribers("error", message);
+    });
+  };
 
-  subscribeToEvent<K extends keyof SocketEventMap>(
-    event: K,
-    callback: SocketEventMap[K],
-  ) {
-    if (!this.eventSubscribers.has(event)) {
-      this.eventSubscribers.set(event, new Set());
-    }
-    this.eventSubscribers.get(event)!.add(callback);
+  return {
+    subscribe: (callback: () => void) => {
+      subscribers.add(callback);
+      return () => {
+        subscribers.delete(callback);
+      };
+    },
 
-    return () => {
-      this.eventSubscribers.get(event)?.delete(callback);
-    };
-  }
+    subscribeToEvent: <K extends keyof SocketEventMap>(
+      event: K,
+      callback: SocketEventMap[K],
+    ) => {
+      if (!eventSubscribers.has(event)) {
+        eventSubscribers.set(event, new Set());
+      }
+      eventSubscribers.get(event)!.add(callback);
+      return () => {
+        eventSubscribers.get(event)?.delete(callback);
+      };
+    },
 
-  getValue(type: "club" | "league", id: string, year: string) {
-    const key = this.getKey(id, year);
-    return this.state.valueMap[type].get(key);
-  }
+    connect: () => {
+      if (state.socket?.connected) return;
 
-  disconnect() {
-    this.state.socket?.disconnect();
-    this.state = {
-      socket: null,
-      isConnected: false,
-      valueMap: {
-        club: new Map(),
-        league: new Map(),
-      },
-    };
-    this.emitChange();
-  }
+      const socket = io(SOCKET_URL, {
+        withCredentials: true,
+        transports: ["websocket"],
+        path: "/socket.io",
+      });
 
-  requestClubValue(clubId: string, year: string) {
-    this.state.socket?.emit("requestClubValue", { clubId, year });
-  }
+      setupEventHandlers(socket);
 
-  updateClubValue(clubId: string, year: string, KRW: number) {
-    this.state.socket?.emit("updateClubValue", { clubId, year, KRW });
-  }
+      socket.on("connect", () => {
+        console.log("[client]: Socket.IO 연결 성공");
+        state = {
+          ...state,
+          socket,
+          isConnected: true,
+        };
+        emitChange();
+      });
 
-  requestLeagueValue(leagueId: string, year: string) {
-    this.state.socket?.emit("requestLeagueValue", { leagueId, year });
-  }
+      socket.on("disconnect", () => {
+        state = {
+          ...state,
+          isConnected: false,
+        };
+        emitChange();
+      });
 
-  updateLeagueValue(leagueId: string, year: string, KRW: number) {
-    this.state.socket?.emit("updateLeagueValue", { leagueId, year, KRW });
-  }
+      state = {
+        ...state,
+        socket,
+      };
+      emitChange();
+    },
 
-  getSnapshot() {
-    return this.state;
-  }
+    disconnect: () => {
+      state.socket?.disconnect();
+      state = {
+        ...state,
+        socket: null,
+        isConnected: false,
+        valueMap: {
+          club: new Map(),
+          league: new Map(),
+        },
+      };
+      emitChange();
+    },
 
-  getServerSnapshot() {
-    return {
-      socket: null,
-      isConnected: false,
-      valueMap: {
-        club: new Map(),
-        league: new Map(),
-      },
-    };
-  }
-}
+    subscribeToLeague: (leagueId: string) => {
+      state.socket?.emit("subscribeLeagueValue", leagueId);
+    },
 
-export const socketStore = SocketStoreImpl.getInstance();
+    unsubscribeFromLeague: (leagueId: string) => {
+      state.socket?.emit("unsubscribeLeagueValue", leagueId);
+    },
+
+    getLeagueValues: (leagueId: string) => {
+      return state.valueMap.league.get(leagueId) ?? [];
+    },
+
+    getSnapshot: () => state,
+
+    getServerSnapshot: () => state,
+  };
+};
+
+export const socketStore = createSocketStore();
