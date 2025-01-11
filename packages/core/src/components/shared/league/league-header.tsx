@@ -24,12 +24,12 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
 
   return (
     <div className="flex items-center justify-start gap-4">
-      <div className="size-20 rounded-lg bg-border">
+      <div className="size-14 rounded-lg bg-border md:size-20">
         {leagueData && leagueData.img ? (
           <img
             src={leagueData.img}
             alt={leagueData.name}
-            className="size-full p-4"
+            className="size-full p-1.5 md:p-4"
           />
         ) : (
           <Skeleton className="size-full" />
@@ -37,7 +37,7 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2.5">
-          <span className="text-xl font-bold">
+          <span className="text-lg font-bold md:text-xl">
             {leagueData?.name ?? "데이터가 존재하지 않습니다."}
           </span>
           <span>{valueKRW ?? ""}</span>

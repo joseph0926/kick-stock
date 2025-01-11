@@ -64,6 +64,10 @@ export const baseSocketHandler = async (
     };
 
     const runSimulation = async () => {
+      fastify.log.info(
+        `[Simulation Tick] Running simulation for League ID: ${leagueId}`
+      );
+
       const { isConnected } = valueService.checkRedisConnection();
       if (!isConnected) {
         fastify.log.error(
@@ -106,13 +110,7 @@ export const baseSocketHandler = async (
       }
     };
 
-    initializeLeagueValue().then(async () => {
-      fastify.log.info(
-        `[Simulation Tick] Running simulation for League ID: ${leagueId}`
-      );
-
-      await runSimulation();
-
+    initializeLeagueValue().then(() => {
       const interval = setInterval(runSimulation, 10000);
       simulationIntervals.set(leagueId, interval);
       fastify.log.info(`[Simulation Started] League ID: ${leagueId}`);

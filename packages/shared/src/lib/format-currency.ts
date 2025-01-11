@@ -1,13 +1,17 @@
 import { CurrencyType } from "../types/common.type.js";
 
-export function formatCurrency(amount: number, currency: CurrencyType): string {
+export function formatCurrency(
+  amount: number,
+  currency: CurrencyType,
+  compact: boolean = false
+): string {
   const isNegative = amount < 0;
   const absoluteAmount = Math.abs(amount);
 
   if (currency === "KRW") {
     if (absoluteAmount >= 1_000_000_000_000) {
       const trillions = absoluteAmount / 1_000_000_000_000;
-      return `${isNegative ? "-" : ""}${trillions.toLocaleString("ko-KR", { maximumFractionDigits: 4 })}조`;
+      return `${isNegative ? "-" : ""}${trillions.toLocaleString("ko-KR", { maximumFractionDigits: compact ? 2 : 4 })}조`;
     }
 
     if (absoluteAmount >= 100_000_000) {

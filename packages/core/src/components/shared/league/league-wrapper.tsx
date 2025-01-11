@@ -8,6 +8,7 @@ import {
 } from "@kickstock/shared/src/types/league.type";
 import { LeagueHeader } from "./league-header";
 import { useLocation } from "react-router";
+import { LeagueChart } from "../chart/league-chart";
 
 export const LeagueWrapper = ({ league }: { league: LeagueType }) => {
   const { state } = useLocation() as { state?: { league: LeaguesDataType } };
@@ -34,9 +35,9 @@ export const LeagueWrapper = ({ league }: { league: LeagueType }) => {
   });
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 md:mt-20">
       <LeagueHeader leagueData={leagueData} />
-      {/* {leagueData ? <LeagueChart leagueData={leagueData} /> : <div />} */}
+      {leagueData && <LeagueChart leagueData={leagueData} />}
     </div>
   );
 };

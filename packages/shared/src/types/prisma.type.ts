@@ -6,6 +6,7 @@ export type ValuesType = {
   KRW: number;
   changeRate: number;
   leagueId: string;
+  timestamp: number;
 };
 
 export type League = {
