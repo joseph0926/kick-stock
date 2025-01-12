@@ -27,38 +27,6 @@ export const baseSocketHandler = async (
       `[Simulation Setup] Starting simulation for League ID: ${leagueId}`
     );
 
-    const initializeLeagueValue = async () => {
-      try {
-        const cachedValues = await valueService.getCachedValues(leagueId);
-        if (cachedValues.length > 0) {
-          const latestValue = cachedValues[cachedValues.length - 1];
-
-          return latestValue;
-        }
-
-        const initialValue = await prisma.leagueValue.findFirst({
-          where: { leagueId },
-          orderBy: { createdAt: "desc" },
-        });
-
-        if (!initialValue) {
-          fastify.log.error(
-            `[Simulation Error] No initial value found in DB for ${leagueId}`
-          );
-          return null;
-        }
-
-        await valueService.updateValue(leagueId, initialValue.KRW);
-        return { KRW: initialValue.KRW };
-      } catch (error) {
-        fastify.log.error(
-          `[Simulation Init Error] Failed to set initial value for ${leagueId}:`,
-          error
-        );
-        return null;
-      }
-    };
-
     const runSimulation = async () => {
       const { isConnected } = valueService.checkRedisConnection();
       if (!isConnected) {
@@ -102,14 +70,12 @@ export const baseSocketHandler = async (
       }
     };
 
-    initializeLeagueValue().then(async (initialValue) => {
-      if (initialValue) {
-        await runSimulation();
-
+    runSimulation().then(() => {
+      setTimeout(() => {
         const interval = setInterval(runSimulation, 10000);
         simulationIntervals.set(leagueId, interval);
         fastify.log.info(`[Simulation Started] League ID: ${leagueId}`);
-      }
+      }, 10000);
     });
   };
 
@@ -153,24 +119,25 @@ export const baseSocketHandler = async (
       }
 
       try {
-        const initialValue = await prisma.leagueValue.findFirst({
-          where: { leagueId },
-          orderBy: { createdAt: "desc" },
-        });
+        const values = await valueService.getCachedValues(leagueId);
 
-        if (initialValue) {
-          await valueService.updateValue(leagueId, initialValue.KRW, 0);
+        if (values.length === 0) {
+          const initialValue = await prisma.leagueValue.findFirst({
+            where: { leagueId },
+            orderBy: { createdAt: "desc" },
+          });
+
+          if (initialValue) {
+            await valueService.updateValue(leagueId, initialValue.KRW, 0);
+          }
         }
 
-        const values = await valueService.getCachedValues(leagueId);
-        socket.emit("leagueValueHistory", { leagueId, values });
+        const currentValues = await valueService.getCachedValues(leagueId);
+        socket.emit("leagueValueHistory", { leagueId, values: currentValues });
 
         addSubscription(leagueId, socket.id);
 
         if (activeSubscriptions.get(leagueId)?.size === 1) {
-          if (values.length === 0 && initialValue) {
-            await valueService.updateValue(leagueId, initialValue.KRW, 0);
-          }
           startSimulation(leagueId);
         }
       } catch (error) {
