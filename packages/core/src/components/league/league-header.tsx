@@ -4,7 +4,7 @@ import { cn } from "@kickstock/ui/src/lib/utils";
 import { Loader2 } from "lucide-react";
 import { formatCurrency } from "@kickstock/shared/src/lib/format-currency";
 import { LeagueBasicType } from "@kickstock/shared/src/types/prisma/league.type";
-import { useLeagueValues } from "../../../hooks/use-league-value";
+import { useLeagueValues } from "../../hooks/use-league-value";
 
 type LeagueHeaderProps = {
   leagueData?: LeagueBasicType | null;

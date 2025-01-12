@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   ChartContainer,
@@ -10,9 +10,10 @@ import { formatCurrency } from "@kickstock/shared/src/lib/format-currency";
 import { useLeagueValues } from "../../../hooks/use-league-value";
 import { LeagueBasicType } from "@kickstock/shared/src/types/prisma/league.type";
 import { useMediaQuery } from "../../../hooks/use-media-query";
+import { LeagueChartSkeleton } from "../loading/league-chart.loading";
 
 type LeagueChartProps = {
-  leagueData: LeagueBasicType;
+  leagueData?: LeagueBasicType | null;
 };
 
 const chartConfig = {
@@ -35,7 +36,6 @@ const formatKRWToTrillions = (value: number) => {
 
 const CustomTooltipContent = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
-  console.log(payload);
 
   return (
     <div className="rounded-lg border bg-background p-2 shadow-sm">
@@ -63,7 +63,7 @@ const CustomTooltipContent = ({ active, payload, label }: any) => {
   );
 };
 
-export const LeagueChart = ({ leagueData }: LeagueChartProps) => {
+export const LeagueChart = memo(({ leagueData }: LeagueChartProps) => {
   const isMobile = useMediaQuery("(max-width: 640px)");
   const isTablet = useMediaQuery("(max-width: 1024px)");
 
@@ -73,7 +73,7 @@ export const LeagueChart = ({ leagueData }: LeagueChartProps) => {
     return 40;
   }, [isMobile, isTablet]);
 
-  const { values } = useLeagueValues(leagueData.id);
+  const { values } = useLeagueValues(leagueData?.id ?? "");
 
   const chartData = useMemo(() => {
     const recentValues = values.slice(-MAX_DATA_POINTS);
@@ -85,6 +85,9 @@ export const LeagueChart = ({ leagueData }: LeagueChartProps) => {
     }));
   }, [values]);
 
+  if (leagueData == undefined || chartData?.length === 0) {
+    return <LeagueChartSkeleton />;
+  }
   return (
     <ChartContainer config={chartConfig} className="min-h-[400px] !w-screen">
       <LineChart
@@ -128,4 +131,6 @@ export const LeagueChart = ({ leagueData }: LeagueChartProps) => {
       </LineChart>
     </ChartContainer>
   );
-};
+});
+
+LeagueChart.displayName = "LeagueChart";
