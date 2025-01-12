@@ -7,7 +7,7 @@ import {
 } from "@kickstock/ui/src/components/ui/carousel";
 import { HomeInnerTabType } from "@kickstock/shared/src/types/common.type";
 import { LeaguesCardWrapper } from "./leagues-card-wrapper";
-import { HomeCardLoading } from "../../shared/loading/home-card.loading";
+import { HomeCardLoading } from "../shared/loading/home-card.loading";
 
 export const LeagueList = ({
   innerTabValue,

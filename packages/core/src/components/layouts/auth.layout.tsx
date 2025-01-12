@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router";
-import { Logo } from "../../shared/logo";
+import { Logo } from "../shared/logo";
 import { Card, CardContent } from "@kickstock/ui/src/components/ui/card";
-import { SocialAuthForm } from "../../client/auth/social-auth-form";
+import { SocialAuthForm } from "../auth/social-auth-form";
 
 export const AuthLayout = () => {
   return (

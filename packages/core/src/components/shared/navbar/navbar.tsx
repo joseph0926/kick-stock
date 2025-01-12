@@ -1,12 +1,12 @@
 import React from "react";
 import { cn } from "@kickstock/ui/src/lib/utils";
-import { NavbarAuth } from "../../client/layouts/navbar-auth";
-import { NavbarClient } from "../../client/layouts/navbar.client";
-import { NavbarMobile } from "../../client/layouts/navbar.mobile";
 import { Link } from "react-router";
 import { ROUTER } from "@kickstock/shared/src/constants/router";
+import { NavbarAuth } from "./navbar-auth";
+import { NavbarMobile } from "./navbar.mobile";
+import { NavbarMenuWrapper } from "./navbar-menu-wrapper";
 
-export function NavbarServer({ className }: { className?: string }) {
+export function Navbar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
@@ -17,7 +17,7 @@ export function NavbarServer({ className }: { className?: string }) {
       <Link to={ROUTER.HOME} className="text-3xl font-bold">
         <span className="text-primary">Kick</span>Stock
       </Link>
-      <NavbarClient />
+      <NavbarMenuWrapper />
       <NavbarAuth />
       <NavbarMobile />
     </div>

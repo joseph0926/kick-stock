@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import { LeaguesDataType } from "@kickstock/shared/src/types/league.type";
 import { Card } from "@kickstock/ui/src/components/ui/card";
-import { HomeLeaguesValueChart } from "../../shared/chart/home-leagues-value-chart";
+import { HomeLeaguesValueChart } from "../shared/chart/home-leagues-value-chart";
 import { HomeInnerTabType } from "@kickstock/shared/src/types/common.type";
-import { HomeChartLoading } from "../../shared/loading/home-chart.loading";
+import { HomeChartLoading } from "../shared/loading/home-chart.loading";
 
 type LeagueCardProps = {
   league: LeaguesDataType;

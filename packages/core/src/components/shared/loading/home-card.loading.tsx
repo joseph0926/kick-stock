@@ -1,6 +1,6 @@
+import React from "react";
 import { CarouselItem } from "@kickstock/ui/src/components/ui/carousel";
 import { Link } from "react-router";
-import React from "react";
 import { Card } from "@kickstock/ui/src/components/ui/card";
 
 export const HomeCardLoading = () => {

@@ -4,7 +4,7 @@ import {
   HomeInnerTabType,
   HomeTabType,
 } from "@kickstock/shared/src/types/common.type";
-import { HomeClubWrapper } from "../../shared/table/home-club-wrapper";
+import { HomeClubWrapper } from "../shared/table/home-club-wrapper";
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
 
 export const HomeTabContent = ({

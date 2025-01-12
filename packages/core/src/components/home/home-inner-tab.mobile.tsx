@@ -15,7 +15,7 @@ import {
   SelectItem,
   SelectValue,
 } from "@kickstock/ui/src/components/ui/select";
-import { useUrlContext } from "../../../hooks/use-url-context";
+import { useUrlContext } from "../../hooks/use-url-context";
 import { HomeTabContent } from "./home-tab-content";
 import {
   HomeInnerTabType,

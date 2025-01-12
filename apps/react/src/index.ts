@@ -84,7 +84,7 @@ fastify.register(fastifyHelmet, {
 });
 
 fastify.register(fastifyCors, {
-  origin: (origin, cb) => {
+  origin: (_origin, cb) => {
     cb(null, true);
   },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],

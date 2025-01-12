@@ -1,9 +1,9 @@
+import React from "react";
 import { QUERY_KEY } from "@kickstock/shared/src/lib/query-key";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React from "react";
-import { getLeaguesData } from "../../../services/league.service";
+import { getLeaguesData } from "../../services/league.service";
 import { CarouselItem } from "@kickstock/ui/src/components/ui/carousel";
-import { LeagueCard } from "../../client/home/league-card";
+import { LeagueCard } from "../home/league-card";
 import { Link } from "react-router";
 import { HomeInnerTabType } from "@kickstock/shared/src/types/common.type";
 

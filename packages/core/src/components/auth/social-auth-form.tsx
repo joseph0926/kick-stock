@@ -1,7 +1,7 @@
+import React from "react";
 import { Button } from "@kickstock/ui/src/components/ui/button";
 import { Github } from "lucide-react";
-import React from "react";
-import { GoogleIcon } from "../../shared/icons";
+import { GoogleIcon } from "../shared/icons";
 
 export const SocialAuthForm = () => {
   const buttonClass =

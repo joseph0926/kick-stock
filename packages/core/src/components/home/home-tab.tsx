@@ -6,7 +6,7 @@ import {
   TabsTrigger,
 } from "@kickstock/ui/src/components/ui/tabs";
 import { homeTab } from "@kickstock/shared/src/constants/home/home-tab";
-import { useUrlContext } from "../../../hooks/use-url-context";
+import { useUrlContext } from "../../hooks/use-url-context";
 import { HomeTabType } from "@kickstock/shared/src/types/common.type";
 import { cn } from "@kickstock/ui/src/lib/utils";
 import { HomeInnerTab } from "./home-inner-tab";

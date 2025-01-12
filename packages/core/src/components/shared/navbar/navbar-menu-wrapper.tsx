@@ -1,10 +1,8 @@
-"use client";
-
 import React, { useState } from "react";
 import { NAVBAR, leagueItems } from "@kickstock/shared/src/constants/navbar";
 import { Menu, MenuItem, HoveredLink, ProductItem } from "./navbar-menu";
 
-export const NavbarClient = () => {
+export const NavbarMenuWrapper = () => {
   const [active, setActive] = useState<string | null>(null);
 
   return (

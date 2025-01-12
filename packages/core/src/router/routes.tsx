@@ -1,12 +1,12 @@
 import React from "react";
 import { RouteObject } from "react-router";
 import { ROUTER } from "@kickstock/shared/src/constants/router";
-import { AuthLayout, RootLayout } from "../components/server/layouts";
-import { HomePage, LeaguePage } from "../components/server/pages";
-import { SignInPage } from "../components/client/pages/sign-in.page";
-import { LandingPage } from "../components/client/pages/landing.page";
 import { MainLoading } from "../components/shared/loading/main.loading";
 import { NotFoundPage } from "../components/shared/error/not-found";
+import { RootLayout, AuthLayout } from "../components/layouts";
+import { HomePage, LeaguePage } from "../components/pages";
+import { LandingPage } from "../components/pages/landing.page";
+import { SignInPage } from "../components/pages/sign-in.page";
 
 export const routes: RouteObject[] = [
   {
