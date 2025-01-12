@@ -23,7 +23,7 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
   }, [latestValue]);
 
   return (
-    <div className="flex items-center justify-start gap-4">
+    <div className="flex items-center justify-start gap-4 px-4 md:px-8">
       <div className="size-14 rounded-lg bg-border md:size-20">
         {leagueData && leagueData.img ? (
           <img
@@ -43,7 +43,7 @@ export const LeagueHeader = ({ leagueData }: LeagueHeaderProps) => {
           <span>{valueKRW ?? ""}</span>
         </div>
         <div className="flex items-center gap-2">
-          직전 대비(실제: 1분, 테스트: 10초):
+          직전 대비(테스트: 10초):
           {typeof changeRate === "number" ? (
             <span
               className={cn(

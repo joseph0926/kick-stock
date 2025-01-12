@@ -16,7 +16,7 @@ export const LeaguePage = () => {
     );
   }
   return (
-    <div className="p-4">
+    <div>
       <Suspense fallback={<LeagueLoading />}>
         <LeagueWrapper league={params.leagueId} />
       </Suspense>

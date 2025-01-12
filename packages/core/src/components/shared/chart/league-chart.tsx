@@ -3,7 +3,6 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
 } from "@kickstock/ui/src/components/ui/chart";
@@ -29,8 +28,14 @@ const chartConfig = {
   },
 };
 
+const formatKRWToTrillions = (value: number) => {
+  const trillions = value / 1_000_000_000_000;
+  return `${trillions.toFixed(1)}조`;
+};
+
 const CustomTooltipContent = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
+  console.log(payload);
 
   return (
     <div className="rounded-lg border bg-background p-2 shadow-sm">
@@ -81,10 +86,7 @@ export const LeagueChart = ({ leagueData }: LeagueChartProps) => {
   }, [values]);
 
   return (
-    <ChartContainer
-      config={chartConfig}
-      className="min-h-[400px] !w-screen overflow-x-hidden"
-    >
+    <ChartContainer config={chartConfig} className="min-h-[400px] !w-screen">
       <LineChart
         data={chartData}
         accessibilityLayer
@@ -103,17 +105,12 @@ export const LeagueChart = ({ leagueData }: LeagueChartProps) => {
           tickLine={false}
           axisLine={false}
           tickMargin={10}
-          tickFormatter={(value) => formatCurrency(value, "KRW")}
-          domain={["auto", "auto"]}
-        />
-        <YAxis
-          yAxisId="rate"
-          orientation="right"
-          tickLine={false}
-          axisLine={false}
-          tickMargin={10}
-          tickFormatter={(value) => `${value}%`}
-          domain={["auto", "auto"]}
+          tickFormatter={formatKRWToTrillions}
+          domain={[
+            (dataMin: number) => dataMin * 0.99,
+            (dataMax: number) => dataMax * 1.01,
+          ]}
+          allowDecimals={false}
         />
         <ChartTooltip content={<CustomTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
@@ -122,17 +119,6 @@ export const LeagueChart = ({ leagueData }: LeagueChartProps) => {
           type="monotone"
           dataKey="KRW"
           stroke="var(--color-KRW)"
-          dot={false}
-          strokeWidth={2}
-          isAnimationActive={true}
-          animationDuration={300}
-          animationEasing="ease-in-out"
-        />
-        <Line
-          yAxisId="rate"
-          type="monotone"
-          dataKey="changeRate"
-          stroke="var(--color-changeRate)"
           dot={false}
           strokeWidth={2}
           isAnimationActive={true}
