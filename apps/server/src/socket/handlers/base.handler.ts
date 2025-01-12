@@ -10,6 +10,8 @@ export const baseSocketHandler = async (
   const valueService = await leagueHandler();
   const simulationIntervals = new Map<string, NodeJS.Timeout>();
   const activeSubscriptions = new Map<string, Set<string>>();
+  const lastExecutionTimes = new Map<string, number>();
+  const INTERVAL_MS = 10000;
 
   const { isConnected, message } = valueService.checkRedisConnection();
   fastify.log.info(`[Redis Status] ${message}`);
@@ -21,6 +23,7 @@ export const baseSocketHandler = async (
   const startSimulation = (leagueId: string) => {
     if (simulationIntervals.has(leagueId)) {
       clearInterval(simulationIntervals.get(leagueId));
+      simulationIntervals.delete(leagueId);
     }
 
     fastify.log.info(
@@ -28,16 +31,28 @@ export const baseSocketHandler = async (
     );
 
     const runSimulation = async () => {
-      const { isConnected } = valueService.checkRedisConnection();
-      if (!isConnected) {
-        fastify.log.error(
-          `[Simulation Error] Redis connection lost for ${leagueId}`
+      const now = Date.now();
+      const lastExecution = lastExecutionTimes.get(leagueId) || 0;
+
+      if (now - lastExecution < 9500) {
+        fastify.log.warn(
+          `[Simulation Warning] Skipping early execution for ${leagueId}. Time since last: ${now - lastExecution}ms`
         );
-        stopSimulation(leagueId);
         return;
       }
 
       try {
+        lastExecutionTimes.set(leagueId, now);
+
+        const { isConnected } = valueService.checkRedisConnection();
+        if (!isConnected) {
+          fastify.log.error(
+            `[Simulation Error] Redis connection lost for ${leagueId}`
+          );
+          stopSimulation(leagueId);
+          return;
+        }
+
         const values = await valueService.getCachedValues(leagueId);
         const currentValue = values[values.length - 1]?.KRW;
 
@@ -71,11 +86,20 @@ export const baseSocketHandler = async (
     };
 
     runSimulation().then(() => {
-      setTimeout(() => {
-        const interval = setInterval(runSimulation, 10000);
+      if (simulationIntervals.has(leagueId)) {
+        return;
+      }
+
+      const timeoutId = setTimeout(() => {
+        const interval = setInterval(() => {
+          Promise.resolve().then(() => runSimulation());
+        }, INTERVAL_MS);
+
         simulationIntervals.set(leagueId, interval);
         fastify.log.info(`[Simulation Started] League ID: ${leagueId}`);
-      }, 10000);
+      }, INTERVAL_MS);
+
+      simulationIntervals.set(leagueId, timeoutId);
     });
   };
 
@@ -84,6 +108,7 @@ export const baseSocketHandler = async (
     if (interval) {
       clearInterval(interval);
       simulationIntervals.delete(leagueId);
+      lastExecutionTimes.delete(leagueId);
       fastify.log.info(`[Simulation Stopped] League ID: ${leagueId}`);
     }
   };
@@ -162,6 +187,7 @@ export const baseSocketHandler = async (
     simulationIntervals.forEach((interval) => clearInterval(interval));
     simulationIntervals.clear();
     activeSubscriptions.clear();
+    lastExecutionTimes.clear();
     await valueService.flushAllBuffers();
   };
 
