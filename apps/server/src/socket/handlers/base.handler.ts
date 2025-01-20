@@ -1,194 +1,138 @@
 import { Server, Socket } from "socket.io";
 import { FastifyInstance } from "fastify";
-import { leagueHandler } from "./league.handler.js";
+import { createClubHandler } from "./club.handler.js";
+import { createLeagueHandler } from "./league.handler.js";
 import { prisma } from "@/lib/prisma.js";
 
 export const baseSocketHandler = async (
   io: Server,
   fastify: FastifyInstance
 ) => {
-  const valueService = await leagueHandler();
-  const simulationIntervals = new Map<string, NodeJS.Timeout>();
-  const activeSubscriptions = new Map<string, Set<string>>();
-  const lastExecutionTimes = new Map<string, number>();
-  const INTERVAL_MS = 10000;
+  const clubHandler = createClubHandler();
+  const leagueHandler = createLeagueHandler();
+  await clubHandler.init();
+  await leagueHandler.init();
 
-  const { isConnected, message } = valueService.checkRedisConnection();
-  fastify.log.info(`[Redis Status] ${message}`);
+  const clubSimulationIntervals = new Map<string, NodeJS.Timeout>();
 
-  if (!isConnected) {
-    throw new Error("Redis 연결이 필요합니다.");
-  }
+  const leagueSubscriptions = new Map<string, Set<string>>();
 
-  const startSimulation = (leagueId: string) => {
-    if (simulationIntervals.has(leagueId)) {
-      clearInterval(simulationIntervals.get(leagueId));
-      simulationIntervals.delete(leagueId);
-    }
+  function startClubSimulation(clubId: string) {
+    if (clubSimulationIntervals.has(clubId)) return;
 
-    fastify.log.info(
-      `[Simulation Setup] Starting simulation for League ID: ${leagueId}`
-    );
-
-    const runSimulation = async () => {
-      const now = Date.now();
-      const lastExecution = lastExecutionTimes.get(leagueId) || 0;
-
-      if (now - lastExecution < 9500) {
-        fastify.log.warn(
-          `[Simulation Warning] Skipping early execution for ${leagueId}. Time since last: ${now - lastExecution}ms`
-        );
-        return;
-      }
-
+    const interval = setInterval(async () => {
       try {
-        lastExecutionTimes.set(leagueId, now);
+        const clubValues = await clubHandler.getCachedValues(clubId);
+        const currentValue = clubValues[clubValues.length - 1]?.KRW ?? 0;
+        if (currentValue <= 0) return;
 
-        const { isConnected } = valueService.checkRedisConnection();
-        if (!isConnected) {
-          fastify.log.error(
-            `[Simulation Error] Redis connection lost for ${leagueId}`
-          );
-          stopSimulation(leagueId);
-          return;
-        }
-
-        const values = await valueService.getCachedValues(leagueId);
-        const currentValue = values[values.length - 1]?.KRW;
-
-        if (!currentValue) {
-          fastify.log.warn(
-            `[Simulation Warning] No current value found for ${leagueId}`
-          );
-          return;
-        }
-
-        const updatedValue = await valueService.simulateValueChange(
-          leagueId,
+        const updated = await clubHandler.simulateValueChange(
+          clubId,
           currentValue
         );
-
-        if (updatedValue) {
-          const subscribers = activeSubscriptions.get(leagueId);
-          if (subscribers?.size) {
-            subscribers.forEach((socketId) => {
-              io.to(socketId).emit("leagueValueUpdated", {
-                leagueId,
-                value: updatedValue,
-              });
-            });
+        if (updated) {
+          const club = await prisma.club.findUnique({
+            where: { id: clubId },
+            select: { leagueId: true },
+          });
+          if (club?.leagueId) {
+            const leagueValue =
+              await leagueHandler.aggregateClubsAndUpdateLeague(club.leagueId);
+            if (leagueValue) {
+              const subs = leagueSubscriptions.get(club.leagueId);
+              if (subs) {
+                subs.forEach((socketId) => {
+                  io.to(socketId).emit("leagueValueUpdated", {
+                    ...leagueValue,
+                  });
+                });
+              }
+            }
           }
         }
-      } catch (error) {
-        fastify.log.error(`[Simulation Error] League ID ${leagueId}:`, error);
-        stopSimulation(leagueId);
+      } catch (err) {
+        fastify.log.error("[Club Simulation Error]", err);
       }
-    };
+    }, 10000);
 
-    runSimulation().then(() => {
-      if (simulationIntervals.has(leagueId)) {
-        return;
-      }
+    clubSimulationIntervals.set(clubId, interval);
+    fastify.log.info(`[Club Simulation Started] clubId=${clubId}`);
+  }
 
-      const timeoutId = setTimeout(() => {
-        const interval = setInterval(() => {
-          Promise.resolve().then(() => runSimulation());
-        }, INTERVAL_MS);
-
-        simulationIntervals.set(leagueId, interval);
-        fastify.log.info(`[Simulation Started] League ID: ${leagueId}`);
-      }, INTERVAL_MS);
-
-      simulationIntervals.set(leagueId, timeoutId);
-    });
-  };
-
-  const stopSimulation = (leagueId: string) => {
-    const interval = simulationIntervals.get(leagueId);
+  function stopClubSimulation(clubId: string) {
+    const interval = clubSimulationIntervals.get(clubId);
     if (interval) {
       clearInterval(interval);
-      simulationIntervals.delete(leagueId);
-      lastExecutionTimes.delete(leagueId);
-      fastify.log.info(`[Simulation Stopped] League ID: ${leagueId}`);
+      clubSimulationIntervals.delete(clubId);
+      fastify.log.info(`[Club Simulation Stopped] clubId=${clubId}`);
     }
-  };
+  }
 
-  const addSubscription = (leagueId: string, socketId: string) => {
-    if (!activeSubscriptions.has(leagueId)) {
-      activeSubscriptions.set(leagueId, new Set());
+  async function subscribeLeagueValue(socketId: string, leagueId: string) {
+    if (!leagueSubscriptions.has(leagueId)) {
+      leagueSubscriptions.set(leagueId, new Set());
     }
-    activeSubscriptions.get(leagueId)?.add(socketId);
-  };
+    leagueSubscriptions.get(leagueId)?.add(socketId);
 
-  const removeSubscription = (leagueId: string, socketId: string) => {
-    const subscribers = activeSubscriptions.get(leagueId);
-    if (subscribers) {
-      subscribers.delete(socketId);
-      if (subscribers.size === 0) {
-        activeSubscriptions.delete(leagueId);
-        stopSimulation(leagueId);
-        valueService.flushBufferToDB(leagueId).catch((error) => {
-          fastify.log.error(`[Buffer Flush Error] ${leagueId}:`, error);
-        });
+    const clubs = await prisma.club.findMany({
+      where: { leagueId },
+      select: { id: true },
+    });
+    clubs.forEach((c) => startClubSimulation(c.id));
+
+    const recent = await prisma.leagueRealTimeValue.findMany({
+      where: { leagueId },
+      orderBy: { timestamp: "desc" },
+      take: 50,
+    });
+    io.to(socketId).emit("leagueValueHistory", {
+      leagueId,
+      values: recent.reverse(),
+    });
+  }
+
+  function unsubscribeLeagueValue(socketId: string, leagueId: string) {
+    const subs = leagueSubscriptions.get(leagueId);
+    if (subs) {
+      subs.delete(socketId);
+      if (subs.size === 0) {
+        leagueSubscriptions.delete(leagueId);
+        prisma.club
+          .findMany({ where: { leagueId }, select: { id: true } })
+          .then((clubs) => {
+            clubs.forEach((c) => stopClubSimulation(c.id));
+          });
       }
     }
-  };
+  }
 
   const handleConnection = (socket: Socket) => {
-    fastify.log.info(`[Connection] Client connected: ${socket.id}`);
+    fastify.log.info(`[Connection] ${socket.id}`);
 
     socket.on("subscribeLeagueValue", async (leagueId: string) => {
-      if (!leagueId || typeof leagueId !== "string") {
-        socket.emit("error", "유효하지 않은 리그 ID입니다.");
-        return;
-      }
-
-      try {
-        const values = await valueService.getCachedValues(leagueId);
-
-        if (values.length === 0) {
-          const initialValue = await prisma.leagueValue.findFirst({
-            where: { leagueId },
-            orderBy: { createdAt: "desc" },
-          });
-
-          if (initialValue) {
-            await valueService.updateValue(leagueId, initialValue.KRW, 0);
-          }
-        }
-
-        const currentValues = await valueService.getCachedValues(leagueId);
-        socket.emit("leagueValueHistory", { leagueId, values: currentValues });
-
-        addSubscription(leagueId, socket.id);
-
-        if (activeSubscriptions.get(leagueId)?.size === 1) {
-          startSimulation(leagueId);
-        }
-      } catch (error) {
-        fastify.log.error("[Subscription Error]:", error);
-        socket.emit("error", "리그 구독 처리 중 오류가 발생했습니다.");
-      }
+      await subscribeLeagueValue(socket.id, leagueId);
     });
 
     socket.on("unsubscribeLeagueValue", (leagueId: string) => {
-      removeSubscription(leagueId, socket.id);
+      unsubscribeLeagueValue(socket.id, leagueId);
     });
 
     socket.on("disconnect", () => {
-      activeSubscriptions.forEach((subscribers, leagueId) => {
-        removeSubscription(leagueId, socket.id);
+      leagueSubscriptions.forEach((subs, lId) => {
+        if (subs.has(socket.id)) {
+          unsubscribeLeagueValue(socket.id, lId);
+        }
       });
-      fastify.log.info(`[Disconnection] Client disconnected: ${socket.id}`);
+      fastify.log.info(`[Disconnection] ${socket.id}`);
     });
   };
 
   const cleanup = async () => {
-    simulationIntervals.forEach((interval) => clearInterval(interval));
-    simulationIntervals.clear();
-    activeSubscriptions.clear();
-    lastExecutionTimes.clear();
-    await valueService.flushAllBuffers();
+    clubSimulationIntervals.forEach((interval) => clearInterval(interval));
+    clubSimulationIntervals.clear();
+    leagueSubscriptions.clear();
+
+    await clubHandler.flushAllBuffers();
   };
 
   return {

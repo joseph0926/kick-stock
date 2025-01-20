@@ -1,0 +1,662 @@
+[
+  {
+    "name": "맨체스터 시티",
+    "nameEng": "Manchester City",
+    "shortName": "MCI",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/vvqgkpdioxsephimxyou",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 1260000000,
+        "KRW": 1938459600000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 1260000000,
+        "KRW": 1938459600000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.11",
+        "EUR": 1260000000,
+        "KRW": 1938459600000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 1220000000,
+        "KRW": 1876921200000,
+        "changeRate": -3.17
+      }
+    ]
+  },
+  {
+    "name": "아스널",
+    "nameEng": "Arsenal FC",
+    "shortName": "ARS",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/uwflmnj6yirybcskydym",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 1170000000,
+        "KRW": 1799998200000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 1170000000,
+        "KRW": 1799998200000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.11",
+        "EUR": 1160000000,
+        "KRW": 1784613600000,
+        "changeRate": -0.85
+      },
+      {
+        "year": "2024.12",
+        "EUR": 1160000000,
+        "KRW": 1784613600000,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "첼시",
+    "nameEng": "Chelsea FC",
+    "shortName": "CHE",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/nhutxvpgckpvn9nmrlsq",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 948200000,
+        "KRW": 1458767772000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 954200000,
+        "KRW": 1467998532000,
+        "changeRate": 0.63
+      },
+      {
+        "year": "2024.11",
+        "EUR": 963200000,
+        "KRW": 1481844672000,
+        "changeRate": 0.94
+      },
+      {
+        "year": "2024.12",
+        "EUR": 1030000000,
+        "KRW": 1584613800000,
+        "changeRate": 6.94
+      }
+    ]
+  },
+  {
+    "name": "리버풀",
+    "nameEng": "Liverpool FC",
+    "shortName": "LIV",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/atkcspuozprfdlndupik",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 923000000,
+        "KRW": 1419998580000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 931000000,
+        "KRW": 1432306260000,
+        "changeRate": 0.87
+      },
+      {
+        "year": "2024.11",
+        "EUR": 931000000,
+        "KRW": 1432306260000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 970000000,
+        "KRW": 1492306200000,
+        "changeRate": 4.19
+      }
+    ]
+  },
+  {
+    "name": "맨체스터 유나이티드",
+    "nameEng": "Manchester United",
+    "shortName": "MUN",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/op63bmlcfi22vcnkyfjl",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 857350000,
+        "KRW": 1318998681000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 854150000,
+        "KRW": 1314075609000,
+        "changeRate": -0.37
+      },
+      {
+        "year": "2024.11",
+        "EUR": 854150000,
+        "KRW": 1314075609000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 794650000,
+        "KRW": 1222537239000,
+        "changeRate": -6.97
+      }
+    ]
+  },
+  {
+    "name": "토트넘 홋스퍼",
+    "nameEng": "Tottenham Hotspur",
+    "shortName": "TOT",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/omu3qgiufxqh0cgva89c",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 768300000,
+        "KRW": 1181998818000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 788300000,
+        "KRW": 1212768018000,
+        "changeRate": 2.6
+      },
+      {
+        "year": "2024.11",
+        "EUR": 788300000,
+        "KRW": 1212768018000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 783800000,
+        "KRW": 1205844948000,
+        "changeRate": -0.57
+      }
+    ]
+  },
+  {
+    "name": "뉴캐슬 유나이티드",
+    "nameEng": "Newcastle United",
+    "shortName": "NEW",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/p89q2jmpdplnr0khurxo",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 651650000,
+        "KRW": 1002537459000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 657650000,
+        "KRW": 1011768219000,
+        "changeRate": 0.92
+      },
+      {
+        "year": "2024.11",
+        "EUR": 657650000,
+        "KRW": 1011768219000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 641750000,
+        "KRW": 987306705000,
+        "changeRate": -2.42
+      }
+    ]
+  },
+  {
+    "name": "브라이튼 & 호브 앨비언",
+    "nameEng": "Brighton & Hove Albion",
+    "shortName": "BHA",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/cgvnd42eyoks8wau3agt",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 543100000,
+        "KRW": 835537626000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 572100000,
+        "KRW": 880152966000,
+        "changeRate": 5.34
+      },
+      {
+        "year": "2024.11",
+        "EUR": 572100000,
+        "KRW": 880152966000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 618600000,
+        "KRW": 951691356000,
+        "changeRate": 8.13
+      }
+    ]
+  },
+  {
+    "name": "애스턴 빌라",
+    "nameEng": "Aston Villa",
+    "shortName": "AVL",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/bo52w20cdihvltfbvu65",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 595450000,
+        "KRW": 916076007000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 615450000,
+        "KRW": 946845207000,
+        "changeRate": 3.36
+      },
+      {
+        "year": "2024.11",
+        "EUR": 615450000,
+        "KRW": 946845207000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 601950000,
+        "KRW": 926075997000,
+        "changeRate": -2.19
+      }
+    ]
+  },
+  {
+    "name": "노팅엄 포레스트",
+    "nameEng": "Nottingham Forest",
+    "shortName": "NOT",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/htdkarqzxot1ourcstwa",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 414000000,
+        "KRW": 636922440000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 428000000,
+        "KRW": 658460880000,
+        "changeRate": 3.38
+      },
+      {
+        "year": "2024.11",
+        "EUR": 428000000,
+        "KRW": 658460880000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 442000000,
+        "KRW": 679999320000,
+        "changeRate": 3.27
+      }
+    ]
+  },
+  {
+    "name": "웨스트햄 유나이티드",
+    "nameEng": "West Ham United",
+    "shortName": "WHU",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/jnhuqt2ewb88ky3fknbw",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 483500000,
+        "KRW": 743845410000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 481500000,
+        "KRW": 740768490000,
+        "changeRate": -0.41
+      },
+      {
+        "year": "2024.11",
+        "EUR": 481500000,
+        "KRW": 740768490000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 439300000,
+        "KRW": 675845478000,
+        "changeRate": -8.76
+      }
+    ]
+  },
+  {
+    "name": "크리스탈 팰리스",
+    "nameEng": "Crystal Palace",
+    "shortName": "CRY",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/jbqvqcunqy2btxidul0k",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 430180000,
+        "KRW": 661814722800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 438000000,
+        "KRW": 673845480000,
+        "changeRate": 1.82
+      },
+      {
+        "year": "2024.11",
+        "EUR": 438000000,
+        "KRW": 673845480000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 426600000,
+        "KRW": 656307036000,
+        "changeRate": -2.6
+      }
+    ]
+  },
+  {
+    "name": "브렌트포드",
+    "nameEng": "Brentford FC",
+    "shortName": "BRE",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/lb8mzoiohshqwcsxzstk",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 395030000,
+        "KRW": 607737853800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 403030000,
+        "KRW": 620045533800,
+        "changeRate": 2.03
+      },
+      {
+        "year": "2024.11",
+        "EUR": 403030000,
+        "KRW": 620045533800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 417930000,
+        "KRW": 642968587800,
+        "changeRate": 3.7
+      }
+    ]
+  },
+  {
+    "name": "본머스",
+    "nameEng": "AFC Bournemouth",
+    "shortName": "BOU",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ojonyvlkzwhphvffbm95",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 349850000,
+        "KRW": 538230231000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 354850000,
+        "KRW": 545922531000,
+        "changeRate": 1.43
+      },
+      {
+        "year": "2024.11",
+        "EUR": 354850000,
+        "KRW": 545922531000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 392350000,
+        "KRW": 603614781000,
+        "changeRate": 10.57
+      }
+    ]
+  },
+  {
+    "name": "울버햄프턴 원더러스",
+    "nameEng": "Wolverhampton Wanderers",
+    "shortName": "WOL",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/sjbdymq6hoz4cnpf28kz",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 370500000,
+        "KRW": 569999430000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 379700000,
+        "KRW": 584153262000,
+        "changeRate": 2.48
+      },
+      {
+        "year": "2024.11",
+        "EUR": 379700000,
+        "KRW": 584153262000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 377800000,
+        "KRW": 581230188000,
+        "changeRate": -0.5
+      }
+    ]
+  },
+  {
+    "name": "풀럼",
+    "nameEng": "Fulham FC",
+    "shortName": "FUL",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/junnp6xewpscg9daeya6",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 342000000,
+        "KRW": 526153320000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 346000000,
+        "KRW": 532307160000,
+        "changeRate": 1.17
+      },
+      {
+        "year": "2024.11",
+        "EUR": 346000000,
+        "KRW": 532307160000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 347800000,
+        "KRW": 535076388000,
+        "changeRate": 0.52
+      }
+    ]
+  },
+  {
+    "name": "에버턴",
+    "nameEng": "Everton FC",
+    "shortName": "EVE",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/nthxw0keufig0vujiuso",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 349100000,
+        "KRW": 537076386000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 353100000,
+        "KRW": 543230226000,
+        "changeRate": 1.15
+      },
+      {
+        "year": "2024.11",
+        "EUR": 353100000,
+        "KRW": 543230226000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 343100000,
+        "KRW": 527845626000,
+        "changeRate": -2.83
+      }
+    ]
+  },
+  {
+    "name": "사우샘프턴",
+    "nameEng": "Southampton FC",
+    "shortName": "SOU",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/jfbvk4vtc8sosfazdc27",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 273200000,
+        "KRW": 420307272000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 283200000,
+        "KRW": 435691872000,
+        "changeRate": 3.66
+      },
+      {
+        "year": "2024.11",
+        "EUR": 283200000,
+        "KRW": 435691872000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 306400000,
+        "KRW": 471384144000,
+        "changeRate": 8.19
+      }
+    ]
+  },
+  {
+    "name": "레스터 시티",
+    "nameEng": "Leicester City",
+    "shortName": "LEI",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/e5xsy8r0qethmtd9vckc",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 263900000,
+        "KRW": 405999594000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 275600000,
+        "KRW": 423999576000,
+        "changeRate": 4.43
+      },
+      {
+        "year": "2024.11",
+        "EUR": 275600000,
+        "KRW": 423999576000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 275800000,
+        "KRW": 424307268000,
+        "changeRate": 0.07
+      }
+    ]
+  },
+  {
+    "name": "입스위치 타운",
+    "nameEng": "Ipswich Town",
+    "shortName": "IPS",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/e5q2kdiojcd0elmgntql",
+    "league": "epl",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 161100000,
+        "KRW": 247845906000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 195400000,
+        "KRW": 300615084000,
+        "changeRate": 21.29
+      },
+      {
+        "year": "2024.11",
+        "EUR": 195400000,
+        "KRW": 300615084000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 235800000,
+        "KRW": 362768868000,
+        "changeRate": 20.68
+      }
+    ]
+  }
+]

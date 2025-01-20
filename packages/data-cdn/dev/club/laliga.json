@@ -1,0 +1,662 @@
+[
+  {
+    "name": "레알 마드리드",
+    "nameEng": "Real Madrid",
+    "shortName": "RMA",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/covypewqxu5gl8kycnlm",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 1340000000,
+        "KRW": 2061536400000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 1360000000,
+        "KRW": 2092305600000,
+        "changeRate": 1.49
+      },
+      {
+        "year": "2024.11",
+        "EUR": 1360000000,
+        "KRW": 2092305600000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 1230000000,
+        "KRW": 1892305800000,
+        "changeRate": -9.56
+      }
+    ]
+  },
+  {
+    "name": "FC 바르셀로나",
+    "nameEng": "FC Barcelona",
+    "shortName": "BAR",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/gwpnrlt1udmdpdlauqqc",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 875400000,
+        "KRW": 1346767884000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 944000000,
+        "KRW": 1452306240000,
+        "changeRate": 7.84
+      },
+      {
+        "year": "2024.11",
+        "EUR": 946000000,
+        "KRW": 1455383160000,
+        "changeRate": 0.21
+      },
+      {
+        "year": "2024.12",
+        "EUR": 1020000000,
+        "KRW": 1569229200000,
+        "changeRate": 7.82
+      }
+    ]
+  },
+  {
+    "name": "아틀레티코 마드리드",
+    "nameEng": "Atlético de Madrid",
+    "shortName": "ATM",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/cnwq6vn6pgfp3fxgvntj",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 529500000,
+        "KRW": 814614570000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 510000000,
+        "KRW": 784614600000,
+        "changeRate": -3.68
+      },
+      {
+        "year": "2024.11",
+        "EUR": 511150000,
+        "KRW": 786383829000,
+        "changeRate": 0.23
+      },
+      {
+        "year": "2024.12",
+        "EUR": 498800000,
+        "KRW": 767383848000,
+        "changeRate": -2.42
+      }
+    ]
+  },
+  {
+    "name": "레알 소시에다드",
+    "nameEng": "Real Sociedad",
+    "shortName": "SOC",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/z0at3gyrol3ye3tvmwdk",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 431200000,
+        "KRW": 663383952000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 443700000,
+        "KRW": 682614702000,
+        "changeRate": 2.9
+      },
+      {
+        "year": "2024.11",
+        "EUR": 443700000,
+        "KRW": 682614702000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 427200000,
+        "KRW": 657230112000,
+        "changeRate": -3.72
+      }
+    ]
+  },
+  {
+    "name": "아틀레틱 빌바오",
+    "nameEng": "Athletic Bilbao",
+    "shortName": "ATH",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/hi85xamnjlztatokolph",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 318600000,
+        "KRW": 490153356000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 338700000,
+        "KRW": 521076402000,
+        "changeRate": 6.31
+      },
+      {
+        "year": "2024.11",
+        "EUR": 338700000,
+        "KRW": 521076402000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 357700000,
+        "KRW": 550307142000,
+        "changeRate": 5.61
+      }
+    ]
+  },
+  {
+    "name": "발렌시아 CF",
+    "nameEng": "Valencia CF",
+    "shortName": "VAL",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/qfqivsirglwlpkibw9r3",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 260000000,
+        "KRW": 399999600000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 253000000,
+        "KRW": 389230380000,
+        "changeRate": -2.69
+      },
+      {
+        "year": "2024.11",
+        "EUR": 253000000,
+        "KRW": 389230380000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 215400000,
+        "KRW": 331384284000,
+        "changeRate": -14.86
+      }
+    ]
+  },
+  {
+    "name": "비야레알 CF",
+    "nameEng": "Villarreal CF",
+    "shortName": "VIL",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/c5oucibkf2kd5ugryylb",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 196200000,
+        "KRW": 301845852000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 230700000,
+        "KRW": 354922722000,
+        "changeRate": 17.58
+      },
+      {
+        "year": "2024.11",
+        "EUR": 230700000,
+        "KRW": 354922722000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 213600000,
+        "KRW": 328615056000,
+        "changeRate": -7.41
+      }
+    ]
+  },
+  {
+    "name": "지로나 FC",
+    "nameEng": "Girona FC",
+    "shortName": "GIR",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ejpfehlpal74xr5j2y8r",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 208000000,
+        "KRW": 319999680000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 216500000,
+        "KRW": 333076590000,
+        "changeRate": 4.09
+      },
+      {
+        "year": "2024.11",
+        "EUR": 216500000,
+        "KRW": 333076590000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 184500000,
+        "KRW": 283845870000,
+        "changeRate": -14.78
+      }
+    ]
+  },
+  {
+    "name": "세비야 FC",
+    "nameEng": "Sevilla FC",
+    "shortName": "SEV",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/xclhotvvyu8aalv4lkov",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 181600000,
+        "KRW": 279384336000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 173300000,
+        "KRW": 266615118000,
+        "changeRate": -4.57
+      },
+      {
+        "year": "2024.11",
+        "EUR": 174100000,
+        "KRW": 267845886000,
+        "changeRate": 0.46
+      },
+      {
+        "year": "2024.12",
+        "EUR": 174800000,
+        "KRW": 268922808000,
+        "changeRate": 0.4
+      }
+    ]
+  },
+  {
+    "name": "레알 베티스 발롬피에",
+    "nameEng": "Real Betis Balompié",
+    "shortName": "BET",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ct8mmmy7awwq13azcbag",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 189400000,
+        "KRW": 291384324000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 192400000,
+        "KRW": 295999704000,
+        "changeRate": 1.58
+      },
+      {
+        "year": "2024.11",
+        "EUR": 192400000,
+        "KRW": 295999704000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 165200000,
+        "KRW": 254153592000,
+        "changeRate": -14.14
+      }
+    ]
+  },
+  {
+    "name": "UD 라스 팔마스",
+    "nameEng": "UD Las Palmas",
+    "shortName": "LPA",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ncvzwuvjogr1wde2ob8r",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 112400000,
+        "KRW": 172922904000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 112600000,
+        "KRW": 173230596000,
+        "changeRate": 0.18
+      },
+      {
+        "year": "2024.11",
+        "EUR": 112600000,
+        "KRW": 173230596000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 113600000,
+        "KRW": 174769056000,
+        "changeRate": 0.89
+      }
+    ]
+  },
+  {
+    "name": "CA 오사수나",
+    "nameEng": "CA Osasuna",
+    "shortName": "OSA",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/cpibcesmdxtweu2po3tp",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 104200000,
+        "KRW": 160307532000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 112400000,
+        "KRW": 172922904000,
+        "changeRate": 7.87
+      },
+      {
+        "year": "2024.11",
+        "EUR": 112400000,
+        "KRW": 172922904000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 111500000,
+        "KRW": 171538290000,
+        "changeRate": -0.8
+      }
+    ]
+  },
+  {
+    "name": "셀타 데 비고",
+    "nameEng": "Celta de Vigo",
+    "shortName": "CEL",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/mwcdiczjsoskuy0rygwe",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 81100000,
+        "KRW": 124769106000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 86600000,
+        "KRW": 133230636000,
+        "changeRate": 6.78
+      },
+      {
+        "year": "2024.11",
+        "EUR": 86600000,
+        "KRW": 133230636000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 98100000,
+        "KRW": 150922926000,
+        "changeRate": 13.28
+      }
+    ]
+  },
+  {
+    "name": "RCD 마요르카",
+    "nameEng": "RCD Mallorca",
+    "shortName": "MLL",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/hrndx9slotypevdpph8m",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 85700000,
+        "KRW": 131846022000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 89700000,
+        "KRW": 137999862000,
+        "changeRate": 4.67
+      },
+      {
+        "year": "2024.11",
+        "EUR": 89700000,
+        "KRW": 137999862000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 85400000,
+        "KRW": 131384484000,
+        "changeRate": -4.79
+      }
+    ]
+  },
+  {
+    "name": "데포르티보 알라베스",
+    "nameEng": "Deportivo Alavés",
+    "shortName": "ALA",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/otovjhsut8uduukgnwfn",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 82400000,
+        "KRW": 126769104000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 87200000,
+        "KRW": 134153712000,
+        "changeRate": 5.83
+      },
+      {
+        "year": "2024.11",
+        "EUR": 87700000,
+        "KRW": 134922942000,
+        "changeRate": 0.57
+      },
+      {
+        "year": "2024.12",
+        "EUR": 82000000,
+        "KRW": 126153720000,
+        "changeRate": -6.5
+      }
+    ]
+  },
+  {
+    "name": "RCD 에스파뇰 바르셀로나",
+    "nameEng": "RCD Espanyol Barcelona",
+    "shortName": "ESP",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/mwdwzlobgf9at12tgro4",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 68300000,
+        "KRW": 105076818000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 79300000,
+        "KRW": 121999878000,
+        "changeRate": 16.11
+      },
+      {
+        "year": "2024.11",
+        "EUR": 79300000,
+        "KRW": 121999878000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 69500000,
+        "KRW": 106922970000,
+        "changeRate": -12.36
+      }
+    ]
+  },
+  {
+    "name": "라요 바예카노",
+    "nameEng": "Rayo Vallecano",
+    "shortName": "RYO",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/c7xhkvd2b0ezkmcqqbvc",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 68950000,
+        "KRW": 106076817000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 71300000,
+        "KRW": 109692198000,
+        "changeRate": 3.41
+      },
+      {
+        "year": "2024.11",
+        "EUR": 71300000,
+        "KRW": 109692198000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 63400000,
+        "KRW": 97538364000,
+        "changeRate": -11.08
+      }
+    ]
+  },
+  {
+    "name": "헤타페 CF",
+    "nameEng": "Getafe CF",
+    "shortName": "GET",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/imgdiqpyxznas7xlext1",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 65600000,
+        "KRW": 100922976000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 73800000,
+        "KRW": 113538348000,
+        "changeRate": 12.5
+      },
+      {
+        "year": "2024.11",
+        "EUR": 74000000,
+        "KRW": 113846040000,
+        "changeRate": 0.27
+      },
+      {
+        "year": "2024.12",
+        "EUR": 62900000,
+        "KRW": 96769134000,
+        "changeRate": -15
+      }
+    ]
+  },
+  {
+    "name": "CD 레가네스",
+    "nameEng": "CD Leganés",
+    "shortName": "LEG",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/wizdiepbzj3svcf7rbsd",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 57330000,
+        "KRW": 88199911800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 56330000,
+        "KRW": 86661451800,
+        "changeRate": -1.74
+      },
+      {
+        "year": "2024.11",
+        "EUR": 56330000,
+        "KRW": 86661451800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 48700000,
+        "KRW": 74923002000,
+        "changeRate": -13.55
+      }
+    ]
+  },
+  {
+    "name": "레알 바야돌리드 CF",
+    "nameEng": "Real Valladolid CF",
+    "shortName": "VLD",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/irezpv1dqc2xqynr7j34",
+    "league": "laliga",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 43400000,
+        "KRW": 66769164000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 43700000,
+        "KRW": 67230702000,
+        "changeRate": 0.69
+      },
+      {
+        "year": "2024.11",
+        "EUR": 44200000,
+        "KRW": 67999932000,
+        "changeRate": 1.14
+      },
+      {
+        "year": "2024.12",
+        "EUR": 42100000,
+        "KRW": 64769166000,
+        "changeRate": -4.75
+      }
+    ]
+  }
+]

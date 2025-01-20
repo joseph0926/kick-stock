@@ -1,190 +1,99 @@
-import { LeagueUniqueName, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import axios from "axios";
 
 const prisma = new PrismaClient();
 
-interface LeagueData {
-  id: string;
-  name: string;
-  nameEng: string;
-  uniqueName: LeagueUniqueName;
-  img: string;
-  clubs: {
-    id: string;
-    name: string;
-    nameEng: string;
-    league: string;
-    img: string;
-    shortName: string;
-  }[];
-}
+const BASE_URL =
+  process.env.NODE_ENV === "prodcution"
+    ? "https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/prod"
+    : "https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/dev";
 
-interface ClubValueData {
-  name: string;
-  values: {
-    year: string;
-    EUR: number;
-    USD: number;
-    KRW: number;
-    changeRate: number;
-  }[];
-}
-
-interface LeagueValueData {
-  name: string;
-  values: {
-    year: string;
-    EUR: number;
-    USD: number;
-    KRW: number;
-  }[];
-}
-
-interface ValueData {
-  data: ClubValueData[];
-}
-
-interface LeaguesValueData {
-  data: LeagueValueData[];
-  metadata: {
-    exchange_rates: {
-      EUR_to_USD: number;
-      EUR_to_KRW: number;
-    };
-  };
-}
-
-const LEAGUES = ["laliga", "epl", "bundes", "ligue", "serie"];
-
-async function fetchLeagueData(leagueName: string): Promise<LeagueData> {
-  const response = await axios.get<LeagueData>(
-    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/2024/${leagueName}.json`
-  );
-  return response.data;
-}
-
-async function fetchClubValueData(leagueName: string): Promise<ValueData> {
-  const response = await axios.get<ValueData>(
-    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/club/2024/${leagueName}.json`
-  );
-  return response.data;
-}
-
-async function fetchLeaguesValueData(): Promise<LeaguesValueData> {
-  const response = await axios.get<LeaguesValueData>(
-    `https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn/leagues/index-value.json`
-  );
-  return response.data;
-}
-
-function calculateChangeRate(
-  currentValue: number,
-  previousValue: number
-): number {
-  if (!previousValue) return 0;
-  return ((currentValue - previousValue) / previousValue) * 100;
-}
+const LEAGUE_INDEX_URL = `${BASE_URL}/index.json`;
+const CLUB_BASE_URL = `${BASE_URL}/club`;
 
 async function main() {
-  try {
-    await prisma.clubValue.deleteMany();
-    await prisma.leagueValue.deleteMany();
-    await prisma.club.deleteMany();
-    await prisma.league.deleteMany();
+  const leagueIndexRes = await axios.get(LEAGUE_INDEX_URL);
+  const leagueIndex = leagueIndexRes.data;
 
-    const leaguesValueData = await fetchLeaguesValueData();
+  for (const leagueItem of leagueIndex) {
+    const createdLeague = await prisma.league.upsert({
+      where: { uniqueName: leagueItem.nameShort },
+      update: {},
+      create: {
+        name: leagueItem.name,
+        nameEng: leagueItem.nameEng,
+        uniqueName: leagueItem.nameShort,
+        img: leagueItem.img,
+      },
+    });
 
-    for (const leagueName of LEAGUES) {
-      console.log(`Processing ${leagueName}...`);
+    console.log(`Upsert league: ${leagueItem.name} (${leagueItem.nameShort})`);
 
-      const leagueData = await fetchLeagueData(leagueName);
-      console.log(leagueData?.uniqueName);
+    const clubJsonUrl = `${CLUB_BASE_URL}/${leagueItem.nameShort}.json`;
+    try {
+      const clubRes = await axios.get(clubJsonUrl);
+      const clubData = clubRes.data;
 
-      const league = await prisma.league.create({
-        data: {
-          id: leagueData.id,
-          name: leagueData.name,
-          nameEng: leagueData.nameEng,
-          uniqueName: leagueData.uniqueName,
-          img: leagueData.img,
-        },
-      });
-
-      for (const club of leagueData.clubs) {
-        await prisma.club.create({
-          data: {
-            id: club.id,
-            name: club.name,
-            nameEng: club.nameEng,
-            shortName: club.shortName,
-            img: club.img,
-            league: club.league,
-            leagueId: league.id,
-          },
-        });
-      }
-
-      const valueData = await fetchClubValueData(leagueName);
-
-      for (const clubValueData of valueData.data) {
-        const club = await prisma.club.findFirst({
+      for (const clubItem of clubData) {
+        const createdClub = await prisma.club.upsert({
           where: {
-            nameEng: {
-              contains: clubValueData.name,
+            nameEng_leagueId: {
+              nameEng: clubItem.nameEng,
+              leagueId: createdLeague.id,
             },
           },
+          update: {},
+          create: {
+            name: clubItem.name,
+            nameEng: clubItem.nameEng,
+            shortName: clubItem.shortName || clubItem.name,
+            img: clubItem.img || "",
+            league: clubItem.league || leagueItem.nameShort,
+            leagueId: createdLeague.id,
+          },
         });
 
-        if (club) {
-          await prisma.clubValue.createMany({
-            data: clubValueData.values.map((value) => ({
-              year: value.year,
-              EUR: value.EUR,
-              USD: value.USD,
-              KRW: value.KRW,
-              changeRate: value.changeRate,
-              clubId: club.id,
-            })),
-          });
-          console.log(`Added value data for ${club.nameEng}`);
-        } else {
-          console.warn(`Could not find club for ${clubValueData.name}`);
-        }
-      }
-
-      const leagueValueData = leaguesValueData.data.find(
-        (data) => data.name === leagueName
-      );
-
-      if (leagueValueData) {
-        const sortedValues = [...leagueValueData.values].sort(
-          (a, b) => Number(a.year) - Number(b.year)
+        console.log(
+          `Upsert club: ${clubItem.name} (${clubItem.nameEng}) in league ${leagueItem.nameShort}`
         );
 
-        await prisma.leagueValue.createMany({
-          data: sortedValues.map((value, index) => ({
-            year: value.year,
-            KRW: value.KRW,
-            changeRate: calculateChangeRate(
-              value.KRW,
-              index > 0 ? sortedValues[index - 1].KRW : 0
-            ),
-            leagueId: league.id,
-          })),
-        });
-        console.log(`Added league value data for ${leagueName}`);
+        if (Array.isArray(clubItem.values)) {
+          for (const val of clubItem.values) {
+            await prisma.clubValue.upsert({
+              where: {
+                clubId_year: {
+                  clubId: createdClub.id,
+                  year: val.year,
+                },
+              },
+              update: {},
+              create: {
+                year: val.year,
+                EUR: val.EUR,
+                KRW: val.KRW,
+                changeRate: val.changeRate,
+                clubId: createdClub.id,
+              },
+            });
+          }
+        }
       }
-
-      console.log(`Completed ${leagueName}`);
+    } catch (err) {
+      console.warn(
+        `Failed to fetch club data for ${leagueItem.nameShort}, skipping...`
+      );
+      continue;
     }
-
-    console.log("Data seeding completed successfully");
-  } catch (error) {
-    console.error("Error seeding data:", error);
-    process.exit(1);
-  } finally {
-    await prisma.$disconnect();
   }
+
+  console.log("League/Club seed completed.");
 }
 
-main();
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

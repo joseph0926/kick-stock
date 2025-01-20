@@ -1,10 +1,16 @@
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
-import { ssrCdnAxios } from "./api";
-import { ClubStockType } from "@kickstock/shared/src/types/club.type";
+import { ApiResponse } from "@kickstock/shared/src/types/common.type";
+import { ClubDataResponse } from "@kickstock/shared/src/types/club.type";
+import { apiAxios } from "./api";
 
-export const getClubStocksData = async (
+export async function getClubStocksData(
   league: LeagueType,
-): Promise<ClubStockType> => {
-  const { data } = await ssrCdnAxios.get(`/club/2024/${league}.json`);
+): Promise<ApiResponse<ClubDataResponse>> {
+  const { data } = await apiAxios.get(`/club/${league}/history`);
+
+  if (!data.success || !data.data) {
+    throw new Error(data.message || "클럽 데이터 불러오기 실패");
+  }
+
   return data;
-};
+}

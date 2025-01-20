@@ -5,6 +5,7 @@ import fastifyRateLimit from "@fastify/rate-limit";
 import { healthRoute, leagueRoute } from "./routes/index.js";
 import { isProd } from "@kickstock/shared/src/lib/env-util.js";
 import { initializeSocketServer } from "./socket/server.js";
+import { clubRoute } from "./routes/club.route.js";
 
 const PORT = parseInt(process.env.PORT || "4000") || 4000;
 const TRUST_PROXY = ["127.0.0.1", "::1"];
@@ -94,6 +95,7 @@ fastify.decorate("io");
 
 fastify.register(healthRoute, { prefix: "/health" });
 fastify.register(leagueRoute, { prefix: `${API_PREFIX}/league` });
+fastify.register(clubRoute, { prefix: `${API_PREFIX}/club` });
 
 const start = async () => {
   try {

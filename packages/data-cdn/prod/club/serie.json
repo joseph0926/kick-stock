@@ -1,0 +1,662 @@
+[
+  {
+    "name": "Inter Milan",
+    "nameEng": "FC Internazionale Milano",
+    "shortName": "인테르",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 650000000,
+        "KRW": 999700000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 670000000,
+        "KRW": 1030460000000,
+        "changeRate": 3.08
+      },
+      {
+        "year": "2024.11",
+        "EUR": 677300000,
+        "KRW": 1041998958000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 675300000,
+        "KRW": 1038922038000,
+        "changeRate": -0.3
+      }
+    ]
+  },
+  {
+    "name": "Juventus FC",
+    "nameEng": "Juventus",
+    "shortName": "유벤투스",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 580000000,
+        "KRW": 892620000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 590000000,
+        "KRW": 907990000000,
+        "changeRate": 1.72
+      },
+      {
+        "year": "2024.11",
+        "EUR": 594200000,
+        "KRW": 914152932000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 615200000,
+        "KRW": 946460592000,
+        "changeRate": 3.53
+      }
+    ]
+  },
+  {
+    "name": "AC Milan",
+    "nameEng": "AC Milan",
+    "shortName": "밀란",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 550000000,
+        "KRW": 846450000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 560000000,
+        "KRW": 861840000000,
+        "changeRate": 1.82
+      },
+      {
+        "year": "2024.11",
+        "EUR": 562000000,
+        "KRW": 864614520000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 533000000,
+        "KRW": 819999180000,
+        "changeRate": -5.16
+      }
+    ]
+  },
+  {
+    "name": "Atalanta BC",
+    "nameEng": "Atalanta Bergamasca Calcio",
+    "shortName": "아탈란타",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 430000000,
+        "KRW": 661340000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 445000000,
+        "KRW": 684410000000,
+        "changeRate": 3.49
+      },
+      {
+        "year": "2024.11",
+        "EUR": 447600000,
+        "KRW": 688614696000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 485600000,
+        "KRW": 747076176000,
+        "changeRate": 8.49
+      }
+    ]
+  },
+  {
+    "name": "SSC Napoli",
+    "nameEng": "Società Sportiva Calcio Napoli",
+    "shortName": "나폴리",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 420000000,
+        "KRW": 646000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 425000000,
+        "KRW": 653550000000,
+        "changeRate": 1.19
+      },
+      {
+        "year": "2024.11",
+        "EUR": 429030000,
+        "KRW": 660045493800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 431050000,
+        "KRW": 663153183000,
+        "changeRate": 0.47
+      }
+    ]
+  },
+  {
+    "name": "AS Roma",
+    "nameEng": "Associazione Sportiva Roma",
+    "shortName": "로마",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 320000000,
+        "KRW": 492160000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 330000000,
+        "KRW": 507540000000,
+        "changeRate": 3.22
+      },
+      {
+        "year": "2024.11",
+        "EUR": 332500000,
+        "KRW": 511537950000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 287500000,
+        "KRW": 442307250000,
+        "changeRate": -13.53
+      }
+    ]
+  },
+  {
+    "name": "ACF Fiorentina",
+    "nameEng": "ACF Fiorentina",
+    "shortName": "피오렌티나",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 250000000,
+        "KRW": 384500000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 255000000,
+        "KRW": 392190000000,
+        "changeRate": 1.82
+      },
+      {
+        "year": "2024.11",
+        "EUR": 258300000,
+        "KRW": 397384218000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 283800000,
+        "KRW": 436614948000,
+        "changeRate": 9.87
+      }
+    ]
+  },
+  {
+    "name": "Bologna FC 1909",
+    "nameEng": "Bologna Football Club 1909",
+    "shortName": "볼로냐",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 270000000,
+        "KRW": 415260000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 275000000,
+        "KRW": 422410000000,
+        "changeRate": 1.93
+      },
+      {
+        "year": "2024.11",
+        "EUR": 276800000,
+        "KRW": 425845728000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 279700000,
+        "KRW": 430307262000,
+        "changeRate": 1.05
+      }
+    ]
+  },
+  {
+    "name": "SS Lazio",
+    "nameEng": "Società Sportiva Lazio",
+    "shortName": "라치오",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 230000000,
+        "KRW": 354000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 235000000,
+        "KRW": 361000000000,
+        "changeRate": 1.98
+      },
+      {
+        "year": "2024.11",
+        "EUR": 236350000,
+        "KRW": 363615021000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 271100000,
+        "KRW": 417076506000,
+        "changeRate": 14.7
+      }
+    ]
+  },
+  {
+    "name": "Torino FC",
+    "nameEng": "Torino Football Club",
+    "shortName": "토리노",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 170000000,
+        "KRW": 261460000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 171000000,
+        "KRW": 262998000000,
+        "changeRate": 0.59
+      },
+      {
+        "year": "2024.11",
+        "EUR": 172030000,
+        "KRW": 264661273800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 164500000,
+        "KRW": 253076670000,
+        "changeRate": -4.38
+      }
+    ]
+  },
+  {
+    "name": "Udinese Calcio",
+    "nameEng": "Udinese Calcio",
+    "shortName": "우디네세",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 120000000,
+        "KRW": 184560000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 125000000,
+        "KRW": 192250000000,
+        "changeRate": 4.07
+      },
+      {
+        "year": "2024.11",
+        "EUR": 128180000,
+        "KRW": 197199802800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 145800000,
+        "KRW": 224307468000,
+        "changeRate": 13.75
+      }
+    ]
+  },
+  {
+    "name": "Genoa CFC",
+    "nameEng": "Genoa Cricket and Football Club",
+    "shortName": "제노아",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 140000000,
+        "KRW": 215320000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 142000000,
+        "KRW": 218396000000,
+        "changeRate": 1.47
+      },
+      {
+        "year": "2024.11",
+        "EUR": 144400000,
+        "KRW": 222153624000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 144600000,
+        "KRW": 222461316000,
+        "changeRate": 0.14
+      }
+    ]
+  },
+  {
+    "name": "Parma Calcio 1913",
+    "nameEng": "Parma Calcio 1913",
+    "shortName": "파르마",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 120000000,
+        "KRW": 184560000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 124000000,
+        "KRW": 190712000000,
+        "changeRate": 3.34
+      },
+      {
+        "year": "2024.11",
+        "EUR": 125100000,
+        "KRW": 192461346000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 135650000,
+        "KRW": 208692099000,
+        "changeRate": 8.43
+      }
+    ]
+  },
+  {
+    "name": "Como 1907",
+    "nameEng": "Calcio Como",
+    "shortName": "코모",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 98000000,
+        "KRW": 150700000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 100000000,
+        "KRW": 153800000000,
+        "changeRate": 2.04
+      },
+      {
+        "year": "2024.11",
+        "EUR": 100550000,
+        "KRW": 154692153000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 100800000,
+        "KRW": 155076768000,
+        "changeRate": 0.25
+      }
+    ]
+  },
+  {
+    "name": "US Lecce",
+    "nameEng": "Unione Sportiva Lecce",
+    "shortName": "레체",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 90000000,
+        "KRW": 138420000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 91000000,
+        "KRW": 139958000000,
+        "changeRate": 1.11
+      },
+      {
+        "year": "2024.11",
+        "EUR": 92200000,
+        "KRW": 141846012000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 91050000,
+        "KRW": 140076783000,
+        "changeRate": -1.25
+      }
+    ]
+  },
+  {
+    "name": "Hellas Verona",
+    "nameEng": "Hellas Verona FC",
+    "shortName": "베로나",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 85000000,
+        "KRW": 130630000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 88000000,
+        "KRW": 135344000000,
+        "changeRate": 3.6
+      },
+      {
+        "year": "2024.11",
+        "EUR": 88430000,
+        "KRW": 136046017800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 90180000,
+        "KRW": 138738322800,
+        "changeRate": 1.98
+      }
+    ]
+  },
+  {
+    "name": "AC Monza",
+    "nameEng": "Associazione Calcio Monza",
+    "shortName": "몬자",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 88000000,
+        "KRW": 135344000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 90000000,
+        "KRW": 138420000000,
+        "changeRate": 2.53
+      },
+      {
+        "year": "2024.11",
+        "EUR": 92680000,
+        "KRW": 142584472800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 85780000,
+        "KRW": 131969098800,
+        "changeRate": -7.44
+      }
+    ]
+  },
+  {
+    "name": "FC Empoli",
+    "nameEng": "Empoli Football Club",
+    "shortName": "엠폴리",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 66000000,
+        "KRW": 101468000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 68000000,
+        "KRW": 104584000000,
+        "changeRate": 3.08
+      },
+      {
+        "year": "2024.11",
+        "EUR": 68830000,
+        "KRW": 105892201800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 80600000,
+        "KRW": 123999876000,
+        "changeRate": 17.1
+      }
+    ]
+  },
+  {
+    "name": "Cagliari Calcio",
+    "nameEng": "Cagliari Calcio",
+    "shortName": "칼리아리",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 69000000,
+        "KRW": 106200000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 70000000,
+        "KRW": 107660000000,
+        "changeRate": 1.38
+      },
+      {
+        "year": "2024.11",
+        "EUR": 70350000,
+        "KRW": 108230661000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 70200000,
+        "KRW": 107999892000,
+        "changeRate": -0.21
+      }
+    ]
+  },
+  {
+    "name": "Venezia FC",
+    "nameEng": "Venezia Football Club",
+    "shortName": "베네치아",
+    "img": "",
+    "league": "serie",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 55000000,
+        "KRW": 84590000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 57000000,
+        "KRW": 87666000000,
+        "changeRate": 3.63
+      },
+      {
+        "year": "2024.11",
+        "EUR": 57780000,
+        "KRW": 88892218800,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 65900000,
+        "KRW": 101384514000,
+        "changeRate": 14.05
+      }
+    ]
+  }
+]

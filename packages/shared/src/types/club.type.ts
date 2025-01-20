@@ -1,33 +1,41 @@
-import { CurrencyType } from "./common.type.js";
+export interface ClubValue {
+  year: string;
+  EUR: number;
+  KRW: number;
+  changeRate: number;
+}
 
-export type ClubType = {
-  id: string;
+export interface Club {
   name: string;
   nameEng: string;
-  league: string;
-  img: string;
   shortName: string;
-};
+  img: string;
+  league: string;
+  values: ClubValue[];
+}
 
-export type ClubStockValueType = {
-  year: string;
-  changeRate: number;
-} & { [key in CurrencyType]: number };
-export type ClubStockDataType = {
-  name: string;
-  values: ClubStockValueType[];
-};
-export type ClubStockType = {
-  data: ClubStockDataType[];
-};
+export type ClubList = Club[];
 
 export type TeamValue = {
   name: string;
+  rawKRW: number;
   rawEUR: number;
   rawUSD: number;
-  rawKRW: number;
+  currentKRW: string;
   currentEUR: string;
   currentUSD: string;
-  currentKRW: string;
   changeRate: number;
+};
+
+export type ClubDataResponse = {
+  id: string;
+  name: string;
+  values: {
+    clubId: string;
+    id: string;
+    year: string;
+    EUR: number;
+    KRW: number;
+    changeRate: number;
+  }[];
 };

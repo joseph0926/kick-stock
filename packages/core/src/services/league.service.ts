@@ -13,22 +13,22 @@ import { ApiResponse } from "@kickstock/shared/src/types/common.type";
 // CDN api
 
 export const getLeaguesData = async (): Promise<LeaguesDataType[]> => {
-  const { data } = await ssrCdnAxios.get("/leagues/leagues.json");
+  const { data } = await ssrCdnAxios.get("/league/index.json");
   return data;
 };
 
 export const getLeaguesRevenueValue = async (): Promise<LeaguesValueType> => {
-  const { data } = await ssrCdnAxios.get("/leagues/revenue-value.json");
+  const { data } = await ssrCdnAxios.get("/league/revenue-value.json");
   return data;
 };
 
 export const getLeaguesProfitValue = async (): Promise<LeaguesValueType> => {
-  const { data } = await ssrCdnAxios.get("/leagues/profit-value.json");
+  const { data } = await ssrCdnAxios.get("/league/profit-value.json");
   return data;
 };
 
 export const getLeaguesIndexValue = async (): Promise<LeaguesValueType> => {
-  const { data } = await ssrCdnAxios.get("/leagues/index-value.json");
+  const { data } = await ssrCdnAxios.get("/league/index-value.json");
   return data;
 };
 

@@ -43,8 +43,24 @@ export const LeaguesSchema = Type.Object({
   clubs: Type.Optional(Type.Array(ClubSchema)),
 });
 
+export const LeagueRealTimeValueSchema = Type.Object({
+  id: Type.String(),
+  leagueId: Type.String(),
+
+  KRW: Type.Number(),
+
+  timestamp: Type.String(),
+  changeRate: Type.Number(),
+});
+
+export const LeagueRealTimeSchema = Type.Array(LeagueRealTimeValueSchema);
+
 export type ClubType = Static<typeof ClubSchema>;
 export type LeagueValueType = Static<typeof LeagueValueSchema>;
+
 export type LeagueBasicType = Static<typeof LeagueBasicSchema>;
 export type LeagueClubsType = Static<typeof LeagueClubsSchema>;
 export type LeaguesType = Static<typeof LeaguesSchema>;
+
+export type LeagueRealTimeValueType = Static<typeof LeagueRealTimeValueSchema>;
+export type LeagueRealTimeType = Static<typeof LeagueRealTimeSchema>;

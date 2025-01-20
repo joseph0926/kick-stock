@@ -15,6 +15,16 @@ enum LeagueUniqueName {
   serie
 }
 
+enum TransactionType {
+  BUY
+  SELL
+}
+
+enum PointTransactionType {
+  EARN
+  SPEND
+}
+
 model League {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -38,6 +48,7 @@ model LeagueValue {
 
   year       String
   KRW        Float
+  EUR        Float
   changeRate Float
 
   leagueId String
@@ -52,6 +63,7 @@ model LeagueRealTimeValue {
   createdAt DateTime @default(now())
 
   KRW        Float
+  EUR        Float
   timestamp  DateTime
   changeRate Float
 
@@ -78,6 +90,11 @@ model Club {
   leagueId String
   League   League @relation(fields: [leagueId], references: [id])
 
+  portfolios         Portfolio[]
+  transactions       Transaction[]
+  clubRealTimeValues ClubRealTimeValue[]
+
+  @@unique([nameEng, leagueId], name: "nameEng_leagueId")
   @@map("clubs")
 }
 
@@ -86,7 +103,6 @@ model ClubValue {
 
   year       String
   EUR        Float
-  USD        Float
   KRW        Float
   changeRate Float
 
@@ -95,4 +111,117 @@ model ClubValue {
 
   @@unique([clubId, year])
   @@map("club_values")
+}
+
+model ClubRealTimeValue {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  KRW        Float
+  EUR        Float
+  timestamp  DateTime
+  changeRate Float
+
+  clubId String
+  club   Club   @relation(fields: [clubId], references: [id])
+
+  @@index([clubId, timestamp])
+  @@map("club_realtime_values")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clerkId  String  @unique
+  username String
+  email    String? @unique
+  points   Int     @default(0)
+
+  portfolios   Portfolio[]
+  pointTxns    PointTransaction[]
+  redemptions  RewardRedemption[]
+  transactions Transaction[]
+
+  @@map("users")
+}
+
+model Portfolio {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  quantity Int @default(0)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  clubId String
+  club   Club   @relation(fields: [clubId], references: [id])
+
+  @@map("portfolios")
+}
+
+model Transaction {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  type       TransactionType
+  quantity   Int
+  price      Float
+  totalPrice Float
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  clubId String
+  club   Club   @relation(fields: [clubId], references: [id])
+
+  @@index([userId])
+  @@index([clubId])
+  @@map("transactions")
+}
+
+model PointTransaction {
+  id          String               @id @default(uuid())
+  createdAt   DateTime             @default(now())
+  type        PointTransactionType
+  amount      Int
+  description String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("point_transactions")
+}
+
+model Reward {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  description String?
+  cost        Int
+  quantity    Int?
+
+  redemptions RewardRedemption[]
+
+  @@map("rewards")
+}
+
+model RewardRedemption {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  userId   String
+  user     User   @relation(fields: [userId], references: [id])
+  rewardId String
+  reward   Reward @relation(fields: [rewardId], references: [id])
+
+  @@index([userId])
+  @@index([rewardId])
+  @@map("reward_redemptions")
 }

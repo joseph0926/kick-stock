@@ -1,0 +1,32 @@
+[
+  {
+    "name": "분데스리가",
+    "nameShort": "bundes",
+    "nameEng": "Bundesliga",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/ndy1qbqf50qc01tj1mcf"
+  },
+  {
+    "name": "프리미어리그",
+    "nameShort": "epl",
+    "nameEng": "English Premier League",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/lo7dtlnlrcydv8wusfy2"
+  },
+  {
+    "name": "라리가",
+    "nameShort": "laliga",
+    "nameEng": "La Liga",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/jvzcdoq15dsqwpexvwu4"
+  },
+  {
+    "name": "리그앙",
+    "nameShort": "ligue",
+    "nameEng": "Ligue 1",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/hzfdphhxgylziyyeefqs"
+  },
+  {
+    "name": "세리에 A",
+    "nameShort": "serie",
+    "nameEng": "Serie A",
+    "img": "https://res.cloudinary.com/dsf5sco4d/image/upload/f_auto,q_auto/v1/kick-stock/bzq25krs9x0bpsmbl9fl"
+  }
+]

@@ -1,0 +1,662 @@
+[
+  {
+    "name": "Nantes",
+    "nameEng": "FC Nantes",
+    "shortName": "낭트",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 40000000,
+        "KRW": 60000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 42000000,
+        "KRW": 63000000000,
+        "changeRate": 5
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Nice",
+    "nameEng": "OGC Nice",
+    "shortName": "니스",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 55000000,
+        "KRW": 82500000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 60000000,
+        "KRW": 90000000000,
+        "changeRate": 9.09
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Lens",
+    "nameEng": "RC Lens",
+    "shortName": "랑스",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 85000000,
+        "KRW": 127500000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 90000000,
+        "KRW": 135000000000,
+        "changeRate": 5.88
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Rennes",
+    "nameEng": "Stade Rennais FC",
+    "shortName": "렌",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 70000000,
+        "KRW": 105000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 73500000,
+        "KRW": 110250000000,
+        "changeRate": 5
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Le Havre",
+    "nameEng": "Le Havre AC",
+    "shortName": "르 아브르",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 25000000,
+        "KRW": 37500000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 27000000,
+        "KRW": 40500000000,
+        "changeRate": 8
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Lyon",
+    "nameEng": "Olympique Lyonnais",
+    "shortName": "리옹",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 150000000,
+        "KRW": 225000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 160000000,
+        "KRW": 240000000000,
+        "changeRate": 6.67
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Lille",
+    "nameEng": "LOSC Lille",
+    "shortName": "릴",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 95000000,
+        "KRW": 142500000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 98000000,
+        "KRW": 147000000000,
+        "changeRate": 3.16
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Marseille",
+    "nameEng": "Olympique de Marseille",
+    "shortName": "마르세유",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 160000000,
+        "KRW": 240000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 176000000,
+        "KRW": 264000000000,
+        "changeRate": 10
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Monaco",
+    "nameEng": "AS Monaco",
+    "shortName": "모나코",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 140000000,
+        "KRW": 210000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 147000000,
+        "KRW": 220500000000,
+        "changeRate": 5
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Montpellier",
+    "nameEng": "Montpellier HSC",
+    "shortName": "몽펠리에",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 38000000,
+        "KRW": 57000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 40000000,
+        "KRW": 60000000000,
+        "changeRate": 5.26
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Brest",
+    "nameEng": "Stade Brestois 29",
+    "shortName": "브레스트",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 32000000,
+        "KRW": 48000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 35200000,
+        "KRW": 52800000000,
+        "changeRate": 10
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Saint-Étienne",
+    "nameEng": "AS Saint-Étienne",
+    "shortName": "생테티엔",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 45000000,
+        "KRW": 67500000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 46500000,
+        "KRW": 69750000000,
+        "changeRate": 3.33
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Stade de Reims",
+    "nameEng": "Stade de Reims",
+    "shortName": "랭스",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 60000000,
+        "KRW": 90000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 63000000,
+        "KRW": 94500000000,
+        "changeRate": 5
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Strasbourg",
+    "nameEng": "RC Strasbourg Alsace",
+    "shortName": "스트라스부르",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 68000000,
+        "KRW": 102000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 71000000,
+        "KRW": 106500000000,
+        "changeRate": 4.41
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Angers",
+    "nameEng": "Angers SCO",
+    "shortName": "앙제",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 30000000,
+        "KRW": 45000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 33000000,
+        "KRW": 49500000000,
+        "changeRate": 10
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Auxerre",
+    "nameEng": "AJ Auxerre",
+    "shortName": "오세르",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 28000000,
+        "KRW": 42000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 29400000,
+        "KRW": 44100000000,
+        "changeRate": 5
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Toulouse",
+    "nameEng": "Toulouse FC",
+    "shortName": "툴루즈",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 48000000,
+        "KRW": 72000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 50160000,
+        "KRW": 75240000000,
+        "changeRate": 4.5
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Paris Saint-Germain",
+    "nameEng": "Paris Saint-Germain",
+    "shortName": "PSG",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 800000000,
+        "KRW": 1200000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 848000000,
+        "KRW": 1272000000000,
+        "changeRate": 6
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Valenciennes",
+    "nameEng": "Valenciennes FC",
+    "shortName": "발랑시엔",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 16000000,
+        "KRW": 24000000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 17600000,
+        "KRW": 26400000000,
+        "changeRate": 10
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  },
+  {
+    "name": "Metz",
+    "nameEng": "FC Metz",
+    "shortName": "메스",
+    "img": "",
+    "league": "ligue",
+    "values": [
+      {
+        "year": "2024.09",
+        "EUR": 21000000,
+        "KRW": 31500000000,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.10",
+        "EUR": 22050000,
+        "KRW": 33075000000,
+        "changeRate": 5
+      },
+      {
+        "year": "2024.11",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      },
+      {
+        "year": "2024.12",
+        "EUR": 0,
+        "KRW": 0,
+        "changeRate": 0
+      }
+    ]
+  }
+]
