@@ -1,20 +1,21 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import { Type } from "@sinclair/typebox";
 import {
-  getClubHistoryController,
+  getClubsHistoryController,
   getClubRealTimeController,
 } from "@/controllers/club.controller.js";
 import {
-  ClubHistorySchema,
   ClubRealTimeSchema,
-  ClubHistoryType,
   ClubRealTimeType,
+  ClubsHistorySchema,
+  ClubsHistoryType,
 } from "@/schemas/club.schema.js";
 import { ApiResponse } from "@kickstock/shared/src/types/common.type.js";
+import { LeagueUniqueName } from "@prisma/client";
 
-export type ClubHistoryRouteGeneric = {
-  Params: { clubId: string };
-  Reply: ApiResponse<ClubHistoryType>;
+export type ClubsHistoryRouteGeneric = {
+  Params: { league: LeagueUniqueName };
+  Reply: ApiResponse<ClubsHistoryType>;
 };
 
 export type ClubRealTimeRouteGeneric = {
@@ -26,20 +27,20 @@ export const clubRoute = (
   fastify: FastifyInstance,
   options: FastifyPluginOptions
 ) => {
-  fastify.get<ClubHistoryRouteGeneric>("/:clubId/history", {
+  fastify.get<ClubsHistoryRouteGeneric>("/:league/history", {
     schema: {
       params: Type.Object({
-        clubId: Type.String(),
+        league: Type.Enum(LeagueUniqueName),
       }),
       response: {
         200: Type.Object({
-          data: Type.Union([ClubHistorySchema, Type.Null()]),
+          data: Type.Union([ClubsHistorySchema, Type.Null()]),
           success: Type.Boolean(),
           message: Type.Optional(Type.String()),
         }),
       },
     },
-    handler: getClubHistoryController,
+    handler: getClubsHistoryController,
   });
 
   fastify.get<ClubRealTimeRouteGeneric>("/:clubId/realtime", {

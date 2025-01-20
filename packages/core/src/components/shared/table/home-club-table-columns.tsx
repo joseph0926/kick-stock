@@ -3,8 +3,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@kickstock/ui/src/components/ui/button";
 import { cn } from "@kickstock/ui/src/lib/utils";
+import { ClubTableType } from "@kickstock/shared/src/types/club.type";
 
-export const columns: ColumnDef<???>[] = [
+export const columns: ColumnDef<ClubTableType>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {

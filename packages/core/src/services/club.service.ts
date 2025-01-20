@@ -1,11 +1,11 @@
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
 import { ApiResponse } from "@kickstock/shared/src/types/common.type";
-import { ClubDataResponse } from "@kickstock/shared/src/types/club.type";
+import { ClubItem } from "@kickstock/shared/src/types/club.type";
 import { apiAxios } from "./api";
 
-export async function getClubStocksData(
+export async function getClubsHistoryData(
   league: LeagueType,
-): Promise<ApiResponse<ClubDataResponse>> {
+): Promise<ApiResponse<ClubItem[]>> {
   const { data } = await apiAxios.get(`/club/${league}/history`);
 
   if (!data.success || !data.data) {

@@ -5,14 +5,14 @@ import { RedisClient } from "@kickstock/redis/src/redis-client.js";
 const BASE_CDN_URL =
   "https://cdn.jsdelivr.net/gh/joseph0926/kick-stock/packages/data-cdn";
 
-export async function fetchClubHistoryFromCDN(league: string) {
+export async function fetchClubsHistoryFromCDN(league: string) {
   try {
     const envPath = isProd ? "prod" : "dev";
     const url = `${BASE_CDN_URL}/${envPath}/club/${league}.json`;
     const { data } = await axios.get(url);
     return data;
   } catch (error) {
-    console.error("[fetchClubHistoryFromCDN] error:", error);
+    console.error("[fetchClubsHistoryFromCDN] error:", error);
     return null;
   }
 }

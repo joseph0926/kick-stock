@@ -1,22 +1,22 @@
 import { RouteHandler } from "fastify";
 import { prisma } from "@/lib/prisma.js";
 import {
-  ClubHistoryRouteGeneric,
+  ClubsHistoryRouteGeneric,
   ClubRealTimeRouteGeneric,
 } from "@/routes/club.route.js";
 import {
-  fetchClubHistoryFromCDN,
+  fetchClubsHistoryFromCDN,
   redisFetchClubHistory,
   redisSaveClubHistory,
 } from "@/services/club-cdn-redis.service.js";
 
-export const getClubHistoryController: RouteHandler<
-  ClubHistoryRouteGeneric
+export const getClubsHistoryController: RouteHandler<
+  ClubsHistoryRouteGeneric
 > = async (req, res) => {
-  const { clubId } = req.params;
+  const { league } = req.params;
 
   try {
-    const cdnData = await fetchClubHistoryFromCDN(clubId);
+    const cdnData = await fetchClubsHistoryFromCDN(league);
     if (cdnData) {
       return {
         data: cdnData,
@@ -25,7 +25,7 @@ export const getClubHistoryController: RouteHandler<
       };
     }
 
-    const redisData = await redisFetchClubHistory(clubId);
+    const redisData = await redisFetchClubHistory(league);
     if (redisData) {
       return {
         data: redisData,
@@ -34,32 +34,42 @@ export const getClubHistoryController: RouteHandler<
       };
     }
 
-    const clubData = await prisma.club.findUnique({
-      where: { id: clubId },
+    const dbClubs = await prisma.club.findMany({
+      where: { League: { uniqueName: league } },
       select: {
-        id: true,
         name: true,
-        values: true,
+        nameEng: true,
+        shortName: true,
+        img: true,
+        league: true,
+        values: {
+          select: {
+            year: true,
+            EUR: true,
+            KRW: true,
+            changeRate: true,
+          },
+        },
       },
     });
 
-    if (!clubData) {
+    if (!dbClubs || dbClubs.length === 0) {
       return {
         data: null,
         success: false,
-        message: "해당 클럽이 존재하지 않습니다.",
+        message: "해당 리그에 클럽이 존재하지 않습니다.",
       };
     }
 
-    await redisSaveClubHistory(clubId, clubData);
+    await redisSaveClubHistory(league, dbClubs);
 
     return {
-      data: clubData,
+      data: dbClubs,
       success: true,
       message: "DB에서 클럽 과거 데이터를 불러왔습니다.",
     };
   } catch (error) {
-    req.server.log.error("[getClubHistory Error]: ", error);
+    req.server.log.error("[getClubsHistoryController Error]: ", error);
     return {
       data: null,
       success: false,

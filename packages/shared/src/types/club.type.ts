@@ -16,26 +16,25 @@ export interface Club {
 
 export type ClubList = Club[];
 
-export type TeamValue = {
+export type ClubItem = {
   name: string;
-  rawKRW: number;
-  rawEUR: number;
-  rawUSD: number;
-  currentKRW: string;
-  currentEUR: string;
-  currentUSD: string;
-  changeRate: number;
-};
-
-export type ClubDataResponse = {
-  id: string;
-  name: string;
+  nameEng: string;
+  shortName: string;
+  img: string;
+  league: string;
   values: {
-    clubId: string;
-    id: string;
     year: string;
     EUR: number;
     KRW: number;
     changeRate: number;
   }[];
+};
+
+export type ClubTableType = {
+  name: string;
+  rawEUR: number;
+  rawKRW: number;
+  currentEUR: string;
+  currentKRW: string;
+  changeRate: number;
 };

@@ -1,11 +1,13 @@
 import { Type } from "@sinclair/typebox";
 
-export const ClubHistorySchema = Type.Object({
-  id: Type.String(),
+export const ClubItemSchema = Type.Object({
   name: Type.String(),
+  nameEng: Type.String(),
+  shortName: Type.String(),
+  img: Type.String(),
+  league: Type.String(),
   values: Type.Array(
     Type.Object({
-      id: Type.String(),
       year: Type.String(),
       EUR: Type.Number(),
       KRW: Type.Number(),
@@ -13,6 +15,8 @@ export const ClubHistorySchema = Type.Object({
     })
   ),
 });
+
+export const ClubsHistorySchema = Type.Array(ClubItemSchema);
 
 export const ClubRealTimeSchema = Type.Array(
   Type.Object({
@@ -25,17 +29,21 @@ export const ClubRealTimeSchema = Type.Array(
   })
 );
 
-export type ClubHistoryType = {
-  id: string;
+export type ClubItemType = {
   name: string;
+  nameEng: string;
+  shortName: string;
+  img: string;
+  league: string;
   values: {
-    id: string;
     year: string;
     EUR: number;
     KRW: number;
     changeRate: number;
   }[];
 };
+
+export type ClubsHistoryType = ClubItemType[];
 
 export type ClubRealTimeType = {
   id: string;
