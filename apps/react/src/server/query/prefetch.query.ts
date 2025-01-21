@@ -6,9 +6,9 @@ import {
   getLeaguesData,
 } from "@kickstock/core/src/services/league.service";
 import { makeQueryClient } from "@kickstock/core/src/providers/query.provider";
-import { getClubStocksData } from "@kickstock/core/src/services/club.service";
 import { LeagueType } from "@kickstock/shared/src/types/league.type";
 import { ROUTER } from "@kickstock/shared/src/constants/router";
+import { getClubsHistoryData } from "@kickstock/core/src/services/club.service";
 
 type RouteParams = {
   leagueId: LeagueType;
@@ -107,7 +107,7 @@ export async function prefetchQuery(url: string) {
         ...leagues.map((league) =>
           queryClient.prefetchQuery({
             queryKey: QUERY_KEY.CLUB.STOCK(league),
-            queryFn: () => getClubStocksData(league),
+            queryFn: () => getClubsHistoryData(league),
             staleTime: Infinity,
           }),
         ),
