@@ -43,7 +43,7 @@ export const HomeTab = () => {
         />
         {homeTab.map((item) => (
           <TabsTrigger
-            disabled={isPending}
+            disabled={isPending || item.value === "player"}
             key={item.value}
             value={item.value}
             className="w-24 rounded-none text-xl font-semibold first:mr-20 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
