@@ -27,37 +27,37 @@ export const NavbarMenuWrapper = () => {
       >
         <div className="grid grid-cols-2 gap-10 p-4 text-sm">
           <ProductItem
-            title="Algochurn"
+            title="팬 토론방"
             href="#"
-            src="https://assets.aceternity.com/demos/algochurn.webp"
-            description="Prepare for tech interviews like never before."
+            src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            description="다양한 축구 팬들과 실시간으로 소통하며 팀과 선수 정보를 나누어 보세요."
           />
           <ProductItem
-            title="Tailwind Master Kit"
+            title="라이브 경기 분석"
             href="#"
-            src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-            description="Production ready Tailwind css components for your next project"
+            src="https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            description="경기 중 실시간 분석을 통해 각 팀의 전략과 선수 활약을 함께 예측해 보세요."
           />
           <ProductItem
-            title="Moonbeam"
+            title="팀 토론방"
             href="#"
-            src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-            description="Never write from scratch again. Go from idea to blog in minutes."
+            src="https://images.unsplash.com/photo-1598881034666-6d3443d4b1bc?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            description="본인이 응원하는 팀의 팬들끼리 서로 소통해보세요."
           />
           <ProductItem
-            title="Rogue"
+            title="주가 예측 토론"
             href="#"
-            src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-            description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+            src="https://images.unsplash.com/photo-1560221328-12fe60f83ab8?q=80&w=2948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            description="선수와 팀의 주식 가치 변동을 함께 토론하며 더 나은 투자 전략을 세워보세요."
           />
         </div>
       </MenuItem>
       <MenuItem setActive={setActive} active={active} item={NAVBAR.MY.label}>
         <div className="flex flex-col space-y-4 text-sm">
-          <HoveredLink href="#">Hobby</HoveredLink>
-          <HoveredLink href="#">Individual</HoveredLink>
-          <HoveredLink href="#">Team</HoveredLink>
-          <HoveredLink href="#">Enterprise</HoveredLink>
+          <HoveredLink href="/mypage/profile">내 정보</HoveredLink>
+          <HoveredLink href="/mypage/portfolio">나의 포트폴리오</HoveredLink>
+          <HoveredLink href="/mypage/trade-history">거래 내역</HoveredLink>
+          <HoveredLink href="/mypage/favorites">관심 선수/팀</HoveredLink>
         </div>
       </MenuItem>
     </Menu>
