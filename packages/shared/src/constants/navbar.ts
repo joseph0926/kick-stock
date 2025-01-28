@@ -1,14 +1,14 @@
 export const NAVBAR = {
-  LEAGUE: { label: "리그", href: "/leagues" },
+  LEAGUE: { label: "리그", href: "/league" },
   COMMUNITY: { label: "커뮤니티", href: "/community" },
   MY: { label: "마이페이지", href: "/my" },
 };
 
 export const leagueItems = [
-  { label: "All", href: "/leagues" },
-  { label: "EPL", href: "/leagues/epl" },
-  { label: "Laliga", href: "/leagues/laliga" },
-  { label: "Bundes", href: "/leagues/bundes" },
-  { label: "Serie A", href: "/leagues/serie" },
-  { label: "Legue", href: "/leagues/ligue" },
+  { label: "All", href: "/league" },
+  { label: "EPL", href: "/league/epl" },
+  { label: "Laliga", href: "/league/laliga" },
+  { label: "Bundes", href: "/league/bundes" },
+  { label: "Serie A", href: "/league/serie" },
+  { label: "Legue", href: "/league/ligue" },
 ];
