@@ -5,3 +5,4 @@ dist
 dist-ssr
 stats
 .env.*
+DS_STORE
