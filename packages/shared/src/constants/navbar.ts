@@ -5,7 +5,6 @@ export const NAVBAR = {
 };
 
 export const leagueItems = [
-  { label: "All", href: "/league" },
   { label: "EPL", href: "/league/epl" },
   { label: "Laliga", href: "/league/laliga" },
   { label: "Bundes", href: "/league/bundes" },
