@@ -15,7 +15,15 @@
     "db:reset": "prisma migrate reset",
     "db:push": "prisma db push",
     "db:gen": "prisma generate",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx prisma/seed.ts",
+    "db:reset:dev": "env-cmd -f ../../.env.development prisma migrate reset",
+    "db:push:dev": "env-cmd -f ../../.env.development prisma db push",
+    "db:gen:dev": "env-cmd -f ../../.env.development prisma generate",
+    "db:seed:dev": "env-cmd -f ../../.env.development tsx prisma/seed.ts",
+    "db:reset:prod": "env-cmd -f ../../.env.production prisma migrate reset",
+    "db:push:prod": "env-cmd -f ../../.env.production prisma db push",
+    "db:gen:prod": "env-cmd -f ../../.env.production prisma generate",
+    "db:seed:prod": "env-cmd -f ../../.env.production tsx prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
