@@ -85,11 +85,11 @@ export const LeagueChart = memo(({ leagueData }: LeagueChartProps) => {
     }));
   }, [values]);
 
-  if (leagueData == undefined || chartData?.length === 0) {
-    return <LeagueChartSkeleton />;
-  }
   return (
-    <ChartContainer config={chartConfig} className="min-h-[400px] !w-screen">
+    <ChartContainer
+      config={chartConfig ?? []}
+      className="min-h-[400px] !w-screen"
+    >
       <LineChart
         data={chartData}
         accessibilityLayer
